@@ -1,5 +1,5 @@
 import React from 'react'
-import './css/BusLogs.css'
+import './BusLogs.css'
 
 const BusLogs = ({ buses, dates, sendDate }) =>{
   return (

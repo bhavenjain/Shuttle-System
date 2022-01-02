@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import SwapVerticalCircleOutlinedIcon from '@material-ui/icons/SwapVerticalCircleOutlined'
 import { FormControl, Select, InputLabel } from '@material-ui/core'
-
-import './css/Field.css'
+import './Field.css'
 
 const Field  = ({ options, location, setLocation }) => {
   const fromRef = useRef(null)

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 // import AddIcon from '@mui/icons-material/Add'
 // import RemoveIcon from '@mui/icons-material/Remove'
-import Input from './Input'
-import './css/Booking.css'
+import Input from '../Input/Input'
+import './Booking.css'
 
 function Booking () {
   const [student, setStudent] = useState({
