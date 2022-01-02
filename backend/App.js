@@ -18,7 +18,7 @@ app.use(express.json())
 
 // app.use(Routes)
 
-router.get('/', async (req, res) => {
+app.get('/', async (req, res) => {
   const data = await Bus.find()
   res.send('hello')
 })
