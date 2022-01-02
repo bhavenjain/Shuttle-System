@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Navbar from '../../Components/Navbar/Navbar'
+import React, { useState, useEffect } from 'react'
 import Field from '../../Components/Field/Field'
 import TabsForm from '../../Components/TabsForm/TabsForm'
 import Button from '../../Components/Button/Button'
 import BusLogs from '../../Components/BusLogs/BusLogs'
 import Note from '../../Components/Note/Note'
-import Booking from '../../Components/Booking/Booking'
-import { Data } from '../../util'
+// import Booking from '../../Components/Booking/Booking'
+// import { Data } from '../../util'
+import axios from 'axios'
 import '../../App.css'
 // import NotFound from './Components/NotFound'
 
@@ -26,19 +26,34 @@ const LandingPage = () => {
     month: ''
   })
 
+  const [data, setData] = useState(null)
+
   const [buses, setBuses] = useState(null)
   const [toggleButton, setToggleButton] = useState(false)
   const [sendDate, setSendDate] = useState('')
 
+ // Fetch the data
+  const getData = async () => {
+    axios
+      .get('http://localhost:5000/api/bus')
+      .then(response => {
+        const see = response.data
+        setData(see)
+        // console.log(see)
+      })
+      .catch(error => alert('Not Recived'))
+  }
+
   useEffect(() => {
-    // console.log(buses)
-  }, [buses])
+    document.title = 'Shuttle Status'
+    getData()
+  }, [])
 
   useEffect(() => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
       // console.log(toggleButton)
-      Data.forEach(bus => {
+      data.forEach(bus => {
         if (
           bus.to === location.to.toLowerCase() &&
           bus.from === location.from.toLowerCase() &&
