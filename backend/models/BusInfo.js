@@ -2,10 +2,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const bus = new Schema({
-  id: {
-    type: Number,
-    required: false
-  },
   from: {
     type: String,
     required: true
