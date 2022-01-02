@@ -20,7 +20,7 @@ app.use(express.json())
 
 app.get('/', async (req, res) => {
   const data = await Bus.find()
-  res.send('hello')
+  res.send(data)
 })
 
 app.listen(5000, () => {
