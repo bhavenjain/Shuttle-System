@@ -1,0 +1,32 @@
+.button {
+    display: flex;
+    width: 100vw;
+    height: auto;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.button__submit {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    height: 5vh;
+    width: 30vw;
+    border: 1.5px solid grey;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.button__submit:hover {
+    border: 2px solid blue;
+    transform: scale(1.05);
+    transform: rotate(-2deg);
+}
+
+.button__submit:active {
+    transform: rotate(-4deg);
+}

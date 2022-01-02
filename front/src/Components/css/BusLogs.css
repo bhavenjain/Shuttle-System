@@ -1,0 +1,110 @@
+.busLogs {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    margin-top: 10px;
+    padding: 3vw 4vw;
+    height: auto;
+}
+
+.busLogs__card h4,
+label,
+h3 {
+    background: none;
+}
+
+.busLogs__card {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
+    width: 100%;
+    height: 20vh;
+    padding: 10px;
+    padding-top: 20px;
+    background-color: #fefdff;
+    border: 1.5px solid lightgrey;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.busLogs__card:hover {
+    transform: scale(1.006);
+    box-shadow: 5px 0px 120px -20px rgba(0, 0, 0, 0.26);
+    -webkit-box-shadow: 5px 0px 120px -20px rgba(0, 0, 0, 0.26);
+    -moz-box-shadow: 5px 0px 120px -20px rgba(0, 0, 0, 0.26);
+}
+
+.busLogs__s1 {
+    flex: 0.4;
+    display: flex;
+    flex-direction: column;
+}
+
+.busLogs__s1>label {
+    font-size: 0.6rem;
+    color: grey;
+}
+
+.busLogs__s1>h3 {
+    font-weight: 800;
+    margin-top: 12px;
+    font-size: 1rem;
+    margin-left: 5px;
+}
+
+.busLogs__s1>h4 {
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+.busLogs__s2 {
+    flex: 0.2;
+    display: flex;
+    flex-direction: column;
+}
+
+.busLogs__s2>h3 {
+    font-weight: 800;
+    margin-top: 12px;
+    font-size: 1rem;
+    margin-left: 5px;
+}
+
+.busLogs__s3 {
+    flex: 0.4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.busLogs__s3>h3 {
+    font-weight: 300;
+    margin-top: 12px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.busLogs__s3>h3>strong {
+    font-weight: 800;
+}
+
+@media (max-height: 700px) {
+    .busLogs {
+        padding: 3vw 1vw;
+    }
+
+    .busLogs__card {
+        height: 25vh;
+    }
+}
+
+@media (max-height: 600px) {
+    .busLogs {
+        padding: 3vw 1vw;
+    }
+
+    .busLogs__card {
+        height: 30vh;
+    }
+}

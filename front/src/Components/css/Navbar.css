@@ -1,0 +1,14 @@
+.navbar {
+    display: flex;
+    background-color: #005197;
+    color: #ffffff;
+    width: 100.15vw;
+    height: 10vh;
+    align-items: center;
+    padding: 2vh 7vw;
+}
+
+.navbar__logo {
+    object-fit: cover;
+    max-width: 35vw;
+}
