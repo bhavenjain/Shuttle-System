@@ -1,4 +1,4 @@
-.field__formControl {
+.field__form {
     width: 300px;
 }
 
@@ -7,7 +7,7 @@
 }
 
 @media (max-height: 2000px) {
-    .field__formControl {
+    .field__form {
         width: 250px;
         font-size: 20px;
     }
@@ -20,7 +20,7 @@
 }
 
 @media (max-height: 1024px) {
-    .field__formControl {
+    .field__form {
         width: 250px;
     }
 
@@ -30,7 +30,7 @@
 }
 
 @media (max-height: 900px) {
-    .field__formControl {
+    .field__form {
         width: 300px;
     }
 
@@ -40,7 +40,7 @@
 }
 
 @media (max-height: 700px) {
-    .field__formControl {
+    .field__form {
         width: 300px;
     }
 

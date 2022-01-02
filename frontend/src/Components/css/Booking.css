@@ -1,7 +1,31 @@
-.booking{
+.booking {
     display: flex;
+    flex-direction: column;
     padding: 20px;
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     background-color: #ffffff;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.booking__card {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 50vh;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.booking__inputs {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    padding: 10px;
+    margin-top: -10vh;
 }

@@ -1,0 +1,61 @@
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+    --color-light: white;
+    --color-dark: #212121;
+    --color-background: var(--color-light);
+    --color-text: var(--color-dark);
+    --color-accent: var(--color-signal);
+    --size-bezel: 0.5rem;
+    --size-radius: 4px;
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+    font-size: calc(.8rem + .6vw);
+    color: var(--color-text);
+    background: var(--color-background);
+    font-weight: 300;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 900;
+}
+
+.input {
+    position: relative;
+}
+
+.input__label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: calc(var(--size-bezel) * 0.75) calc(var(--size-bezel) * .5);
+    margin: calc(var(--size-bezel) * 0.75 + 3px) calc(var(--size-bezel) * .5);
+    background: pink;
+    white-space: nowrap;
+    transform: translate(0, 0);
+    transform-origin: 0 0;
+    background: var(--color-background);
+    transition: transform 120ms ease-in;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.input__field {
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    display: block;
+    width: 60vw;
+    border: 2px solid currentColor;
+    padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+    color: currentColor;
+    background: transparent;
+    border-radius: var(--size-radius);
+}
+
+.input__field:focus+.input__label,
+.input__field:not(:placeholder-shown)+.input__label {
+    transform: translate(0.25rem, -65%) scale(0.8);
+    color: #262626;
+}

@@ -51,7 +51,7 @@ img {
 
 */
 
-@media (max-height: 2000px) {
+@media (max-height: 4000px) {
   .app__form {
     flex-direction: row;
   }
