@@ -8,6 +8,7 @@ import Note from './Components/Note'
 import Booking from './Components/Booking'
 import { Data } from './util'
 import './App.css'
+// import NotFound from './Components/NotFound'
 
 
 const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
@@ -77,7 +78,7 @@ function App () {
       )}
 
       <Note />
-      {/* <Booking /> */}
+      {/* <NotFound /> */}
     </div>
   )
 }
