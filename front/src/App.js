@@ -4,6 +4,7 @@ import Field from './Components/Field'
 import TabsForm from './Components/TabsForm'
 import Button from './Components/Button'
 import BusLogs from './Components/BusLogs'
+import Note from './Components/Note'
 import { Data } from './util'
 import './App.css'
 
@@ -66,12 +67,14 @@ function App () {
         />
         <TabsForm dates={dates} setDates={setDates} />
         <Button toggleButton={toggleButton} setToggleButton={setToggleButton} />
-        {buses ? (
-          <BusLogs buses={buses} dates={dates} sendDate={sendDate} />
-        ) : (
-          <h1></h1>
-        )}
       </form>
+      {buses ? (
+        <BusLogs buses={buses} dates={dates} sendDate={sendDate} />
+      ) : (
+        <h1></h1>
+      )}
+
+      <Note />
     </div>
   )
 }

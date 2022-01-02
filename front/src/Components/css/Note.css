@@ -1,0 +1,25 @@
+.note {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 5vh 3vw;
+    background-color: #ffffff;
+}
+
+.note h1,
+h2,
+h3,
+h4,
+p,
+li,
+ul {
+    background: none;
+}
+
+.note__content {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    background-color: #e6e6e6;
+}
