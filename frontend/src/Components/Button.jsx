@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/Button.css'
 
-function Button ({ toggleButton, setToggleButton }) {
+const Button = ({ toggleButton, setToggleButton }) => {
   return (
     <div className='button'>
       <div

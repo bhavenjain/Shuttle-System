@@ -22,7 +22,7 @@ const month = [
   'Dec'
 ]
 
-function TabsForm ({ dates, setDates }) {
+const TabsForm = ({ dates, setDates }) => {
   const [today, setToday] = useState(false)
   const [tom, setTom] = useState(false)
   const [next, setNext] = useState(false)

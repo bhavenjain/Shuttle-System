@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/Note.css'
 
-function Note () {
+const Note = () => {
   return (
     <div className='note'>
       <div className='note__content'>

@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/Navbar.css'
 
-function Navbar () {
+const Navbar = () => {
   return (
     <div className='navbar'>
       <img

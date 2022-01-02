@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/BusLogs.css'
 
-function BusLogs ({ buses, dates, sendDate }) {
+const BusLogs = ({ buses, dates, sendDate }) =>{
   return (
     <div className='busLogs'>
       {buses.map((bus, key) => {

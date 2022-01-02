@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/NotFound.css'
 
-function NotFound() {
+const NotFound = () => {
     return (
         <div className='notFound'>
             <h1>404</h1>

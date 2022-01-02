@@ -4,7 +4,7 @@ import { FormControl, Select, InputLabel } from '@material-ui/core'
 
 import './css/Field.css'
 
-export default function Field ({ options, location, setLocation }) {
+const Field  = ({ options, location, setLocation }) => {
   const fromRef = useRef(null)
   const toRef = useRef(null)
 
@@ -91,3 +91,5 @@ export default function Field ({ options, location, setLocation }) {
     </div>
   )
 }
+
+export default Field;
