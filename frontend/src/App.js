@@ -5,8 +5,10 @@ import TabsForm from './Components/TabsForm'
 import Button from './Components/Button.jsx'
 import BusLogs from './Components/BusLogs'
 import Note from './Components/Note'
+import Booking from './Components/Booking'
 import { Data } from './util'
 import './App.css'
+
 
 const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
 
@@ -75,6 +77,7 @@ function App () {
       )}
 
       <Note />
+      {/* <Booking /> */}
     </div>
   )
 }
