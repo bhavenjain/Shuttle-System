@@ -51,6 +51,23 @@ img {
 
 */
 
+@media (max-height: 2000px) {
+  .app__form {
+    flex-direction: row;
+  }
+}
+
+@media (max-height: 1024px) {
+  .app__form {
+    flex-direction: row;
+  }
+}
+
+@media (max-height: 900px) {
+  .app__form {
+    flex-direction: column;
+  }
+}
 
 @media (max-height: 700px) {
   .app__form {

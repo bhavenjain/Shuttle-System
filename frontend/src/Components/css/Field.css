@@ -1,38 +1,50 @@
-/* 
-
-
-    Responsive
-
-
-*/
-
-/* @media (max-height: 700px) {
-
-    .input__label {
-        padding: calc(var(--size-bezel) * 0.5 + 0px) calc(var(--size-bezel) * 1);
-        margin: calc(var(--size-bezel) * 0.75 + 2px) calc(var(--size-bezel) * .5);
-    }
-
-    .input__field {
-        min-width: 300px;
-        min-height: 50px;
-        border: 3px solid currentColor;
-        padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
-        padding-left: 15px;
-        font-size: calc(0.8rem + 0.6vw);
-    }
-}
-
-@media (max-height: 600px) {
-    .input__field {
-        min-width: 280px;
-    }
-} */
-
 .field__formControl {
     width: 300px;
 }
 
 .field__select {
     width: 300px;
+}
+
+@media (max-height: 2000px) {
+    .field__formControl {
+        width: 250px;
+        font-size: 20px;
+    }
+
+    .field__select {
+        width: 300px;
+        font-size: 20px;
+
+    }
+}
+
+@media (max-height: 1024px) {
+    .field__formControl {
+        width: 250px;
+    }
+
+    .field__select {
+        width: 250px;
+    }
+}
+
+@media (max-height: 900px) {
+    .field__formControl {
+        width: 300px;
+    }
+
+    .field__select {
+        width: 300px;
+    }
+}
+
+@media (max-height: 700px) {
+    .field__formControl {
+        width: 300px;
+    }
+
+    .field__select {
+        width: 300px;
+    }
 }
