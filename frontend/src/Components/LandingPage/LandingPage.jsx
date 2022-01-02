@@ -61,7 +61,7 @@ const LandingPage = () => {
 
   return (
     <div className='app'>
-      <Navbar />
+      
       <h1 className='app__heading'>Shuttle Status</h1>
       <form>
         <Field
