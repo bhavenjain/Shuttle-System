@@ -8,5 +8,33 @@ const bookingSchema = new Schema({
 
         },
     ],
-
+    email: {
+        type: String,
+        required: true
+    },
+    phoneNumber: {
+        type: String,
+        required: true
+    },
+    fare: {
+        type: Number,
+        required: true
+    },
+    busId: {
+        type: Schema.Types.ObjectId,
+        ref: "BUS",
+        required: true
+    },
+    seats: {
+        type: [Number],
+        required: true,
+    },
+    status: {
+        type: String,
+        required: true
+    },
+    bookingDate: {
+        type: String,
+        required: true
+    },
 });
