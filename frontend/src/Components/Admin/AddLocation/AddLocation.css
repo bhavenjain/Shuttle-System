@@ -1,0 +1,25 @@
+.addLocation {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.addLocation>form {
+    width: 90%;
+    padding: 20px;
+    border: 1px solid lightgray;
+}
+
+.addLocation>form>label {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.addLocation__button {
+    font-weight: bold;
+    width: 30vw;
+    margin-top: 10px;
+}
