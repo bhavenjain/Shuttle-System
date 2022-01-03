@@ -1,5 +1,4 @@
 const Bus = require('../models/BusInfo')
-const Locations = require('../models/locations')
 
 module.exports.getBuses = async (req, res) => {
   try {
@@ -20,16 +19,5 @@ module.exports.addBus = async (req, res) => {
   } catch (err) {
     console.log(err)
     res.status(400).json({ msg: 'error registering bus' })
-  }
-}
-
-module.exports.addLocation = async (req, res) => {
-  try {
-    console.log(req.body)
-    // const data = await Location.create(req.body)
-    // res.status(201).json({ data: data })
-  } catch (err) {
-    console.log(err)
-    // res.status(400).json({ msg: 'error registering bus' })
   }
 }

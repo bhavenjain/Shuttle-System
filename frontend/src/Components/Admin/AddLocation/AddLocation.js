@@ -70,7 +70,7 @@ const AddLocation = () => {
             // ref={fromRef}
             label='Delete'
             onChange={handleChangeFrom}
-            defaultValue={options[0]}
+            defaultValue={null}
           >
             <option value=''>Delete Location</option>
 
