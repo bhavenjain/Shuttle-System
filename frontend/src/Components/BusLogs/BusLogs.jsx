@@ -24,6 +24,7 @@ const BusLogs = ({ buses, dates, sendDate }) =>{
               <h3>
                 <strong>{bus.totalSeats}</strong> total seates.
               </h3>
+              <div className="busLogs__button">Book a Seat {">"} </div>
             </div>
           </div>
         )

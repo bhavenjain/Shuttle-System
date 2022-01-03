@@ -89,6 +89,30 @@ h3 {
     font-weight: 800;
 }
 
+.busLogs__button {
+    font-size: 0.9rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
+    margin-top: 2vh;
+    color: gray;
+    border-bottom: 1px solid black;
+    transition: all 0.3s;
+}
+
+.busLogs__button:hover {
+    transform: scale(1.1);
+    border-bottom: 2px solid gray;
+
+}
+
+/* 
+
+
+Responsive
+
+
+*/
+
 @media (max-height: 700px) {
     .busLogs {
         padding: 3vw 1vw;

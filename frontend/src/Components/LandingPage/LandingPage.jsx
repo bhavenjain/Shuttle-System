@@ -5,12 +5,10 @@ import Button from '../../Components/Button/Button'
 import BusLogs from '../../Components/BusLogs/BusLogs'
 import Note from '../../Components/Note/Note'
 // import Booking from '../../Components/Booking/Booking'
-// import { Data } from '../../util'
+import { Data } from '../../util'
 import axios from 'axios'
 import '../../App.css'
 // import NotFound from './Components/NotFound'
-
-
 
 const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
 
@@ -35,11 +33,11 @@ const LandingPage = () => {
  // Fetch the data
   const getData = async () => {
     axios
-      .get('http://localhost:5000/api/bus')
+      .get('http://localhost:5000/api/getbuses')
       .then(response => {
         const see = response.data
-        setData(see)
-        // console.log(see)
+        setData(see.data)
+        console.log(see.data)
       })
       .catch(error => alert('Not Recived'))
   }
@@ -53,11 +51,11 @@ const LandingPage = () => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
       // console.log(toggleButton)
-      data.forEach(bus => {
+      Data.forEach(bus => {
         if (
           bus.to === location.to.toLowerCase() &&
           bus.from === location.from.toLowerCase() &&
-          JSON.stringify(bus.date) === dates.date
+          JSON.stringify(bus.date) === dates.date && (bus.remaining > 0 && bus.remaining < bus.totalSeats)
         ) {
           const temp =
             dates.day + ', ' + JSON.stringify(bus.date) + ' ' + dates.month
