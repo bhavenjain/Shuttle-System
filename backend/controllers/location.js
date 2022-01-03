@@ -24,7 +24,7 @@ module.exports.addLocation = async (req, res) => {
             console.log("ERROR" + err);
           }
           else {
-            console.log("Deleted");
+            console.log("Location Deleted");
           }
         })
     }
