@@ -23,3 +23,9 @@
     width: 30vw;
     margin-top: 10px;
 }
+
+.addLocation__form {}
+
+.addLocation__select {
+    width: 70vw;
+}
