@@ -1,0 +1,96 @@
+import React, { useState } from 'react'
+// import AddIcon from '@mui/icons-material/Add'
+// import RemoveIcon from '@mui/icons-material/Remove'
+import Input from '../Input/Input'
+import './Booking.css'
+
+function loadScript(src) {
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = () => {
+      resolve(true)
+    }
+    script.onerror = () => {
+      resolve(false)
+    }
+    document.body.appendChild(script)
+  })
+}
+
+const __DEV__ = document.domain === 'localhost'
+
+function Booking() {
+  const [student, setStudent] = useState({
+    name: '',
+    email: '',
+    number: ''
+  })
+
+  const [passengers, setPassengers] = useState(1)
+
+  async function displayRazorpay() {
+    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+    if (!res) {
+      alert('Razorpay SDK failed to load. Check your network connection')
+      return
+    }
+
+    const data = await fetch('http://localhost:5000/razorpay', { method: 'POST' }).then((t) =>
+      t.json()
+    )
+
+    console.log(data)
+
+    const options = {
+      key: __DEV__ ? 'rzp_test_OW3zsLjOx9ojcu' : 'PRODUCTION_KEY',
+      currency: data.currency,
+      amount: data.amount.toString(),
+      order_id: data.id,
+      name: 'Donation',
+      description: 'Thank you for nothing. Please give us some money',
+      image: 'http://localhost:1337/logo.svg',
+      handler: function (response) {
+        alert(response.razorpay_payment_id)
+        alert(response.razorpay_order_id)
+        alert(response.razorpay_signature)
+      },
+      prefill: {
+        name: 'Sanskar',
+        email: 'sdfdsjfh2@ndsfdf.com',
+        phone_number: '9899999999'
+      }
+    }
+    const paymentObject = new window.Razorpay(options)
+    paymentObject.open()
+  }
+
+  return (
+    <div className='booking center'>
+      {/* div for background */}
+
+      {/* Heading */}
+
+      {/* Form */}
+
+      {/* count */}
+
+      {/* submit button */}
+
+      <div className='booking__card center'>
+        <form>
+          <div className='booking__inputs center'>
+            {/* <Input field='Name' />
+            <Input field='Enter SNU Email' />
+            <Input field='Number' /> */}
+            <input type='button' onClick={displayRazorpay} value='Proceed to Pay'/>
+            {/* </input> */}
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default Booking

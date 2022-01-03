@@ -4,7 +4,7 @@ import TabsForm from '../../Components/TabsForm/TabsForm'
 import Button from '../../Components/Button/Button'
 import BusLogs from '../../Components/BusLogs/BusLogs'
 import Note from '../../Components/Note/Note'
-// import Booking from '../../Components/Booking/Booking'
+import Booking from '../../Components/Booking/Booking'
 import { Data } from '../../util'
 import axios from 'axios'
 import '../../App.css'
@@ -92,7 +92,7 @@ const getData = async () => {
   return (
     <div className='app'>
       
-      <h1 className='app__heading'>Shuttle Status</h1>
+      {/* <h1 className='app__heading'>Shuttle Status</h1>
       <form>
         <Field
           options={options}
@@ -108,9 +108,9 @@ const getData = async () => {
         <h1></h1>
       )}
 
-      <Note />
+      <Note /> */}
       {/* <NotFound /> */}
-      {/* <Booking /> */}
+      <Booking />
     </div>
   )
 }
