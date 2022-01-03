@@ -10,7 +10,7 @@ import axios from 'axios'
 import '../../App.css'
 // import NotFound from './Components/NotFound'
 
-const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
+//const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
 
 const LandingPage = () => {
   const [location, setLocation] = useState({
@@ -18,7 +18,9 @@ const LandingPage = () => {
     to: ''
   })
 
-  const [dates, setDates] = useState({
+const [options, setOptions] = useState([])
+
+const [dates, setDates] = useState({
     date: '',
     day: '',
     month: ''
@@ -31,7 +33,22 @@ const LandingPage = () => {
   const [sendDate, setSendDate] = useState('')
 
  // Fetch the data
-  const getData = async () => {
+const getLocations = async() => {
+  axios
+  .get('http://localhost:5000/api/getLocations')
+  .then(response => {
+    const see = response.data.locations
+    let temp = []
+    see.forEach(item => {
+      temp.push(item.locations)
+    })
+    setOptions(temp)
+    console.log(temp)
+  })
+  .catch(error => alert('Not Recived'))
+}
+
+const getData = async () => {
     axios
       .get('http://localhost:5000/api/getbuses')
       .then(response => {
@@ -43,7 +60,7 @@ const LandingPage = () => {
   }
 
   useEffect(() => {
-    
+    getLocations()
     getData()
   }, [])
 

@@ -3,11 +3,16 @@
     display: flex;
     flex-direction: column;
     height: auto;
-    padding-top: 5vh;
-    background-color: #ffffff;
+    padding-top: 8.4vh;
+    padding-bottom: 0;
+    background-color: white;
     margin: 0;
+    
 }
 
+.note::-webkit-scrollbar{
+    display: none;
+}
 .note__content h1,
 h2,
 h3,

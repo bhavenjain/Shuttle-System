@@ -29,8 +29,8 @@ const Admin = () => {
 
   return (
     <div className='admin'>
-      {/* <AddLocation options={options} /> */}
-      <AddBus/>
+      <AddLocation options={options} />
+      {/* <AddBus/> */}
     </div>
   )
 }

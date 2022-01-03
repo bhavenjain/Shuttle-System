@@ -4,10 +4,10 @@ import Routing from './Router/Routing'
 
 const App = () => {
   return (
-    <>
+    <div className='app'>
       <Navbar />
       <Routing />
-    </>
+    </div>
   )
 }
 

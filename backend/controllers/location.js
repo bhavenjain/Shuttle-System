@@ -13,10 +13,20 @@ module.exports.getLocations = async (req, res) => {
 
 module.exports.addLocation = async (req, res) => {
   try {
-    console.log(req.body.add)
+    console.log(req.body)
     if (req.body.add) {
       const data = await Locations.create({ locations: req.body.add })
       res.status(201).json({ data: data })
+    }
+    if (req.body.delete) {
+        Locations.findOneAndDelete({locations : req.body.delete}, function(err, res){
+          if (err) {
+            console.log("ERROR" + err);
+          }
+          else {
+            console.log("Deleted");
+          }
+        })
     }
   } catch (err) {
     console.log(err)

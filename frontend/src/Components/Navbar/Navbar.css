@@ -7,7 +7,9 @@
     align-items: center;
     padding: 2vh 7vw;
 }
-
+.navbar::-webkit-scrollbar{
+    display: none;
+}
 .navbar__logo {
     object-fit: cover;
     max-width: 35vw;
