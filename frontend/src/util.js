@@ -7,6 +7,8 @@ tomorrowDate.setDate(tomorrowDate.getDate() + 1)
 export const dayAfterDate = new Date()
 dayAfterDate.setDate(dayAfterDate.getDate() + 2)
 
+export const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
+
 export const Data = [
   {
     id: 0,

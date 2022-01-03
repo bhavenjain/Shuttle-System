@@ -26,10 +26,10 @@ module.exports.addBus = async (req, res) => {
 module.exports.addLocation = async (req, res) => {
   try {
     console.log(req.body)
-    const data = await Location.create(req.body)
-    res.status(201).json({ data: data })
+    // const data = await Location.create(req.body)
+    // res.status(201).json({ data: data })
   } catch (err) {
     console.log(err)
-    res.status(400).json({ msg: 'error registering bus' })
+    // res.status(400).json({ msg: 'error registering bus' })
   }
 }

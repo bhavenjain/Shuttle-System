@@ -1,5 +1,6 @@
 import React from 'react'
 import AddLocation from './AddLocation/AddLocation'
+import AddBus from './AddBus/AddBus'
 import './Admin.css'
 
 const Admin = () => {

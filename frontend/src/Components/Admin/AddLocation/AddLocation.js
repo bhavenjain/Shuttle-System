@@ -9,7 +9,7 @@ const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
 
 const AddLocation = () => {
   const [addLocation, setAddLocation] = useState(null)
-  const [deleteLocation, setDeleteLocation] = useState('')
+  const [deleteLocation, setDeleteLocation] = useState(null)
   //   const [addLocationButton, setAddLocationButton] = useState(false)
 
   const handleChange = event => {
@@ -21,18 +21,19 @@ const AddLocation = () => {
   }
 
   const handleSubmit = async () => {
-    const loginFormData = new FormData()
-    loginFormData.append('addLocation', addLocation)
-    loginFormData.append('deleteLocation', deleteLocation)
+    const formData = new FormData()
+    formData.append('addLocation', addLocation)
+    formData.append('deleteLocation', deleteLocation)
 
     try {
       // make axios post request
-      const response = await axios({
-        method: 'post',
-        url: '/',
-        data: loginFormData,
-        headers: { 'Content-Type': 'multipart/form-data' }
-      })
+      axios
+        .post('http://localhost:5000/api/addLocation', {
+          add: addLocation,
+          delete: deleteLocation
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     } catch (error) {
       console.log(error)
     }
