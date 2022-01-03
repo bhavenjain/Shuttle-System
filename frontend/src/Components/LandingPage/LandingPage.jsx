@@ -51,11 +51,11 @@ const LandingPage = () => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
       // console.log(toggleButton)
-      Data.forEach(bus => {
+      data.forEach(bus => {
         if (
-          bus.to === location.to.toLowerCase() &&
-          bus.from === location.from.toLowerCase() &&
-          JSON.stringify(bus.date) === dates.date && (bus.remaining > 0 && bus.remaining < bus.totalSeats)
+          bus.to.toLowerCase() === location.to.toLowerCase() &&
+          bus.from.toLowerCase() === location.from.toLowerCase() &&
+          JSON.stringify(bus.date) === dates.date && (bus.remaining > 0 && bus.remaining <= bus.total)
         ) {
           const temp =
             dates.day + ', ' + JSON.stringify(bus.date) + ' ' + dates.month

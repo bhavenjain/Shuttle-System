@@ -18,14 +18,6 @@ const AddBus = () => {
   })
 
   const handleSubmit = async () => {
-    const formData = new FormData()
-    formData.append('to', location.to)
-    formData.append('from', location.from)
-    formData.append('date', data.date)
-    formData.append('time', data.time)
-    formData.append('busNum', data.busNo)
-    formData.append('totalSeats', data.totalSeats)
-
     try {
       // make axios post request
       axios
