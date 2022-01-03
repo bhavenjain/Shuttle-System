@@ -1,9 +1,11 @@
 import React from 'react'
-import Routing from './Routing'
+import Navbar from './Components/Navbar/Navbar'
+import Routing from './Router/Routing'
 
 const App = () => {
   return (
     <>
+      <Navbar />
       <Routing />
     </>
   )

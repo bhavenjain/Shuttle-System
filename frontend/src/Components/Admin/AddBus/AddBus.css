@@ -1,0 +1,59 @@
+.addBus {
+    width: 100vw;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: column;
+    outline: none;
+}
+
+.addBus__data {
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 10px;
+    padding-top: 0;
+    width: 100%;
+}
+
+.addBus__box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin-top: 25px;
+}
+
+.addBus__box>label {
+
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.addBus__box>input {
+    margin-left: 5vw;
+    padding: 5px;
+    letter-spacing: 2px;
+    border: none;
+    width: 200px;
+    border-bottom: 2px solid black;
+    outline: none;
+}
+
+.addBus__box>input[type="text"] {
+    width: 150px;
+}
+
+.addBus__box>input[type="number"] {
+    width: 150px;
+}
+
+.addBus__font {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.addBus__margin {
+    margin-top: 50px;
+}

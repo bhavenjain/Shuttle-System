@@ -32,7 +32,7 @@ h3 {
     top: 0;
     padding: calc(var(--size-bezel) * 0.75) calc(var(--size-bezel) * .5);
     margin: calc(var(--size-bezel) * 0.75 + 3px) calc(var(--size-bezel) * .5);
-    background: pink;
+    background: none;
     white-space: nowrap;
     transform: translate(0, 0);
     transform-origin: 0 0;
@@ -43,19 +43,24 @@ h3 {
 }
 
 .input__field {
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     box-sizing: border-box;
     display: block;
-    width: 60vw;
-    border: 2px solid currentColor;
+    width: 70vw;
+    border: 2px solid #262626;
     padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
     color: currentColor;
     background: transparent;
     border-radius: var(--size-radius);
 }
 
+.input__field:focus {
+    border-color: #262626;
+}
+
 .input__field:focus+.input__label,
 .input__field:not(:placeholder-shown)+.input__label {
     transform: translate(0.25rem, -65%) scale(0.8);
     color: #262626;
+    border-color: #262626;
 }

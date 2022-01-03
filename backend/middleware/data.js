@@ -7,9 +7,9 @@ const Data = [
     to: 'snu',
     time: '07:30pm',
     busNum: 'up14cu5577',
-    totalSeats: 50,
+    total: 50,
     remaining: 30,
-    date: 31
+    date: 3
   },
   {
     id: 1,
@@ -17,9 +17,9 @@ const Data = [
     to: 'snu',
     time: '08:30pm',
     busNum: 'up14cu6997',
-    totalSeats: 50,
+    total: 50,
     remaining: 22,
-    date: 1
+    date: 5
   },
   {
     id: 2,
@@ -27,9 +27,9 @@ const Data = [
     to: 'botanical garden',
     time: '06:30pm',
     busNum: 'up14cu6097',
-    totalSeats: 50,
+    total: 50,
     remaining: 29,
-    date: 2
+    date: 3
   },
   {
     id: 3,
@@ -37,9 +37,9 @@ const Data = [
     to: 'pari chowk',
     time: '08:30pm',
     busNum: 'up14cu6997',
-    totalSeats: 50,
+    total: 50,
     remaining: 22,
-    date: 31
+    date: 4
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const Data = [
     to: 'botanical garden',
     time: '05:30pm',
     busNum: 'up14cu5997',
-    totalSeats: 50,
+    total: 50,
     remaining: 22,
     date: 31
   },
@@ -57,9 +57,9 @@ const Data = [
     to: 'snu',
     time: '09:30pm',
     busNum: 'up14cu5577',
-    totalSeats: 50,
+    total: 50,
     remaining: 2,
-    date: 31
+    date: 4
   },
   {
     id: 6,
@@ -67,9 +67,9 @@ const Data = [
     to: 'snu',
     time: '05:30pm',
     busNum: 'up14cu5977',
-    totalSeats: 50,
+    total: 50,
     remaining: 50,
-    date: 31
+    date: 3
   }
 ]
 
@@ -81,7 +81,7 @@ try {
       to: data.to,
       time: data.time,
       busNo: data.busNum,
-      total: data.totalSeats,
+      total: data.total,
       remaining: data.remaining,
       date: data.date
     })

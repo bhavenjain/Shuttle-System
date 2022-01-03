@@ -5,7 +5,7 @@ const Input = ({ field, handleChange }) => {
   return (
     <div>
       <label className='input'>
-        <input className='input__field' type='text' placeholder=' ' />
+        <input className='input__field' type='text' placeholder=' ' onChange={handleChange} />
         <span className='input__label'>{field}</span>
       </label>
     </div>

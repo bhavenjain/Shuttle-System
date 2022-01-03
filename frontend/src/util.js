@@ -7,6 +7,8 @@ tomorrowDate.setDate(tomorrowDate.getDate() + 1)
 export const dayAfterDate = new Date()
 dayAfterDate.setDate(dayAfterDate.getDate() + 2)
 
+export const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
+
 export const Data = [
   {
     id: 0,
@@ -15,8 +17,17 @@ export const Data = [
     time: '07:30pm',
     busNum: 'up14cu5577',
     totalSeats: 50,
+    remaining: 50,
+    date: 3
+  },
+  {
+    from: 'botanical garden',
+    to: 'snu',
+    time: '07:30pm',
+    busNum: 'up14cu5577',
+    totalSeats: 50,
     remaining: 30,
-    date: 2
+    date: 3
   },
   {
     id: 1,
@@ -26,7 +37,7 @@ export const Data = [
     busNum: 'up14cu6997',
     totalSeats: 50,
     remaining: 22,
-    date: 1
+    date: 3
   },
   {
     id: 2,
@@ -36,7 +47,7 @@ export const Data = [
     busNum: 'up14cu6097',
     totalSeats: 50,
     remaining: 29,
-    date: 2
+    date: 3
   },
   {
     id: 3,
@@ -46,7 +57,7 @@ export const Data = [
     busNum: 'up14cu6997',
     totalSeats: 50,
     remaining: 22,
-    date: 31
+    date: 3
   },
   {
     id: 4,
@@ -56,7 +67,7 @@ export const Data = [
     busNum: 'up14cu5997',
     totalSeats: 50,
     remaining: 22,
-    date: 31
+    date: 3
   },
   {
     id: 5,
@@ -66,7 +77,7 @@ export const Data = [
     busNum: 'up14cu5577',
     totalSeats: 50,
     remaining: 2,
-    date: 2
+    date: 4
   },
   {
     id: 6,
@@ -76,6 +87,6 @@ export const Data = [
     busNum: 'up14cu5977',
     totalSeats: 50,
     remaining: 50,
-    date: 2
+    date: 5
   }
 ]

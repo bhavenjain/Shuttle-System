@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import LandingPage from './Components/LandingPage/LandingPage'
+import Admin from '../Components/Admin/Admin'
+import LandingPage from '../Components/LandingPage/LandingPage'
 
 const Routing = () => {
   return (
@@ -13,6 +14,15 @@ const Routing = () => {
             element={
               <>
                 <LandingPage />
+              </>
+            }
+          />
+
+          <Route
+            path='/admin/access/bus'
+            element={
+              <>
+                <Admin />
               </>
             }
           />
