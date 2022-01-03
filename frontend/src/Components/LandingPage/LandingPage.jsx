@@ -43,7 +43,7 @@ const LandingPage = () => {
   }
 
   useEffect(() => {
-    document.title = 'Shuttle Status'
+    
     getData()
   }, [])
 

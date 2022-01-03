@@ -5,9 +5,7 @@ import Input from '../../Input/Input'
 
 import './AddLocation.css'
 
-const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
-
-const AddLocation = () => {
+const AddLocation = ({ options }) => {
   const [addLocation, setAddLocation] = useState(null)
   const [deleteLocation, setDeleteLocation] = useState(null)
   //   const [addLocationButton, setAddLocationButton] = useState(false)
