@@ -81,7 +81,7 @@ const AddLocation = () => {
           </Select>
         </FormControl>
 
-        <input type='submit' value='Submit' />
+        <input type='submit' className='addLocation__button' value='Submit' />
       </form>
     </div>
   )
