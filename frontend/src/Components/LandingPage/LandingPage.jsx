@@ -15,15 +15,15 @@ import '../../App.css'
 const LandingPage = () => {
   const [location, setLocation] = useState({
     from: '',
-    to: ''
+    to: '',
   })
 
-const [options, setOptions] = useState([])
+  const [options, setOptions] = useState([])
 
-const [dates, setDates] = useState({
+  const [dates, setDates] = useState({
     date: '',
     day: '',
-    month: ''
+    month: '',
   })
 
   const [data, setData] = useState(null)
@@ -32,31 +32,31 @@ const [dates, setDates] = useState({
   const [toggleButton, setToggleButton] = useState(false)
   const [sendDate, setSendDate] = useState('')
 
- // Fetch the data
-const getLocations = async() => {
-  axios
-  .get('http://localhost:5000/api/getLocations')
-  .then(response => {
-    const see = response.data.locations
-    let temp = []
-    see.forEach(item => {
-      temp.push(item.locations)
-    })
-    setOptions(temp)
-    console.log(temp)
-  })
-  .catch(error => alert('Not Recived'))
-}
+  // Fetch the data
+  const getLocations = async () => {
+    axios
+      .get('http://localhost:5000/api/getLocations')
+      .then((response) => {
+        const see = response.data.locations
+        let temp = []
+        see.forEach((item) => {
+          temp.push(item.locations)
+        })
+        setOptions(temp)
+        // console.log(temp)
+      })
+      .catch((error) => alert('Not Recived'))
+  }
 
-const getData = async () => {
+  const getData = async () => {
     axios
       .get('http://localhost:5000/api/getbuses')
-      .then(response => {
+      .then((response) => {
         const see = response.data
         setData(see.data)
-        console.log(see.data)
+        // console.log(see.data)
       })
-      .catch(error => alert('Not Recived'))
+      .catch((error) => alert('Not Recived'))
   }
 
   useEffect(() => {
@@ -68,11 +68,13 @@ const getData = async () => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
       // console.log(toggleButton)
-      data.forEach(bus => {
+      data.forEach((bus) => {
         if (
           bus.to.toLowerCase() === location.to.toLowerCase() &&
           bus.from.toLowerCase() === location.from.toLowerCase() &&
-          JSON.stringify(bus.date) === dates.date && (bus.remaining > 0 && bus.remaining <= bus.total)
+          JSON.stringify(bus.date) === dates.date &&
+          bus.remaining > 0 &&
+          bus.remaining <= bus.total
         ) {
           const temp =
             dates.day + ', ' + JSON.stringify(bus.date) + ' ' + dates.month
@@ -90,9 +92,8 @@ const getData = async () => {
   }, [toggleButton])
 
   return (
-    <div className='app'>
-      
-      <h1 className='app__heading'>Shuttle Status</h1>
+    <div className="app">
+      <h1 className="app__heading">Shuttle Status</h1>
       <form>
         <Field
           options={options}

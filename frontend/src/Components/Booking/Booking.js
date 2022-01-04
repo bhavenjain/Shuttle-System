@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-// import AddIcon from '@mui/icons-material/Add'
-// import RemoveIcon from '@mui/icons-material/Remove'
 import Input from '../Input/Input'
 import './Booking.css'
 
-function loadScript(src) {
-  return new Promise((resolve) => {
+function loadScript (src) {
+  return new Promise(resolve => {
     const script = document.createElement('script')
     script.src = src
     script.onload = () => {
@@ -20,7 +18,7 @@ function loadScript(src) {
 
 const __DEV__ = document.domain === 'localhost'
 
-function Booking() {
+function Booking () {
   const [student, setStudent] = useState({
     name: '',
     email: '',
@@ -29,7 +27,7 @@ function Booking() {
 
   const [passengers, setPassengers] = useState(1)
 
-  async function displayRazorpay() {
+  async function displayRazorpay () {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
     if (!res) {
@@ -37,9 +35,9 @@ function Booking() {
       return
     }
 
-    const data = await fetch('http://localhost:5000/razorpay', { method: 'POST' }).then((t) =>
-      t.json()
-    )
+    const data = await fetch('http://localhost:5000/razorpay', {
+      method: 'POST'
+    }).then(t => t.json())
 
     console.log(data)
 
@@ -84,7 +82,11 @@ function Booking() {
             {/* <Input field='Name' />
             <Input field='Enter SNU Email' />
             <Input field='Number' /> */}
-            <input type='button' onClick={displayRazorpay} value='Proceed to Pay'/>
+            <input
+              type='button'
+              onClick={displayRazorpay}
+              value='Proceed to Pay'
+            />
             {/* </input> */}
           </div>
         </form>

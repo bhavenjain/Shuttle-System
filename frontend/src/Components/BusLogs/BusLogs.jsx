@@ -1,33 +1,53 @@
 import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
+import BusFill from './BusFill/BusFill'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import Payments from './Payments'
 import './BusLogs.css'
 
 const style = {
   position: 'absolute',
+  display: 'flex',
+  flexDirection: 'column',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '100%',
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid lightgray',
   boxShadow: 24,
-  p: 4,
+  p: 2,
 }
 
 const BusLogs = ({ buses, dates, sendDate }) => {
+  const [name, setName] = useState('')
   const [open, setOpen] = useState(false)
   const [click, setClick] = useState(null)
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    console.log(click)
+  }, [click])
 
-  // const handleOpen = (event) => {
-  //   console.log(click)
-  //   setOpen(true)
-  // }
+  const handleChange = (event) => {
+    setName(event.target.value)
+  }
   const handleClose = () => setOpen(false)
+
+  const useScript = () => {
+    useEffect(() => {
+      const Script = document.createElement('script')
+      //id should be same as given to form element
+      const Form = document.getElementById('donateForm')
+      Script.setAttribute(
+        'src',
+        'https://checkout.razorpay.com/v1/payment-button.js',
+      )
+      Script.setAttribute('data-payment_button_id', 'pl_Ifhp37s9Kw6C5d')
+      Form.appendChild(Script)
+    }, [])
+  }
 
   return (
     <div className="busLogs">
@@ -58,6 +78,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                   setClick(bus)
                   setOpen(true)
                 }}
+                id="pl_Ifhp37s9Kw6C5d"
               >
                 Book a Seat {'>'}
               </div>
@@ -68,7 +89,27 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  <h1>Enter Details</h1>
+                  <h3>Bus Details</h3>
+                  <BusFill bus={bus} sendDate={sendDate} />
+
+                  <br />
+                  <div className="busLogs__modalForm">
+                    {/* <h3>Enter Details</h3>
+                    <label>Enter your Name:</label>
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      value={name}
+                      onChange={handleChange}
+                    /> */}
+
+                    {/* <label>Number of Seats:</label> */}
+                    <div>
+                      <Payments />
+                      {/* <AddIcon />
+                      <RemoveIcon /> */}
+                    </div>
+                  </div>
                 </Box>
               </Modal>
             </div>

@@ -102,7 +102,47 @@ h3 {
 .busLogs__button:hover {
     transform: scale(1.1);
     border-bottom: 2px solid gray;
+}
 
+.busLogs__modal {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.busLogs__modalForm>h3 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5%;
+}
+
+.busLogs__modalForm>label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: gray;
+}
+
+.busLogs__modalForm>input {
+    border: none;
+    width: 80%;
+    border-bottom: 2px solid gray;
+    outline: none;
+    height: 5vh;
+    padding: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 3vh;
+}
+
+.busLogs__seats {
+    width: auto;
+    height: auto;
+    padding: 5px;
+    background-color: #e7e7e7;
 }
 
 /* 
