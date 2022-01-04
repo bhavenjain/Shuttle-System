@@ -92,7 +92,7 @@ const getData = async () => {
   return (
     <div className='app'>
       
-      {/* <h1 className='app__heading'>Shuttle Status</h1>
+      <h1 className='app__heading'>Shuttle Status</h1>
       <form>
         <Field
           options={options}
@@ -108,9 +108,9 @@ const getData = async () => {
         <h1></h1>
       )}
 
-      <Note /> */}
+      <Note />
       {/* <NotFound /> */}
-      <Booking />
+      {/* <Booking /> */}
     </div>
   )
 }
