@@ -39,25 +39,23 @@ function Booking () {
       method: 'POST'
     }).then(t => t.json())
 
-    console.log(data)
+    // console.log(data)
 
     const options = {
-      key: __DEV__ ? 'rzp_test_OW3zsLjOx9ojcu' : 'PRODUCTION_KEY',
+      key: __DEV__ ? 'rzp_test_LrFvvquNKDnRvZ' : 'PRODUCTION_KEY',
       currency: data.currency,
       amount: data.amount.toString(),
       order_id: data.id,
-      name: 'Donation',
-      description: 'Thank you for nothing. Please give us some money',
-      image: 'http://localhost:1337/logo.svg',
+      name: 'Book a Seat',
+      description: '',
+      image: '',
       handler: function (response) {
-        alert(response.razorpay_payment_id)
-        alert(response.razorpay_order_id)
-        alert(response.razorpay_signature)
+        // console.log(response)
       },
       prefill: {
-        name: 'Sanskar',
-        email: 'sdfdsjfh2@ndsfdf.com',
-        phone_number: '9899999999'
+        name: '',
+        email: '',
+        phone_number: ''
       }
     }
     const paymentObject = new window.Razorpay(options)
@@ -65,7 +63,7 @@ function Booking () {
   }
 
   return (
-    <div className='booking center'>
+    <div className=''>
       {/* div for background */}
 
       {/* Heading */}
@@ -76,9 +74,9 @@ function Booking () {
 
       {/* submit button */}
 
-      <div className='booking__card center'>
+      <div className=''>
         <form>
-          <div className='booking__inputs center'>
+          <div className=''>
             {/* <Input field='Name' />
             <Input field='Enter SNU Email' />
             <Input field='Number' /> */}
@@ -87,7 +85,6 @@ function Booking () {
               onClick={displayRazorpay}
               value='Proceed to Pay'
             />
-            {/* </input> */}
           </div>
         </form>
       </div>

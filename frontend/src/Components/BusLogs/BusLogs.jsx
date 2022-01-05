@@ -6,6 +6,7 @@ import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import Payments from './Payments'
 import './BusLogs.css'
+import Booking from '../Booking/Booking'
 
 const style = {
   position: 'absolute',
@@ -27,7 +28,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   const [click, setClick] = useState(null)
 
   useEffect(() => {
-    console.log(click)
+    // console.log(click)
   }, [click])
 
   const handleChange = (event) => {
@@ -53,7 +54,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
     <div className="busLogs">
       {buses.map((bus, key) => {
         return (
-          <div className="busLogs__card">
+          <div key={key} className="busLogs__card">
             <div className="busLogs__s1">
               <label>From:</label>
               <h4>{bus.from.toUpperCase()}</h4>
@@ -94,18 +95,18 @@ const BusLogs = ({ buses, dates, sendDate }) => {
 
                   <br />
                   <div className="busLogs__modalForm">
-                    {/* <h3>Enter Details</h3>
+                    <h3>Enter Details</h3>
                     <label>Enter your Name:</label>
                     <input
                       type="text"
                       placeholder="Name"
                       value={name}
                       onChange={handleChange}
-                    /> */}
+                    />
 
-                    {/* <label>Number of Seats:</label> */}
                     <div>
-                      <Payments />
+                      <Booking />
+                      {/* <Payments /> */}
                       {/* <AddIcon />
                       <RemoveIcon /> */}
                     </div>

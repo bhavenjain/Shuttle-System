@@ -1,0 +1,59 @@
+{
+    "entity": "event",
+    "account_id": "acc_IfhdbHRYDKI967",
+    "event": "payment.captured",
+    "contains": [
+        "payment"
+    ],
+    "payload": {
+        "payment": {
+            "entity": {
+                "id": "pay_Ig2C5FCXvj4FXZ",
+                "entity": "payment",
+                "amount": 49900,
+                "currency": "INR",
+                "status": "captured",
+                "order_id": "order_Ig2Ax1JPdDDbee",
+                "invoice_id": null,
+                "international": false,
+                "method": "card",
+                "amount_refunded": 0,
+                "refund_status": null,
+                "captured": true,
+                "description": null,
+                "card_id": "card_Ig2C5HkS20iJQ3",
+                "card": {
+                    "id": "card_Ig2C5HkS20iJQ3",
+                    "entity": "card",
+                    "name": "Bhaven",
+                    "last4": "1111",
+                    "network": "Visa",
+                    "type": "debit",
+                    "issuer": null,
+                    "international": false,
+                    "emi": false,
+                    "sub_type": "consumer",
+                    "token_iin": null
+                },
+                "bank": null,
+                "wallet": null,
+                "vpa": null,
+                "email": "bj995@snu.edu.in",
+                "contact": "+918800708707",
+                "notes": [],
+                "fee": 998,
+                "tax": 0,
+                "error_code": null,
+                "error_description": null,
+                "error_source": null,
+                "error_step": null,
+                "error_reason": null,
+                "acquirer_data": {
+                    "auth_code": "499551"
+                },
+                "created_at": 1641379972
+            }
+        }
+    },
+    "created_at": 1641379975
+}
