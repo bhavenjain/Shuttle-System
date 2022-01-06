@@ -58,7 +58,7 @@ app.post('/verification', (req, res) => {
 })
 
 app.post('/notfound', async (req, res) => {
-  console.log(res.razorpay_order_id)
+  console.log(req.client)
   res.redirect('http://localhost:3000')
 })
 
