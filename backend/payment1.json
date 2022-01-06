@@ -8,52 +8,40 @@
     "payload": {
         "payment": {
             "entity": {
-                "id": "pay_Ig2C5FCXvj4FXZ",
+                "id": "pay_Ig9zjZgS3bVhIJ",
                 "entity": "payment",
-                "amount": 49900,
+                "amount": 10000,
                 "currency": "INR",
                 "status": "captured",
-                "order_id": "order_Ig2Ax1JPdDDbee",
+                "order_id": "order_Ig9zbfGsKly1RK",
                 "invoice_id": null,
                 "international": false,
-                "method": "card",
+                "method": "upi",
                 "amount_refunded": 0,
                 "refund_status": null,
                 "captured": true,
                 "description": null,
-                "card_id": "card_Ig2C5HkS20iJQ3",
-                "card": {
-                    "id": "card_Ig2C5HkS20iJQ3",
-                    "entity": "card",
-                    "name": "Bhaven",
-                    "last4": "1111",
-                    "network": "Visa",
-                    "type": "debit",
-                    "issuer": null,
-                    "international": false,
-                    "emi": false,
-                    "sub_type": "consumer",
-                    "token_iin": null
-                },
+                "card_id": null,
                 "bank": null,
                 "wallet": null,
-                "vpa": null,
+                "vpa": "success@razorpay",
                 "email": "bj995@snu.edu.in",
                 "contact": "+918800708707",
                 "notes": [],
-                "fee": 998,
-                "tax": 0,
+                "fee": 236,
+                "tax": 36,
                 "error_code": null,
                 "error_description": null,
                 "error_source": null,
                 "error_step": null,
                 "error_reason": null,
                 "acquirer_data": {
-                    "auth_code": "499551"
+                    "rrn": "733764620945",
+                    "upi_transaction_id": "EEBB9DDA3986AF68E080FCB4BF2C0552"
                 },
-                "created_at": 1641379972
+                "created_at": 1641407443
             }
         }
     },
-    "created_at": 1641379975
+    "created_at": 1641407443
 }
