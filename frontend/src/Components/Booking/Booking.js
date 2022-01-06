@@ -49,17 +49,17 @@ function Booking () {
       name: 'Book a Seat',
       description: '',
       image: '',
+
       handler: function (response) {
-        console.log(response)
-        if (response.status === 200) {
-          navigate('/admin/access/bus')
-        }
+        // console.log(response)
       },
       prefill: {
         name: '',
         email: '',
         phone_number: ''
-      }
+      },
+      callback_url: '/admin/access/bus',
+      redirect: true
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()
