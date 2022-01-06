@@ -58,8 +58,7 @@ function Booking () {
         email: '',
         phone_number: ''
       },
-      callback_url: '/admin/access/bus',
-      redirect: true
+      callback_url: 'http://localhost:5000/notfound'
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()
@@ -67,16 +66,6 @@ function Booking () {
 
   return (
     <div className=''>
-      {/* div for background */}
-
-      {/* Heading */}
-
-      {/* Form */}
-
-      {/* count */}
-
-      {/* submit button */}
-
       <div className=''>
         <form>
           <div className=''>
