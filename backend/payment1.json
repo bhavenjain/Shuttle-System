@@ -1,29 +1,29 @@
 {
     "entity": "event",
     "account_id": "acc_IevxhvSMyI1JRG",
-    "event": "payment.failed",
+    "event": "payment.captured",
     "contains": [
         "payment"
     ],
     "payload": {
         "payment": {
             "entity": {
-                "id": "pay_Iga4N7265XFGTG",
+                "id": "pay_IgaEKwOJR1qQBk",
                 "entity": "payment",
                 "amount": 10000,
                 "currency": "INR",
-                "status": "failed",
-                "order_id": "order_Iga41rTZ9gSU4H",
+                "status": "captured",
+                "order_id": "order_IgaE45zEFl29GY",
                 "invoice_id": null,
                 "international": false,
                 "method": "card",
                 "amount_refunded": 0,
                 "refund_status": null,
-                "captured": false,
+                "captured": true,
                 "description": null,
-                "card_id": "card_Iga4NAT0I4xQ1A",
+                "card_id": "card_IgaEKzN7fHy7aO",
                 "card": {
-                    "id": "card_Iga4NAT0I4xQ1A",
+                    "id": "card_IgaEKzN7fHy7aO",
                     "entity": "card",
                     "name": "a",
                     "last4": "1111",
@@ -38,22 +38,22 @@
                 "bank": null,
                 "wallet": null,
                 "vpa": null,
-                "email": "a@a.a",
+                "email": "a@a.x",
                 "contact": "+911234567891",
                 "notes": [],
-                "fee": null,
-                "tax": null,
-                "error_code": "BAD_REQUEST_ERROR",
-                "error_description": "Payment failed",
-                "error_source": "gateway",
-                "error_step": "payment_authorization",
-                "error_reason": "payment_failed",
+                "fee": 200,
+                "tax": 0,
+                "error_code": null,
+                "error_description": null,
+                "error_source": null,
+                "error_step": null,
+                "error_reason": null,
                 "acquirer_data": {
-                    "auth_code": null
+                    "auth_code": "464005"
                 },
-                "created_at": 1641499269
+                "created_at": 1641499835
             }
         }
     },
-    "created_at": 1641499273
+    "created_at": 1641499838
 }

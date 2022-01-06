@@ -47,8 +47,10 @@ function Booking () {
       amount: data.amount.toString(),
       order_id: data.id,
       name: 'Book a Seat',
-      description: '',
+      description: 'Shiv Nadar University',
       image: '',
+      timeout: 300,
+      retry: { enabled: false, max_count: 2, },
       handler: function (response) {
         // console.log(response)
       },
