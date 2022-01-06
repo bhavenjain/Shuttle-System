@@ -38,8 +38,12 @@ app.post('/verification', (req, res) => {
   //   console.log(digest, req.headers['x-razorpay-signature'])
 
   if (digest === req.headers['x-razorpay-signature']) {
-    console.log(req.body.payload.payment.entity.email)
-    console.log(req.body.payload.payment.entity.contact)
+    console.log('Mail: '+ req.body.payload.payment.entity.email)
+    console.log('Mobile: '+ req.body.payload.payment.entity.contact)
+    console.log('Status: '+ req.body.payload.payment.entity.status)
+    console.log('Captured: '+ req.body.payload.payment.entity.captured)
+    console.log('Method: ' + req.body.payload.payment.entity.method)
+    console.log()
     console.log('request is legit')
     // process it
     require('fs').writeFileSync(
@@ -48,6 +52,7 @@ app.post('/verification', (req, res) => {
     )
   } else {
     // pass it
+    console.log(req.body.payload.payment.entity.status)
   }
   res.json({ status: 'ok' })
 })
