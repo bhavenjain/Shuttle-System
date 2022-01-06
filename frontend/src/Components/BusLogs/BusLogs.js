@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import BusFill from './BusFill/BusFill'
+import { Link } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import Payments from './Payments'
@@ -114,7 +115,10 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                         dispatch(Name(name))
                       }}
                     >
-                      <Booking />
+                      <Link to='/success'>
+                        <button>link</button>
+                      </Link>
+                      {/* <Booking /> */}
                       {/* <Payments /> */}
                       {/* <AddIcon />
                       <RemoveIcon /> */}

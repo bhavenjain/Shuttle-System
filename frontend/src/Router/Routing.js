@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Admin from '../Components/Admin/Admin'
 import LandingPage from '../Components/LandingPage/LandingPage'
 import NotFound from '../Components/NotFound 404/NotFound'
+import Success from '../Components/Success/Success'
 
 const Routing = () => {
   return (
@@ -32,6 +33,15 @@ const Routing = () => {
             element={
               <>
                 <NotFound />
+              </>
+            }
+          />
+
+          <Route
+            path='/success'
+            element={
+              <>
+                <Success />
               </>
             }
           />

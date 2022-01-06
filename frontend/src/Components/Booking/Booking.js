@@ -49,7 +49,6 @@ function Booking () {
       name: 'Book a Seat',
       description: '',
       image: '',
-
       handler: function (response) {
         // console.log(response)
       },
@@ -58,7 +57,10 @@ function Booking () {
         email: '',
         phone_number: ''
       },
-      callback_url: 'http://localhost:5000/notfound'
+      callback_url: `http://localhost:5000/notfound`,
+      retry: {
+        enabled: true
+      }
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()
