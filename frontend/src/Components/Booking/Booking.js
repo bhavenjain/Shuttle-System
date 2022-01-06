@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Input from '../Input/Input'
 import './Booking.css'
 
@@ -25,6 +26,7 @@ function Booking () {
     number: ''
   })
 
+  const navigate = useNavigate()
   const [passengers, setPassengers] = useState(1)
 
   async function displayRazorpay () {
@@ -37,9 +39,7 @@ function Booking () {
 
     const data = await fetch('http://localhost:5000/razorpay', {
       method: 'POST'
-    }).then(t => t.json())
-
-    // console.log(data)
+    }).then(res => res.json())
 
     const options = {
       key: __DEV__ ? 'rzp_test_ZsfvZ7WD4P79zf' : 'PRODUCTION_KEY',
@@ -50,7 +50,10 @@ function Booking () {
       description: '',
       image: '',
       handler: function (response) {
-        // console.log(response)
+        console.log(response)
+        if (response.status === 200) {
+          navigate('/admin/access/bus')
+        }
       },
       prefill: {
         name: '',

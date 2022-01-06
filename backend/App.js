@@ -38,10 +38,10 @@ app.post('/verification', (req, res) => {
   //   console.log(digest, req.headers['x-razorpay-signature'])
 
   if (digest === req.headers['x-razorpay-signature']) {
-    console.log('Mail: '+ req.body.payload.payment.entity.email)
-    console.log('Mobile: '+ req.body.payload.payment.entity.contact)
-    console.log('Status: '+ req.body.payload.payment.entity.status)
-    console.log('Captured: '+ req.body.payload.payment.entity.captured)
+    console.log('Mail: ' + req.body.payload.payment.entity.email)
+    console.log('Mobile: ' + req.body.payload.payment.entity.contact)
+    console.log('Status: ' + req.body.payload.payment.entity.status)
+    console.log('Captured: ' + req.body.payload.payment.entity.captured)
     console.log('Method: ' + req.body.payload.payment.entity.method)
     console.log()
     console.log('request is legit')
@@ -54,7 +54,7 @@ app.post('/verification', (req, res) => {
     // pass it
     console.log(req.body.payload.payment.entity.status)
   }
-  res.json({ status: 'ok' })
+  res.status(200).json({ status: 'ok' })
 })
 
 app.post('/razorpay', async (req, res) => {
@@ -72,13 +72,16 @@ app.post('/razorpay', async (req, res) => {
   try {
     const response = await razorpay.orders.create(options)
     // console.log(response)
-    res.json({
+    res.status(200).json({
       id: response.id,
       currency: response.currency,
       amount: response.amount
     })
   } catch (error) {
     console.log(error)
+    // res.status(400).json({
+    //   message: 'Error while processing payment'
+    // })
   }
 })
 
