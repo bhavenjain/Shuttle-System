@@ -23,8 +23,8 @@ app.use(busRoutes)
 // app.use(Routes)
 
 const razorpay = new Razorpay({
-  key_id: 'rzp_test_LrFvvquNKDnRvZ',
-  key_secret: 'KXJBAg1vnM9aATWF1TYF93Fx'
+  key_id: 'rzp_test_ZsfvZ7WD4P79zf',
+  key_secret: 'uO8vw4druul1HosjKFcY26Ir'
 })
 
 app.post('/verification', (req, res) => {
