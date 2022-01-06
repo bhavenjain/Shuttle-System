@@ -46,30 +46,21 @@ function Booking () {
       currency: data.currency,
       amount: data.amount.toString(),
       order_id: data.id,
-      name: 'Book a seat',
-      description: 'Shiv Nadar University',
+      name: 'Book a Seat',
+      description: '',
       image: '',
+      handler: function (response) {
+        // console.log(response)
+      },
       prefill: {
         name: '',
         email: '',
         phone_number: ''
       },
+      callback_url: `http://localhost:5000/notfound`,
       retry: {
-        enabled: false,
-        max_count: 2,
-      },
-      notes: {
-        NAAM: 'Sins',
-      },
-      timeout: 300,
-      theme: {
-        hide_topbar: true,
-        color: '#005197',
-        backdrop_color: '#000000',
-      },
-      handler: function (response) {
-        // console.log(response)
-      },
+        enabled: true
+      }
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()

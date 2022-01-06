@@ -57,6 +57,11 @@ app.post('/verification', (req, res) => {
   res.status(200).json({ status: 'ok' })
 })
 
+app.post('/notfound', async (req, res) => {
+  console.log(res.razorpay_order_id)
+  res.redirect('http://localhost:3000')
+})
+
 app.post('/razorpay', async (req, res) => {
   const payment_capture = 1
   const amount = 100
