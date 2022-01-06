@@ -7,6 +7,8 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import Payments from './Payments'
 import './BusLogs.css'
 import Booking from '../Booking/Booking'
+import { useSelector, useDispatch } from 'react-redux'
+import { Name, BusBooked } from '../../actions/actions'
 
 const style = {
   position: 'absolute',
@@ -19,19 +21,21 @@ const style = {
   bgcolor: 'background.paper',
   border: '1px solid lightgray',
   boxShadow: 24,
-  p: 2,
+  p: 2
 }
 
 const BusLogs = ({ buses, dates, sendDate }) => {
   const [name, setName] = useState('')
   const [open, setOpen] = useState(false)
   const [click, setClick] = useState(null)
+  // const Name = useSelector(state => state.NameState)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // console.log(click)
-  }, [click])
+  }, [])
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setName(event.target.value)
   }
   const handleClose = () => setOpen(false)
@@ -43,7 +47,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
       const Form = document.getElementById('donateForm')
       Script.setAttribute(
         'src',
-        'https://checkout.razorpay.com/v1/payment-button.js',
+        'https://checkout.razorpay.com/v1/payment-button.js'
       )
       Script.setAttribute('data-payment_button_id', 'pl_Ifhp37s9Kw6C5d')
       Form.appendChild(Script)
@@ -51,21 +55,21 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   }
 
   return (
-    <div className="busLogs">
+    <div className='busLogs'>
       {buses.map((bus, key) => {
         return (
-          <div key={key} className="busLogs__card">
-            <div className="busLogs__s1">
+          <div key={key} className='busLogs__card'>
+            <div className='busLogs__s1'>
               <label>From:</label>
               <h4>{bus.from.toUpperCase()}</h4>
               <label>To:</label>
               <h4>{bus.to.toUpperCase()}</h4>
               <h3>{sendDate}</h3>
             </div>
-            <div className="busLogs__s2">
+            <div className='busLogs__s2'>
               <h3>{bus.time}</h3>
             </div>
-            <div className="busLogs__s3">
+            <div className='busLogs__s3'>
               <h3>
                 <strong>{bus.remaining}</strong> seats available
               </h3>
@@ -73,38 +77,43 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                 <strong>{bus.total}</strong> total seates.
               </h3>
               <div
-                className="busLogs__button"
+                className='busLogs__button'
                 // onChange={setClick(bus)}
                 onClick={() => {
                   setClick(bus)
                   setOpen(true)
                 }}
-                id="pl_Ifhp37s9Kw6C5d"
+                id='pl_Ifhp37s9Kw6C5d'
               >
                 Book a Seat {'>'}
               </div>
               <Modal
                 open={open}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
               >
                 <Box sx={style}>
                   <h3>Bus Details</h3>
                   <BusFill bus={bus} sendDate={sendDate} />
 
                   <br />
-                  <div className="busLogs__modalForm">
+                  <div className='busLogs__modalForm'>
                     <h3>Enter Details</h3>
                     <label>Enter your Name:</label>
                     <input
-                      type="text"
-                      placeholder="Name"
+                      type='text'
+                      placeholder='Name'
                       value={name}
                       onChange={handleChange}
                     />
 
-                    <div>
+                    <div
+                      onClick={() => {
+                        dispatch(BusBooked(click))
+                        dispatch(Name(name))
+                      }}
+                    >
                       <Booking />
                       {/* <Payments /> */}
                       {/* <AddIcon />
