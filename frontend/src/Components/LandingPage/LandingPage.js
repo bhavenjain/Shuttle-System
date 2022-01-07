@@ -7,8 +7,10 @@ import Note from '../Note/Note'
 import Booking from '../Booking/Booking'
 import { Data } from '../../util'
 import axios from 'axios'
-import '../../App.css'
 import Background from './bus.jpeg'
+import NoBus from './NoBus/NoBus'
+import '../../App.css'
+
 // import NotFound from './Components/NotFound'
 
 //const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
@@ -28,6 +30,7 @@ const LandingPage = () => {
   })
 
   const [data, setData] = useState(null)
+  const [no, setNo] = useState(false)
 
   const [buses, setBuses] = useState(null)
   const [toggleButton, setToggleButton] = useState(false)
@@ -103,12 +106,18 @@ const LandingPage = () => {
           setLocation={setLocation}
         />
         <TabsForm dates={dates} setDates={setDates} />
-        <Button toggleButton={toggleButton} setToggleButton={setToggleButton} />
+        <Button
+          toggleButton={toggleButton}
+          setToggleButton={setToggleButton}
+          setNo={setNo}
+        />
       </form>
       {buses ? (
         <BusLogs buses={buses} dates={dates} sendDate={sendDate} />
+      ) : no ? (
+        <NoBus />
       ) : (
-        <h1></h1>
+        console.log(no + 'asd')
       )}
       <Note />
       {/* <NotFound /> */}

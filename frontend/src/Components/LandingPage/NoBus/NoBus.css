@@ -1,0 +1,9 @@
+.noBus {
+    text-align: center;
+    margin-top: 6%;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1.5px;
+    color: gray;
+}
