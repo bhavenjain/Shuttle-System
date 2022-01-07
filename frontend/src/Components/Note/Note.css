@@ -7,12 +7,13 @@
     padding-bottom: 0;
     background-color: white;
     margin: 0;
-    
+
 }
 
-.note::-webkit-scrollbar{
+.note::-webkit-scrollbar {
     display: none;
 }
+
 .note__content h1,
 h2,
 h3,
@@ -24,10 +25,9 @@ ul {
 }
 
 .note__content {
-
     width: 100.5%;
     height: auto;
-    padding: 20px;
+    padding: 50px;
     background-color: #005197;
     /* border: 2px solid lightgray; */
     box-shadow: 2px 2px 51px 7px rgba(0, 0, 0, 0.1);
@@ -35,6 +35,7 @@ ul {
     -moz-box-shadow: 2px 2px 51px 7px rgba(0, 0, 0, 0.1);
 }
 
-.note__content> h4, li{
+.note__content>h4,
+li {
     color: white;
 }

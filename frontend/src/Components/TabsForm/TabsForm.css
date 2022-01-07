@@ -1,3 +1,9 @@
+:root {
+    --tab-height: 13vh;
+    --tab-width: 27vw;
+    --tab-label: 10vw;
+}
+
 .tabsForm {
     width: 100vw;
     height: auto;
@@ -6,10 +12,11 @@
     align-items: left;
     justify-content: center;
     margin-top: 20px;
+    z-index: 100;
 }
 
 .tabsForm>label {
-    margin-left: 10vw;
+    margin-left: var(--tab-label);
     color: grey;
 }
 
@@ -25,8 +32,8 @@
 .tabsForm__panel {
     display: flex;
     flex-direction: column;
-    height: 12vh;
-    width: 27vw;
+    height: var(--tab-height);
+    width: var(--tab-width);
     padding: 7px;
     padding-left: 10px;
     background-color: #ffffff;
@@ -40,7 +47,9 @@
 
 .tabsForm__panel>h3 {
     margin-top: -15px;
-    margin-left: 3px;
+    margin-left: 6px;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .tabsForm__panel>p:first-child {
@@ -62,18 +71,79 @@
     border-bottom: 5px solid blue;
 }
 
-@media (max-height: 700px) {
-    .tabsForm__panel {
-        height: 16vh;
+
+/* 
+
+
+Responsive
+
+
+*/
+
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 350px) {
+    :root {
+        --tab-height: 15vh;
     }
 }
 
-@media (max-height: 600px) {
-    .busLogs {
-        padding: 3vw 1vw;
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+    :root {
+        --tab-height: 12vh;
+        --tab-width: 18vw;
+        --tab-label: 23vw;
     }
+}
 
-    .busLogs__card {
-        height: 30vh;
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    :root {
+        --tab-height: 20vh;
+        --tab-width: 18vw;
+        --tab-label: 23vw;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    :root {
+        --tab-height: 20vh;
+        --tab-width: 18vw;
+        --tab-label: 23vw;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    :root {
+        --tab-height: 25vh;
+        --tab-width: 18vw;
+        --tab-label: 23vw;
+    }
+}
+
+/* Cases */
+@media only screen and (min-height: 600px) and (min-width: 1000px) {
+    :root {
+        --tab-height: 18vh;
+        --tab-width: 15vw;
+        --tab-label: 28vw;
+
+    }
+}
+
+@media only screen and (min-height: 1000px) and (min-width: 600px) {
+    :root {
+        --tab-height: 13vh;
+    }
+}
+
+@media only screen and (min-height: 1000px) and (min-width: 1000px) {
+    :root {
+        --tab-height: 13vh;
+        --tab-width: 18vw;
+        --tab-label: 23vw;
     }
 }

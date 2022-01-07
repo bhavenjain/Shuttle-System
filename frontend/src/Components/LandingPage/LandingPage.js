@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import Field from '../../Components/Field/Field'
-import TabsForm from '../../Components/TabsForm/TabsForm'
-import Button from '../../Components/Button/Button'
-import BusLogs from '../../Components/BusLogs/BusLogs'
-import Note from '../../Components/Note/Note'
-import Booking from '../../Components/Booking/Booking'
+import Field from '../Field/Field'
+import TabsForm from '../TabsForm/TabsForm'
+import Button from '../Button/Button'
+import BusLogs from '../BusLogs/BusLogs'
+import Note from '../Note/Note'
+import Booking from '../Booking/Booking'
 import { Data } from '../../util'
 import axios from 'axios'
 import '../../App.css'
+import Background from './bus.jpeg'
 // import NotFound from './Components/NotFound'
 
 //const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
@@ -15,7 +16,7 @@ import '../../App.css'
 const LandingPage = () => {
   const [location, setLocation] = useState({
     from: '',
-    to: '',
+    to: ''
   })
 
   const [options, setOptions] = useState([])
@@ -23,7 +24,7 @@ const LandingPage = () => {
   const [dates, setDates] = useState({
     date: '',
     day: '',
-    month: '',
+    month: ''
   })
 
   const [data, setData] = useState(null)
@@ -36,27 +37,27 @@ const LandingPage = () => {
   const getLocations = async () => {
     axios
       .get('http://localhost:5000/api/getLocations')
-      .then((response) => {
+      .then(response => {
         const see = response.data.locations
         let temp = []
-        see.forEach((item) => {
+        see.forEach(item => {
           temp.push(item.locations)
         })
         setOptions(temp)
         // console.log(temp)
       })
-      .catch((error) => alert('Not Recived'))
+      .catch(error => alert('Not Recived'))
   }
 
   const getData = async () => {
     axios
       .get('http://localhost:5000/api/getbuses')
-      .then((response) => {
+      .then(response => {
         const see = response.data
         setData(see.data)
         // console.log(see.data)
       })
-      .catch((error) => alert('Not Recived'))
+      .catch(error => alert('Not Recived'))
   }
 
   useEffect(() => {
@@ -68,7 +69,7 @@ const LandingPage = () => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
       // console.log(toggleButton)
-      data.forEach((bus) => {
+      data.forEach(bus => {
         if (
           bus.to.toLowerCase() === location.to.toLowerCase() &&
           bus.from.toLowerCase() === location.from.toLowerCase() &&
@@ -92,8 +93,9 @@ const LandingPage = () => {
   }, [toggleButton])
 
   return (
-    <div className="app">
-      <h1 className="app__heading">Shuttle Status</h1>
+    <div className='app'>
+      {/* <img src={Background} className='app__back' alt='' srcset='' /> */}
+      <h1 className='app__heading'>Shuttle Status</h1>
       <form>
         <Field
           options={options}
@@ -108,7 +110,6 @@ const LandingPage = () => {
       ) : (
         <h1></h1>
       )}
-
       <Note />
       {/* <NotFound /> */}
       {/* <Booking /> */}

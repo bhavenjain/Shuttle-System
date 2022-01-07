@@ -3,7 +3,7 @@ import SwapVerticalCircleOutlinedIcon from '@material-ui/icons/SwapVerticalCircl
 import { FormControl, Select, InputLabel } from '@material-ui/core'
 import './Field.css'
 
-const Field  = ({ options, location, setLocation }) => {
+const Field = ({ options, location, setLocation }) => {
   const fromRef = useRef(null)
   const toRef = useRef(null)
 
@@ -12,23 +12,23 @@ const Field  = ({ options, location, setLocation }) => {
     // console.log(location.to)
   }, [location])
 
-  const handleChangeFrom = event => {
+  const handleChangeFrom = (event) => {
     const value = event.target.value
     setLocation({
       ...location,
-      from: value
+      from: value,
     })
   }
 
-  const handleChangeTo = event => {
+  const handleChangeTo = (event) => {
     const value = event.target.value
     setLocation({
       ...location,
-      to: value
+      to: value,
     })
   }
 
-  function onClickValueChange () {
+  function onClickValueChange() {
     const temp = location.from
     location.from = location.to
     location.to = temp
@@ -36,23 +36,23 @@ const Field  = ({ options, location, setLocation }) => {
   }
 
   return (
-    <div className='field'>
-      <div className='app__form'>
-        <FormControl className='field__form'>
-          <InputLabel id='demo-simple-select-label'>From</InputLabel>
+    <div className="field">
+      <div className="app__form">
+        <FormControl className="field__form">
+          <InputLabel id="demo-simple-select-label">From</InputLabel>
           <Select
             native
-            className='field__select'
-            renderValue={value => {
+            className="field__select"
+            renderValue={(value) => {
               return { value }
             }}
             value={location.from}
             ref={fromRef}
-            label='From'
+            label="From"
             onChange={handleChangeFrom}
             defaultValue={options[0]}
           >
-            <option value=''>From</option>
+            <option value=""></option>
 
             {options.map((option, key) => (
               <option key={key} id={key} value={option}>
@@ -61,20 +61,20 @@ const Field  = ({ options, location, setLocation }) => {
             ))}
           </Select>
         </FormControl>
-        <FormControl className='field__form'>
-          <InputLabel id='demo-simple-select-label'>To</InputLabel>
+        <FormControl className="field__form">
+          <InputLabel id="demo-simple-select-label">To</InputLabel>
           <Select
             native
-            className='field__select'
-            renderValue={value => {
+            className="field__select"
+            renderValue={(value) => {
               return <div>{value}</div>
             }}
             ref={toRef}
             value={location.to}
-            label='From'
+            label="From"
             onChange={handleChangeTo}
           >
-            <option value=''>To</option>
+            <option value=""></option>
 
             {options.map((option, key) => (
               <option key={key} id={key} value={option}>
@@ -91,4 +91,4 @@ const Field  = ({ options, location, setLocation }) => {
   )
 }
 
-export default Field;
+export default Field
