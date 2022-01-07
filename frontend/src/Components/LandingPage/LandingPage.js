@@ -16,27 +16,28 @@ import '../../App.css'
 //const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
 
 const LandingPage = () => {
+  // User selected location
   const [location, setLocation] = useState({
     from: '',
     to: ''
   })
 
-  const [options, setOptions] = useState([])
+  const [options, setOptions] = useState([]) // Locations
 
+  // User selected date
   const [dates, setDates] = useState({
     date: '',
     day: '',
     month: ''
   })
 
-  const [data, setData] = useState(null)
-  const [no, setNo] = useState(false)
+  const [data, setData] = useState(null) // Bus data
+  const [no, setNo] = useState(false) // To display if bus is not availbale
+  const [buses, setBuses] = useState(null) // Set available buses
+  const [toggleButton, setToggleButton] = useState(false) // Button Toggle
+  const [sendDate, setSendDate] = useState('') // Date state
 
-  const [buses, setBuses] = useState(null)
-  const [toggleButton, setToggleButton] = useState(false)
-  const [sendDate, setSendDate] = useState('')
-
-  // Fetch the data
+  // Fetch the data for locations
   const getLocations = async () => {
     axios
       .get('http://localhost:5000/api/getLocations')
@@ -46,12 +47,14 @@ const LandingPage = () => {
         see.forEach(item => {
           temp.push(item.locations)
         })
+        temp.sort()
         setOptions(temp)
         // console.log(temp)
       })
       .catch(error => alert('Not Recived'))
   }
 
+  // Get Buses Data
   const getData = async () => {
     axios
       .get('http://localhost:5000/api/getbuses')
@@ -68,6 +71,7 @@ const LandingPage = () => {
     getData()
   }, [])
 
+  // Parse the loaded data
   useEffect(() => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
@@ -117,7 +121,7 @@ const LandingPage = () => {
       ) : no ? (
         <NoBus />
       ) : (
-        console.log(no + 'asd')
+        console.log()
       )}
       <Note />
       {/* <NotFound /> */}

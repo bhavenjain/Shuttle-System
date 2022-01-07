@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import Payments from './Payments/Payments'
-import './BusLogs.css'
+import axios from 'axios'
 import Booking from '../Booking/Booking'
 import { useSelector, useDispatch } from 'react-redux'
 import { Name, BusBooked } from '../../actions/actions'
+import './BusLogs.css'
 
 const style = {
   position: 'absolute',
@@ -26,11 +27,23 @@ const style = {
 }
 
 const BusLogs = ({ buses, dates, sendDate }) => {
-  const [name, setName] = useState('')
-  const [open, setOpen] = useState(false)
-  const [click, setClick] = useState(null)
+  const [name, setName] = useState('') // Name the user enters
+  const [open, setOpen] = useState(false) // modal status
+  const [click, setClick] = useState(null) // selected bus
   // const Name = useSelector(state => state.NameState)
   const dispatch = useDispatch()
+
+  // Function to reserve a seat in the bus
+  const reserveSeat = async () => {
+    try {
+      axios
+        .post('http://localhost:5000/', {})
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     // console.log(click)
@@ -40,20 +53,6 @@ const BusLogs = ({ buses, dates, sendDate }) => {
     setName(event.target.value)
   }
   const handleClose = () => setOpen(false)
-
-  const useScript = () => {
-    useEffect(() => {
-      const Script = document.createElement('script')
-      //id should be same as given to form element
-      const Form = document.getElementById('donateForm')
-      Script.setAttribute(
-        'src',
-        'https://checkout.razorpay.com/v1/payment-button.js'
-      )
-      Script.setAttribute('data-payment_button_id', 'pl_Ifhp37s9Kw6C5d')
-      Form.appendChild(Script)
-    }, [])
-  }
 
   return (
     <div className='busLogs'>

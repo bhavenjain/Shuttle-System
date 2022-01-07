@@ -9,6 +9,18 @@ dayAfterDate.setDate(dayAfterDate.getDate() + 2)
 
 export const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
 
+export const sortData = data => {
+  let sortedData = [...data]
+  sortedData.sort((a, b) => {
+    if (a.time > b.time) {
+      return -1
+    } else {
+      return 1
+    }
+  })
+  return sortedData
+}
+
 export const Data = [
   {
     id: 0,
