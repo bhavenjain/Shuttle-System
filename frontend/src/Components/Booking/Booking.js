@@ -69,31 +69,10 @@ function Booking () {
   }
 
   return (
-    <div className=''>
-      {/* div for background */}
-
-      {/* Heading */}
-
-      {/* Form */}
-
-      {/* count */}
-
-      {/* submit button */}
-
-      <div className=''>
-        <form>
-          <div className=''>
-            {/* <Input field='Name' />
-            <Input field='Enter SNU Email' />
-            <Input field='Number' /> */}
-            <input
-              type='button'
-              onClick={displayRazorpay}
-              value='Proceed to Pay'
-            />
-          </div>
-        </form>
-      </div>
+    <div style={{ background: 'none' }}>
+      <form style={{ background: 'none' }}>
+        <input type='button' onClick={displayRazorpay} value='Proceed to Pay' />
+      </form>
     </div>
   )
 }

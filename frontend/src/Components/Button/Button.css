@@ -19,14 +19,15 @@
     border: 1.5px solid grey;
     transition: ease-in-out 0.3s;
     cursor: pointer;
+    box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 1);
 }
 
 .button__submit:hover {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     transform: scale(1.05);
-    transform: rotate(-2deg);
+    /* transform: rotate(-2deg); */
 }
 
-.button__submit:active {
-    transform: rotate(-4deg);
-}
+.button__submit:active {}

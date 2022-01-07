@@ -5,7 +5,7 @@ import BusFill from './BusFill/BusFill'
 import { Link } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
-import Payments from './Payments'
+import Payments from './Payments/Payments'
 import './BusLogs.css'
 import Booking from '../Booking/Booking'
 import { useSelector, useDispatch } from 'react-redux'
@@ -18,8 +18,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '100%',
-  bgcolor: 'background.paper',
+  width: '95%',
+  bgcolor: '#e6e6e6',
   border: '1px solid lightgray',
   boxShadow: 24,
   p: 2
@@ -95,33 +95,36 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                 aria-describedby='modal-modal-description'
               >
                 <Box sx={style}>
-                  <h3>Bus Details</h3>
-                  <BusFill bus={bus} sendDate={sendDate} />
+                  <div className='busLogs__adjust'>
+                    <h3>Bus Details</h3>
+                    <BusFill bus={bus} sendDate={sendDate} />
 
-                  <br />
-                  <div className='busLogs__modalForm'>
-                    <h3>Enter Details</h3>
-                    <label>Enter your Name:</label>
-                    <input
-                      type='text'
-                      placeholder='Name'
-                      value={name}
-                      onChange={handleChange}
-                    />
+                    <br />
+                    <div className='busLogs__modalForm'>
+                      <h3>Enter Details</h3>
+                      <label>Enter your Name:</label>
+                      <input
+                        type='text'
+                        placeholder='Name'
+                        value={name}
+                        onChange={handleChange}
+                      />
 
-                    <div
-                      onClick={() => {
-                        dispatch(BusBooked(click))
-                        dispatch(Name(name))
-                      }}
-                    >
-                      <Link to='/success'>
-                        <button>link</button>
-                      </Link>
-                      {/* <Booking /> */}
-                      {/* <Payments /> */}
-                      {/* <AddIcon />
+                      <div
+                        onClick={() => {
+                          dispatch(BusBooked(click))
+                          dispatch(Name(name))
+                        }}
+                        style={{ background: 'none' }}
+                      >
+                        {/* <Link to='/success'>
+                          <button>link</button>
+                        </Link> */}
+                        <Booking />
+                        {/* <Payments /> */}
+                        {/* <AddIcon />
                       <RemoveIcon /> */}
+                      </div>
                     </div>
                   </div>
                 </Box>
