@@ -4,7 +4,7 @@
 
 .field__select {
     width: 300px;
-    height: 40px;
+    height: 6vh;
     background: none;
     padding: 0px;
 }
@@ -25,6 +25,7 @@
     padding-left: 10px !important;
     font-weight: bold !important;
     background: none !important;
+    letter-spacing: 2px !important;
 }
 
 .MuiSelect-select {
@@ -43,33 +44,21 @@ RESPONSIVE
 
 */
 
-/* 
-@media (max-height: 1024px) {
-    .field__form {
-        width: 250px;
-    }
-
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 350px) {
     .field__select {
         width: 250px;
     }
 }
 
-@media (max-height: 900px) {
-    .field__form {
-        width: 300px;
-    }
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {}
 
-    .field__select {
-        width: 300px;
-    }
-}
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {}
 
-@media (max-height: 700px) {
-    .field__form {
-        width: 300px;
-    }
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {}
 
-    .field__select {
-        width: 300px;
-    }
-} */
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {}
