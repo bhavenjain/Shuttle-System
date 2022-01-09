@@ -76,7 +76,7 @@ function Booking () {
         //   headers: { 'Content-Type': 'application/json' },
         //   url: 'https://localhost:5000/success',
         //   data: orderDetails
-        // }).then(function (response) {s
+        // }).then(function (response) {
         //   console.log(response)
         // })
 
