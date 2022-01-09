@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { OrderDetails } from '../../actions/actions'
+import axios from 'axios'
 
 // import Input from '../Input/Input'
 
@@ -25,8 +26,23 @@ const __DEV__ = document.domain === 'localhost'
 
 function Booking () {
   const dispatch = useDispatch()
-
+  // const [status, setStatus] = useState({
+  //   orderId: '',
+  //   paymentId: ''
+  // })
   // const navigate = useNavigate()
+
+  // const [url, setUrl] = useState('http://localhost:5000/notfound')
+
+  let url = 'http://localhost:5000/notfound'
+
+  const check = status => {
+    console.log(status)
+    dispatch(OrderDetails(status))
+    console.log('Okay ' + status.paymentId)
+    // setUrl('http://localhost:5000/success')
+    url = 'http://localhost:5000/success'
+  }
 
   async function displayRazorpay () {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
@@ -55,21 +71,30 @@ function Booking () {
           orderId: response.razorpay_order_id,
           paymentId: response.razorpay_payment_id
         }
-        console.log(orderDetails)
-        dispatch(OrderDetails(orderDetails))
+        // axios({
+        //   method: 'post',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   url: 'https://localhost:5000/success',
+        //   data: orderDetails
+        // }).then(function (response) {s
+        //   console.log(response)
+        // })
+
+        check(orderDetails)
+
         // console.log(response)
       },
       prefill: {
         name: '',
         email: '',
         phone_number: ''
-      },
-      callback_url: `http://localhost:5000/notfound`,
-      redirect: true,
-      retry: {
-        enabled: true
-      },
-      redirect: true
+      }
+      // callback_url: url,
+      // retry: {
+      //   enabled: true,
+      //   max_count: 2
+      // },
+      // redirect: false
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()

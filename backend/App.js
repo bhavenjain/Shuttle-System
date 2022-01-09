@@ -65,9 +65,20 @@ app.post('/verification', (req, res) => {
   res.status(200).json({ status: 'ok' })
 })
 
+app.post('/success', async (req, res) => {
+  // console.log(req)
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+
+  res.redirect('http://localhost:3000/success')
+})
+
 app.post('/notfound', async (req, res) => {
   // console.log(req)
-  res.redirect('http://localhost:3000/success')
+  res.redirect('http://localhost:3000/notfound')
 })
 
 app.post('/razorpay', async (req, res) => {

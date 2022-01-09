@@ -1,29 +1,29 @@
 {
     "entity": "event",
     "account_id": "acc_IevxhvSMyI1JRG",
-    "event": "payment.captured",
+    "event": "payment.failed",
     "contains": [
         "payment"
     ],
     "payload": {
         "payment": {
             "entity": {
-                "id": "pay_Ihhkl4joJdP4Om",
+                "id": "pay_Ihi62zt1EiCxJm",
                 "entity": "payment",
                 "amount": 10000,
                 "currency": "INR",
-                "status": "captured",
-                "order_id": "order_IhhkP58VqGZg3n",
+                "status": "failed",
+                "order_id": "order_Ihi5n4RNM3ZTJ0",
                 "invoice_id": null,
                 "international": false,
                 "method": "card",
                 "amount_refunded": 0,
                 "refund_status": null,
-                "captured": true,
+                "captured": false,
                 "description": "Shiv Nadar University",
-                "card_id": "card_Ihhkl7okzvwc9j",
+                "card_id": "card_Ihi632lQKPOpI0",
                 "card": {
-                    "id": "card_Ihhkl7okzvwc9j",
+                    "id": "card_Ihi632lQKPOpI0",
                     "entity": "card",
                     "name": "123",
                     "last4": "1111",
@@ -41,19 +41,19 @@
                 "email": "sa692@snu.edu.in",
                 "contact": "+917579644945",
                 "notes": [],
-                "fee": 200,
-                "tax": 0,
-                "error_code": null,
-                "error_description": null,
-                "error_source": null,
-                "error_step": null,
-                "error_reason": null,
+                "fee": null,
+                "tax": null,
+                "error_code": "BAD_REQUEST_ERROR",
+                "error_description": "Payment failed",
+                "error_source": "gateway",
+                "error_step": "payment_authorization",
+                "error_reason": "payment_failed",
                 "acquirer_data": {
-                    "auth_code": "731851"
+                    "auth_code": null
                 },
-                "created_at": 1641744668
+                "created_at": 1641745877
             }
         }
     },
-    "created_at": 1641744673
+    "created_at": 1641745879
 }
