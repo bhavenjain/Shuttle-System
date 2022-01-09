@@ -27,7 +27,7 @@ function Booking () {
   const dispatch = useDispatch()
 
   // const navigate = useNavigate()
-
+  let url = ''
   async function displayRazorpay () {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
@@ -54,17 +54,23 @@ function Booking () {
         const orderDetails = {
           orderId: response.razorpay_order_id,
           paymentId: response.razorpay_payment_id
-        }
+      }
+      if(typeof orderDetails.paymentId == 'undefined') {
+        url = 'http://localhost:5000/notfound';
+      } 
+      else {
+        url = 'http://localhost:5000/success';
+      } 
         console.log(orderDetails)
         dispatch(OrderDetails(orderDetails))
-        // console.log(response)
+        console.log("Res: " + response)
       },
       prefill: {
         name: '',
         email: '',
         phone_number: ''
       },
-      callback_url: `http://localhost:5000/notfound`,
+      callback_url: url,
       retry: {
         enabled: true
       },

@@ -65,9 +65,14 @@ app.post('/verification', (req, res) => {
   res.status(200).json({ status: 'ok' })
 })
 
-app.post('/notfound', async (req, res) => {
+app.post('/success', async (req, res) => {
   // console.log(req)
   res.redirect('http://localhost:3000/success')
+})
+
+app.post('/notfound', async (req, res) => {
+  // console.log(req)
+  res.redirect('http://localhost:3000/notfound')
 })
 
 app.post('/razorpay', async (req, res) => {
