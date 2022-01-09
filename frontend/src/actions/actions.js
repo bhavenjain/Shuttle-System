@@ -17,3 +17,12 @@ export const BusBooked = Bus => {
     }
   }
 }
+
+export const OrderDetails = Order => {
+  return {
+    type: actions.OrderDetails,
+    payload: {
+      Order
+    }
+  }
+}

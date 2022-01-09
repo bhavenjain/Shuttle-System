@@ -1,0 +1,11 @@
+.success {
+    width: 100vw;
+    height: 80vh;
+    padding: 20px;
+}
+
+.success__heading {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-bottom: 10%;
+}

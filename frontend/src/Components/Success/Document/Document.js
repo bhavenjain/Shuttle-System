@@ -2,7 +2,7 @@ import React from 'react'
 
 import jsPDF from 'jspdf'
 
-const Document = () => {
+const Document = ({ bus, name }) => {
   const pdfGenerate = () => {
     var doc = jsPDF('a4')
     doc.text('Hello world!', 10, 10)

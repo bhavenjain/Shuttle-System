@@ -58,7 +58,7 @@ app.post('/verification', (req, res) => {
 })
 
 app.post('/notfound', async (req, res) => {
-  console.log(req.client)
+  // console.log(req)
   res.redirect('http://localhost:3000/success')
 })
 

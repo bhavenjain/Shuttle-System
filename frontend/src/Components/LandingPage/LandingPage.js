@@ -63,7 +63,7 @@ const LandingPage = () => {
         setData(see.data)
         // console.log(see.data)
       })
-      .catch(error => alert('Not Recived'))
+      .catch(error => alert('Not Recieved'))
   }
 
   useEffect(() => {

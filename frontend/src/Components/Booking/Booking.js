@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { OrderDetails } from '../../actions/actions'
+
 // import Input from '../Input/Input'
+
 import './Booking.css'
 
 function loadScript (src) {
@@ -20,14 +24,9 @@ function loadScript (src) {
 const __DEV__ = document.domain === 'localhost'
 
 function Booking () {
-  const [student, setStudent] = useState({
-    name: '',
-    email: '',
-    number: ''
-  })
-  const [passengers, setPassengers] = useState(1)
+  const dispatch = useDispatch()
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   async function displayRazorpay () {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
@@ -52,6 +51,12 @@ function Booking () {
       timeout: 300,
       retry: { enabled: false, max_count: 2 },
       handler: function (response) {
+        const orderDetails = {
+          orderId: response.razorpay_order_id,
+          paymentId: response.razorpay_payment_id
+        }
+        console.log(orderDetails)
+        dispatch(OrderDetails(orderDetails))
         // console.log(response)
       },
       prefill: {
