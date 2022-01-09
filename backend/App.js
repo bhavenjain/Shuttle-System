@@ -44,6 +44,14 @@ app.post('/verification', (req, res) => {
     console.log('Captured: ' + req.body.payload.payment.entity.captured)
     console.log('Method: ' + req.body.payload.payment.entity.method)
     console.log()
+    // if(req.body.payload.payment.entity.captured){
+    //   console.log("TEST   " + req.body.payload.payment.entity.captured)
+    //   res.redirect('http://localhost:3000/success')
+    // }
+    // else{
+    //   console.log("TEST22   " + req.body.payload.payment.entity.captured)
+    //   res.redirect('http://localhost:3000/notfound')
+    // }
     console.log('request is legit')
     // process it
     require('fs').writeFileSync(

@@ -67,7 +67,8 @@ function Booking () {
       callback_url: `http://localhost:5000/notfound`,
       retry: {
         enabled: true
-      }
+      },
+      redirect: true
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()
