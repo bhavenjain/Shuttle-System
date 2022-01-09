@@ -68,7 +68,8 @@ function Booking () {
       redirect: true,
       retry: {
         enabled: true
-      }
+      },
+      redirect: true
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()
