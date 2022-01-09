@@ -65,6 +65,7 @@ function Booking () {
         phone_number: ''
       },
       callback_url: `http://localhost:5000/notfound`,
+      redirect: true,
       retry: {
         enabled: true
       }
