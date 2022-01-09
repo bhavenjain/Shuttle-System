@@ -59,7 +59,7 @@ app.post('/verification', (req, res) => {
 
 app.post('/notfound', async (req, res) => {
   console.log(req.client)
-  res.redirect('http://localhost:3000')
+  res.redirect('http://localhost:3000/success')
 })
 
 app.post('/razorpay', async (req, res) => {

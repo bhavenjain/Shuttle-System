@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Input from '../Input/Input'
+// import Input from '../Input/Input'
 import './Booking.css'
 
 function loadScript (src) {
@@ -25,9 +25,9 @@ function Booking () {
     email: '',
     number: ''
   })
+  const [passengers, setPassengers] = useState(1)
 
   const navigate = useNavigate()
-  const [passengers, setPassengers] = useState(1)
 
   async function displayRazorpay () {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')

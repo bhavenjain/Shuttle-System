@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import SwapVerticalCircleOutlinedIcon from '@material-ui/icons/SwapVerticalCircleOutlined'
+import React, { useEffect, useRef } from 'react'
+// import SwapVerticalCircleOutlinedIcon from '@material-ui/icons/SwapVerticalCircleOutlined'
 import { FormControl, Select, InputLabel } from '@material-ui/core'
 import './Field.css'
 
@@ -26,13 +26,6 @@ const Field = ({ options, location, setLocation }) => {
       ...location,
       to: value,
     })
-  }
-
-  function onClickValueChange() {
-    const temp = location.from
-    location.from = location.to
-    location.to = temp
-    // console.log(toRef)
   }
 
   return (
