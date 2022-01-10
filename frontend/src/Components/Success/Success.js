@@ -16,7 +16,7 @@ const Success = () => {
     <div className='success'>
       <h1 className='success__heading'>Ticket Confirmation</h1>
       <BusFill bus={bus} />
-      <Document bus={bus} name={name} />
+      <Document bus={bus} name={name} order={order} />
     </div>
   )
 }
