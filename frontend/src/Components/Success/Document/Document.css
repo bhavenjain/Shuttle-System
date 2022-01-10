@@ -1,0 +1,18 @@
+.document {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.document>button {
+    width: 50%;
+    height: 5vh;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    font-family: courier;
+    font-weight: bold;
+
+}

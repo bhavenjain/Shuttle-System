@@ -1,6 +1,6 @@
 import React from 'react'
-
 import jsPDF from 'jspdf'
+import './Document.css'
 
 const Document = ({ bus, name, order }) => {
   var imgData = 'https://snulinks.snu.edu.in/img/snu-logo.png'
@@ -131,9 +131,9 @@ const Document = ({ bus, name, order }) => {
   }
 
   return (
-    <div>
+    <div className='document'>
       <button onClick={pdfGenerate} value='download'>
-        download
+        Download
       </button>
     </div>
   )

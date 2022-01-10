@@ -18,7 +18,7 @@ h3 {
     flex-direction: row;
     margin-top: 2px;
     width: 100%;
-    height: 20vh;
+    height: auto;
     padding: 10px;
     padding-top: 20px;
     background-color: #fefdff;
@@ -167,7 +167,7 @@ Responsive
 
 
 */
-
+/* 
 @media (min-width: 1400px) {
     .busLogs__card {
         padding: 50px;
@@ -205,4 +205,4 @@ Responsive
     .busLogs__card {
         height: 30vh;
     }
-}
+} */
