@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { OrderDetails } from '../../actions/actions'
 import axios from 'axios'
@@ -25,27 +25,27 @@ function loadScript (src) {
 const __DEV__ = document.domain === 'localhost'
 
 function Booking () {
+  const order = useSelector(state => state.OrderDetails)
   const dispatch = useDispatch()
   // const [status, setStatus] = useState({
   //   orderId: '',
   //   paymentId: ''
   // })
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // const [url, setUrl] = useState('http://localhost:5000/notfound')
 
   let url = 'http://localhost:5000/notfound'
 
-  const check = status => {
-    console.log(status)
-    dispatch(OrderDetails(status))
-    console.log('Okay ' + status.paymentId)
-    // setUrl('http://localhost:5000/success')
-    url = 'http://localhost:5000/success'
+  const check = () => {
+    if (order) {
+      url = 'http://localhost:5000/success'
+    }
   }
 
   async function displayRazorpay () {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+    dispatch(OrderDetails({}))
 
     if (!res) {
       alert('Razorpay SDK failed to load. Check your network connection')
@@ -65,36 +65,24 @@ function Booking () {
       description: 'Shiv Nadar University',
       image: '',
       timeout: 300,
-      retry: { enabled: false, max_count: 2 },
+      retry: { enabled: true, max_count: 5 },
+
       handler: function (response) {
         const orderDetails = {
           orderId: response.razorpay_order_id,
           paymentId: response.razorpay_payment_id
         }
-        // axios({
-        //   method: 'post',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   url: 'https://localhost:5000/success',
-        //   data: orderDetails
-        // }).then(function (response) {
-        //   console.log(response)
-        // })
-
-        check(orderDetails)
-
-        // console.log(response)
+        navigate('/success')
+        dispatch(OrderDetails(orderDetails))
+        // check()
       },
+      // callback_url: url,
+      // redirect: false,
       prefill: {
         name: '',
         email: '',
         phone_number: ''
       }
-      // callback_url: url,
-      // retry: {
-      //   enabled: true,
-      //   max_count: 2
-      // },
-      // redirect: false
     }
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()

@@ -67,11 +67,11 @@ app.post('/verification', (req, res) => {
 
 app.post('/success', async (req, res) => {
   // console.log(req)
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  )
+  // res.header('Access-Control-Allow-Origin', '*')
+  // res.header(
+  //   'Access-Control-Allow-Headers',
+  //   'Origin, X-Requested-With, Content-Type, Accept'
+  // )
 
   res.redirect('http://localhost:3000/success')
 })
