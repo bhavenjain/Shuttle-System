@@ -18,13 +18,20 @@ const AddBus = () => {
   })
 
   const handleSubmit = async () => {
+    let date =
+      data.date.slice(8, 10) +
+      '/' +
+      data.date.slice(5, 7) +
+      '/' +
+      data.date.slice(0, 4)
+
     try {
       // make axios post request
       axios
         .post('http://localhost:5000/api/addBus', {
           to: location.to,
           from: location.from,
-          date: data.date.slice(8, 10),
+          date: date,
           time: data.time,
           busNo: data.busNo,
           remaining: data.totalSeats,

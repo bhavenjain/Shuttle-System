@@ -4,31 +4,31 @@ const Schema = mongoose.Schema
 const bus = new Schema({
   from: {
     type: String,
-    required: true
+    required: false
   },
   to: {
     type: String,
-    required: true
+    required: false
   },
   time: {
     type: String,
-    required: true
+    required: false
   },
   busNo: {
     type: String,
-    required: true
+    required: false
   },
   total: {
     type: Number,
-    required: true
+    required: false
   },
   remaining: {
     type: Number,
-    required: true
+    required: false
   },
   date: {
-    type: Number,
-    required: true
+    type: String,
+    required: false
   }
 })
 

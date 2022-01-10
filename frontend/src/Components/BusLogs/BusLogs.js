@@ -34,10 +34,13 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   const dispatch = useDispatch()
 
   // Function to reserve a seat in the bus
-  const reserveSeat = async () => {
+  const reserveSeat = async (selectedBus, userName) => {
     try {
       axios
-        .post('http://localhost:5000/', {})
+        .post('http://localhost:5000/api/reserveseat', {
+          selectedBus,
+          userName
+        })
         .then(res => console.log(res))
         .catch(err => console.log(err))
     } catch (error) {
@@ -113,6 +116,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                         onClick={() => {
                           dispatch(BusBooked(click))
                           dispatch(Name(name))
+                          reserveSeat(click, name)
                         }}
                         style={{ background: 'none' }}
                       >

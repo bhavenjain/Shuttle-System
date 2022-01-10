@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const app = express()
 const busRoutes = require('./routers/bus')
+const locations = require('./routers/location')
 // const Routes = require('./routers/routes')
 const Razorpay = require('razorpay')
 const shortid = require('shortid')
@@ -20,6 +21,7 @@ app.use(cookieParser())
 app.use(cors())
 app.use(express.json())
 app.use(busRoutes)
+app.use(locations)
 // app.use(Routes)
 
 const razorpay = new Razorpay({
@@ -44,14 +46,6 @@ app.post('/verification', (req, res) => {
     console.log('Captured: ' + req.body.payload.payment.entity.captured)
     console.log('Method: ' + req.body.payload.payment.entity.method)
     console.log()
-    // if(req.body.payload.payment.entity.captured){
-    //   console.log("TEST   " + req.body.payload.payment.entity.captured)
-    //   res.redirect('http://localhost:3000/success')
-    // }
-    // else{
-    //   console.log("TEST22   " + req.body.payload.payment.entity.captured)
-    //   res.redirect('http://localhost:3000/notfound')
-    // }
     console.log('request is legit')
     // process it
     require('fs').writeFileSync(
@@ -66,13 +60,6 @@ app.post('/verification', (req, res) => {
 })
 
 app.post('/success', async (req, res) => {
-  // console.log(req)
-  // res.header('Access-Control-Allow-Origin', '*')
-  // res.header(
-  //   'Access-Control-Allow-Headers',
-  //   'Origin, X-Requested-With, Content-Type, Accept'
-  // )
-
   res.redirect('http://localhost:3000/success')
 })
 
@@ -103,9 +90,6 @@ app.post('/razorpay', async (req, res) => {
     })
   } catch (error) {
     console.log(error)
-    // res.status(400).json({
-    //   message: 'Error while processing payment'
-    // })
   }
 })
 

@@ -75,17 +75,17 @@ const LandingPage = () => {
   useEffect(() => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
-      // console.log(toggleButton)
       data.forEach(bus => {
+        // console.log(dates.date)
         if (
           bus.to.toLowerCase() === location.to.toLowerCase() &&
           bus.from.toLowerCase() === location.from.toLowerCase() &&
-          JSON.stringify(bus.date) === dates.date &&
+          JSON.stringify(bus.date.slice(0, 2)) === JSON.stringify(dates.date) &&
           bus.remaining > 0 &&
           bus.remaining <= bus.total
         ) {
           const temp =
-            dates.day + ', ' + JSON.stringify(bus.date) + ' ' + dates.month
+            dates.day + ', ' + bus.date.slice(0, 2) + ' ' + dates.month
           tempForBus.push(bus)
           setSendDate(temp)
         }

@@ -21,3 +21,9 @@ module.exports.addBus = async (req, res) => {
     res.status(400).json({ msg: 'error registering bus' })
   }
 }
+
+module.exports.reserveSeat = async (req, res) => {
+  try {
+    console.log(req.body)
+  } catch (err) {}
+}
