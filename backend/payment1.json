@@ -1,31 +1,31 @@
 {
     "entity": "event",
     "account_id": "acc_IevxhvSMyI1JRG",
-    "event": "payment.failed",
+    "event": "payment.captured",
     "contains": [
         "payment"
     ],
     "payload": {
         "payment": {
             "entity": {
-                "id": "pay_Ihi62zt1EiCxJm",
+                "id": "pay_IhjzUa0gI7bYQt",
                 "entity": "payment",
                 "amount": 10000,
                 "currency": "INR",
-                "status": "failed",
-                "order_id": "order_Ihi5n4RNM3ZTJ0",
+                "status": "captured",
+                "order_id": "order_Ihjz4JleghEwlz",
                 "invoice_id": null,
                 "international": false,
                 "method": "card",
                 "amount_refunded": 0,
                 "refund_status": null,
-                "captured": false,
+                "captured": true,
                 "description": "Shiv Nadar University",
-                "card_id": "card_Ihi632lQKPOpI0",
+                "card_id": "card_IhjzUcTeFiv59g",
                 "card": {
-                    "id": "card_Ihi632lQKPOpI0",
+                    "id": "card_IhjzUcTeFiv59g",
                     "entity": "card",
-                    "name": "123",
+                    "name": "q1",
                     "last4": "1111",
                     "network": "Visa",
                     "type": "debit",
@@ -38,22 +38,22 @@
                 "bank": null,
                 "wallet": null,
                 "vpa": null,
-                "email": "sa692@snu.edu.in",
-                "contact": "+917579644945",
+                "email": "a@a.c",
+                "contact": "+918800708707",
                 "notes": [],
-                "fee": null,
-                "tax": null,
-                "error_code": "BAD_REQUEST_ERROR",
-                "error_description": "Payment failed",
-                "error_source": "gateway",
-                "error_step": "payment_authorization",
-                "error_reason": "payment_failed",
+                "fee": 200,
+                "tax": 0,
+                "error_code": null,
+                "error_description": null,
+                "error_source": null,
+                "error_step": null,
+                "error_reason": null,
                 "acquirer_data": {
-                    "auth_code": null
+                    "auth_code": "870047"
                 },
-                "created_at": 1641745877
+                "created_at": 1641752548
             }
         }
     },
-    "created_at": 1641745879
+    "created_at": 1641752550
 }
