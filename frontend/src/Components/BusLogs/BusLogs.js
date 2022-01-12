@@ -10,6 +10,7 @@ import axios from 'axios'
 import Booking from '../Booking/Booking'
 import { useSelector, useDispatch } from 'react-redux'
 import { Name, BusBooked } from '../../actions/actions'
+import { v4 as uuidv4 } from 'uuid'
 import './BusLogs.css'
 
 const style = {
@@ -30,11 +31,11 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   const [name, setName] = useState('') // Name the user enters
   const [open, setOpen] = useState(false) // modal status
   const [click, setClick] = useState(null) // selected bus
-  // const Name = useSelector(state => state.NameState)
+  const userName = useSelector(state => state.NameState)
   const dispatch = useDispatch()
 
   // Function to reserve a seat in the bus
-  const reserveSeat = async (selectedBus, userName) => {
+  const reserveSeat = async selectedBus => {
     try {
       axios
         .post('http://localhost:5000/api/reserveseat', {
@@ -115,8 +116,8 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                       <div
                         onClick={() => {
                           dispatch(BusBooked(click))
-                          dispatch(Name(name))
-                          reserveSeat(click, name)
+                          dispatch(Name({ name: name, id: uuidv4() }))
+                          reserveSeat(click)
                         }}
                         style={{ background: 'none' }}
                       >

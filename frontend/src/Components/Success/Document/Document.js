@@ -22,7 +22,7 @@ const Document = ({ bus, name, order }) => {
     // Name
     doc.setFontSize(15)
     doc.setFont('courier')
-    doc.text(25, 55, name)
+    doc.text(25, 55, name.name)
 
     // Order Id
     doc.setTextColor(150)

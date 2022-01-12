@@ -28,7 +28,7 @@ const Success = () => {
 
       {/* Section One */}
       <div className='success__sectionOne'>
-        <h1 className='success__name'>{name}</h1>
+        <h1 className='success__name'>{name.name}</h1>
       </div>
       <hr />
 

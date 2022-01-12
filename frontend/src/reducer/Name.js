@@ -1,5 +1,5 @@
 import * as actions from '../actions/actionTypes'
-const intialState = ''
+const intialState = {}
 
 const NameState = (state = intialState, action) => {
   switch (action.type) {

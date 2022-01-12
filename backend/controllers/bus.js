@@ -1,3 +1,4 @@
+const { setMaxListeners } = require('../models/BusInfo')
 const Bus = require('../models/BusInfo')
 
 module.exports.getBuses = async (req, res) => {
@@ -24,6 +25,13 @@ module.exports.addBus = async (req, res) => {
 
 module.exports.reserveSeat = async (req, res) => {
   try {
-    console.log(req.body)
-  } catch (err) {}
+    const filter = { _id: req.body.selectedBus._id }
+    let seat = await Bus.findOne(filter)
+    res.status(200).json({ data: seat })
+    seat.remaining = seat.remaining - 1
+    await seat.save()
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({ msg: 'error reserving a seat' })
+  }
 }
