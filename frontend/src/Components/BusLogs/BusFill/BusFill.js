@@ -19,7 +19,7 @@ const BusFill = ({ bus, sendDate }) => {
           <strong>{bus.remaining}</strong> seats available
         </h3>
         <h3>
-          <strong>{bus.total}</strong> total seates.
+          <strong>{bus.total}</strong> total seats.
         </h3>
       </div>
     </div>
