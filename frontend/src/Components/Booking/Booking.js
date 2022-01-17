@@ -64,7 +64,7 @@ function Booking () {
       name: 'Book a Seat',
       description: 'Shiv Nadar University',
       image: '',
-      timeout: 300,
+      timeout: 10,
       retry: { enabled: true, max_count: 5 },
 
       handler: function (response) {
