@@ -65,14 +65,14 @@ function Booking () {
       description: 'Shiv Nadar University',
       image: '',
       timeout: 60,
-      retry: { enabled: true, max_count: 3 },
+      retry: { enabled: true, max_count: 5 },
 
       handler: function (response) {
         const orderDetails = {
           orderId: response.razorpay_order_id,
           paymentId: response.razorpay_payment_id
         }
-        // navigate('/success')
+        navigate('/success')
         dispatch(OrderDetails(orderDetails))
         // check()
       },
