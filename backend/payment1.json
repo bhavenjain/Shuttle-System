@@ -8,22 +8,22 @@
     "payload": {
         "payment": {
             "entity": {
-                "id": "pay_IktutE1iUBwRPt",
+                "id": "pay_Iku9Ezx6RXfAs7",
                 "entity": "payment",
-                "amount": 10000,
+                "amount": 5000,
                 "currency": "INR",
                 "status": "captured",
-                "order_id": "order_IktuVynkRTq3gz",
+                "order_id": "order_Iku90TU7wKtXqT",
                 "invoice_id": null,
                 "international": false,
                 "method": "card",
                 "amount_refunded": 0,
                 "refund_status": null,
                 "captured": true,
-                "description": "Shiv Nadar University",
-                "card_id": "card_IktutHLsbnBVdH",
+                "description": null,
+                "card_id": "card_Iku9F3WrKI6wNz",
                 "card": {
-                    "id": "card_IktutHLsbnBVdH",
+                    "id": "card_Iku9F3WrKI6wNz",
                     "entity": "card",
                     "name": "123",
                     "last4": "1111",
@@ -38,10 +38,14 @@
                 "bank": null,
                 "wallet": null,
                 "vpa": null,
-                "email": "padamagarwal42@gmail.com",
-                "contact": "+919412808414",
-                "notes": [],
-                "fee": 200,
+                "email": "sa692@snu.edu.in",
+                "contact": "+917579644945",
+                "notes": {
+                    "snu_mail_id": "sa692@snu.edu.in",
+                    "phone": "7579644945",
+                    "name": "Sanskar Agarwal"
+                },
+                "fee": 100,
                 "tax": 0,
                 "error_code": null,
                 "error_description": null,
@@ -49,11 +53,11 @@
                 "error_step": null,
                 "error_reason": null,
                 "acquirer_data": {
-                    "auth_code": "873161"
+                    "auth_code": "867889"
                 },
-                "created_at": 1642442523
+                "created_at": 1642443338
             }
         }
     },
-    "created_at": 1642442526
+    "created_at": 1642443342
 }
