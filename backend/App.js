@@ -31,6 +31,7 @@ const razorpay = new Razorpay({
 
 app.post('/verification', (req, res) => {
   // do a validation
+  // res.redirect('http://localhost:3000/success')
   const secret = '12345678'
 
   const shasum = crypto.createHmac('sha256', secret)
@@ -43,11 +44,15 @@ app.post('/verification', (req, res) => {
     console.log('Mail: ' + req.body.payload.payment.entity.email)
     console.log('Mobile: ' + req.body.payload.payment.entity.contact)
     console.log('Status: ' + req.body.payload.payment.entity.status)
-    console.log('Captured: ' + req.body.payload.payment.entity.captured)
+    console.log('Captured: ' + typeof req.body.payload.payment.entity.captured)
     console.log('Method: ' + req.body.payload.payment.entity.method)
     console.log()
     console.log('request is legit')
     // process it
+    // if(typeofreq.body.payload.payment.entity.captured){
+    
+    // }
+    
     require('fs').writeFileSync(
       'payment1.json',
       JSON.stringify(req.body, null, 4)
