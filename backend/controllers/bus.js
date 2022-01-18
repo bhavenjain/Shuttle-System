@@ -26,7 +26,7 @@ module.exports.addBus = async (req, res) => {
 module.exports.reserveSeat = async (req, res) => {
   try {
     const filter = { _id: req.body.selectedBus._id }
-    console.log(req.body);
+    // console.log(req.body);
     let seat = await Bus.findOne(filter)
     res.status(200).json({ data: seat })
     seat.remaining = seat.remaining - 1

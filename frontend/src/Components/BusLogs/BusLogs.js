@@ -49,6 +49,20 @@ const BusLogs = ({ buses, dates, sendDate }) => {
     }
   }
 
+  const addBooking = async booking => {
+    try {
+      axios
+        .post('http://localhost:5000/api/addbooking', {
+          booking,
+          userName
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     // console.log(click)
   }, [])
@@ -118,6 +132,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                           dispatch(BusBooked(click))
                           dispatch(Name({ name: name, id: uuidv4() }))
                           reserveSeat(click)
+                          addBooking(click)
                         }}
                         style={{ background: 'none' }}
                       >

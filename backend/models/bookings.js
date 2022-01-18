@@ -1,5 +1,5 @@
-const Schema = mongoose.Schema
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 const bookingSchema = new Schema({
   passsengerDetails: [
     {
@@ -37,5 +37,5 @@ const bookingSchema = new Schema({
   }
 })
 
-const Booking = mongoose.model('BOOKING', booking)
+const Booking = mongoose.model('BOOKING', bookingSchema)
 module.exports = Booking

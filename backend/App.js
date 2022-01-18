@@ -6,6 +6,7 @@ const cors = require('cors')
 const app = express()
 const busRoutes = require('./routers/bus')
 const locations = require('./routers/location')
+const bookings = require('./routers/booking')
 // const Routes = require('./routers/routes')
 const Razorpay = require('razorpay')
 const shortid = require('shortid')
@@ -22,6 +23,7 @@ app.use(cors())
 app.use(express.json())
 app.use(busRoutes)
 app.use(locations)
+app.use(bookings)
 // app.use(Routes)
 
 const razorpay = new Razorpay({
@@ -50,9 +52,9 @@ app.post('/verification', (req, res) => {
     console.log('request is legit')
     // process it
     // if(typeofreq.body.payload.payment.entity.captured){
-    
+
     // }
-    
+
     require('fs').writeFileSync(
       'payment1.json',
       JSON.stringify(req.body, null, 4)
