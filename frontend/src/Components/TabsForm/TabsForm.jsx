@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-// import Tabs from '@mui/material/Tabs'
-// import Tab from '@mui/material/Tab'
-// import Box from '@mui/material/Box'
 import { currentDate, tomorrowDate, dayAfterDate } from '../../util'
 import './TabsForm.css'
-// import { Tabs, Tab, Typography, Box } from '@material-ui/core'
 
 const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const month = [
@@ -19,42 +15,43 @@ const month = [
   'Sep',
   'Oct',
   'Nov',
-  'Dec'
+  'Dec',
 ]
 
-const TabsForm = ({ dates, setDates }) => {
+const TabsForm = ({ setDates }) => {
   const [today, setToday] = useState(false)
   const [tom, setTom] = useState(false)
   const [next, setNext] = useState(false)
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const value = event.target.parentNode.id
-    if (value == currentDate.getDate()) {
+
+    if (value === JSON.stringify(currentDate.getDate())) {
       setToday(true)
       setTom(false)
       setNext(false)
       setDates({
         date: JSON.stringify(currentDate.getDate()),
         day: weekday[currentDate.getDay()],
-        month: month[currentDate.getMonth()]
+        month: month[currentDate.getMonth()],
       })
-    } else if (value == tomorrowDate.getDate()) {
+    } else if (value === JSON.stringify(tomorrowDate.getDate())) {
       setToday(false)
       setTom(true)
       setNext(false)
       setDates({
         date: JSON.stringify(tomorrowDate.getDate()),
         day: weekday[tomorrowDate.getDay()],
-        month: month[tomorrowDate.getMonth()]
+        month: month[tomorrowDate.getMonth()],
       })
-    } else if (value == dayAfterDate.getDate()) {
+    } else if (value === JSON.stringify(dayAfterDate.getDate())) {
       setToday(false)
       setTom(false)
       setNext(true)
       setDates({
         date: JSON.stringify(dayAfterDate.getDate()),
         day: weekday[dayAfterDate.getDay()],
-        month: month[dayAfterDate.getMonth()]
+        month: month[dayAfterDate.getMonth()],
       })
     } else {
       setToday(false)
@@ -64,9 +61,9 @@ const TabsForm = ({ dates, setDates }) => {
   }
 
   return (
-    <div className='tabsForm'>
-      <label>Choose Date</label>
-      <div className='tabsForm__tabs'>
+    <div className="tabsForm">
+      <label>Choose a Date</label>
+      <div className="tabsForm__tabs">
         <div
           className={'tabsForm__panel' + (today ? ' tabsForm__focused' : '')}
           id={currentDate.getDate()}

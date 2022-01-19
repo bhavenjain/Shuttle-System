@@ -16,10 +16,16 @@ const bodyParser = require('body-parser')
 dotenv.config({ path: './config.env' })
 require('./db/connection')
 
+// Cors Options
+const corsOptions = {
+  credentials: true,
+  origin: ['http://localhost:3000'],
+}
+
 // require('./middleware/data')
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(busRoutes)
 app.use(locations)
@@ -28,7 +34,7 @@ app.use(bookings)
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_ZsfvZ7WD4P79zf',
-  key_secret: 'uO8vw4druul1HosjKFcY26Ir'
+  key_secret: 'uO8vw4druul1HosjKFcY26Ir',
 })
 
 app.post('/verification', (req, res) => {
@@ -57,7 +63,7 @@ app.post('/verification', (req, res) => {
 
     require('fs').writeFileSync(
       'payment1.json',
-      JSON.stringify(req.body, null, 4)
+      JSON.stringify(req.body, null, 4),
     )
   } else {
     // pass it
@@ -84,7 +90,7 @@ app.post('/razorpay', async (req, res) => {
     amount: amount * 100,
     currency,
     receipt: shortid.generate(),
-    payment_capture
+    payment_capture,
   }
 
   try {
@@ -93,7 +99,7 @@ app.post('/razorpay', async (req, res) => {
     res.status(200).json({
       id: response.id,
       currency: response.currency,
-      amount: response.amount
+      amount: response.amount,
     })
   } catch (error) {
     console.log(error)

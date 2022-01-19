@@ -3,8 +3,6 @@ import jsPDF from 'jspdf'
 import './Document.css'
 
 const Document = ({ bus, name, order }) => {
-  var imgData = 'https://snulinks.snu.edu.in/img/snu-logo.png'
-
   const pdfGenerate = () => {
     var doc = jsPDF('a4')
 
@@ -102,7 +100,7 @@ const Document = ({ bus, name, order }) => {
     doc.text(
       25,
       174,
-      `• Please reach atleast 10 minutes before the bus arrival time.`
+      `• Please reach atleast 10 minutes before the bus arrival time.`,
     )
 
     // Note 4
@@ -114,7 +112,7 @@ const Document = ({ bus, name, order }) => {
     doc.text(
       25,
       188,
-      `• Failure to do so, they will not be allowed to take the bus.`
+      `• Failure to do so, they will not be allowed to take the bus.`,
     )
 
     // Footer reactangle
@@ -131,8 +129,8 @@ const Document = ({ bus, name, order }) => {
   }
 
   return (
-    <div className='document'>
-      <button onClick={pdfGenerate} value='download'>
+    <div className="document">
+      <button onClick={pdfGenerate} value="download">
         Download
       </button>
     </div>

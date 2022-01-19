@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Field from '../../Field/Field'
-import { options } from '../../../util'
-import axios from 'axios'
+import { addBusesApi } from '../../../http'
 import './AddBus.css'
 
-const AddBus = () => {
+const AddBus = ({ options }) => {
+  // Users' selected locations
   const [location, setLocation] = useState({
     from: '',
-    to: ''
+    to: '',
   })
 
+  // State for Bus data
   const [data, setData] = useState({
     date: '',
     time: '',
     busNo: '',
-    totalSeats: 0
+    totalSeats: 0,
   })
 
+  // Handle submit
   const handleSubmit = async () => {
     let date =
       data.date.slice(8, 10) +
@@ -27,106 +29,104 @@ const AddBus = () => {
 
     try {
       // make axios post request
-      axios
-        .post('http://localhost:5000/api/addBus', {
-          to: location.to,
-          from: location.from,
-          date: date,
-          time: data.time,
-          busNo: data.busNo,
-          remaining: data.totalSeats,
-          total: data.totalSeats
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+      const sendData = {
+        to: location.to,
+        from: location.from,
+        date: date,
+        time: data.time,
+        busNo: data.busNo,
+        remaining: data.totalSeats,
+        total: data.totalSeats,
+      }
+      return await addBusesApi(sendData)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleChangeDate = event => {
+  const handleChangeDate = (event) => {
     setData({
       ...data,
-      date: event.target.value
+      date: event.target.value,
     })
   }
 
-  const handleChangeTime = event => {
+  const handleChangeTime = (event) => {
     setData({
       ...data,
-      time: event.target.value
+      time: event.target.value,
     })
   }
 
-  const handleChangeNum = event => {
+  const handleChangeNum = (event) => {
     setData({
       ...data,
-      busNo: event.target.value
+      busNo: event.target.value,
     })
   }
 
-  const handleChangeSeats = event => {
+  const handleChangeSeats = (event) => {
     setData({
       ...data,
-      totalSeats: event.target.value
+      totalSeats: event.target.value,
     })
   }
 
   return (
-    <div className='addBus'>
+    <div className="addBus">
       <form>
         <Field
           options={options}
           location={location}
           setLocation={setLocation}
         />
-        <div className='addBus__data'>
-          <div className='addBus__box'>
-            <label htmlFor=''>Date: </label>
+        <div className="addBus__data">
+          <div className="addBus__box">
+            <label htmlFor="">Date: </label>
             <input
-              type='date'
+              type="date"
               onChange={handleChangeDate}
-              name='date'
-              id='time'
+              name="date"
+              id="time"
             />
           </div>
 
-          <div className='addBus__box addBus__margin'>
-            <label htmlFor=''>Time: </label>
+          <div className="addBus__box addBus__margin">
+            <label htmlFor="">Time: </label>
             <input
-              type='time'
+              type="time"
               onChange={handleChangeTime}
-              name='time'
-              id='time'
+              name="time"
+              id="time"
             />
           </div>
 
-          <div className='addBus__box addBus__margin'>
-            <h4 className='addBus__font'>Bus Number: </h4>
+          <div className="addBus__box addBus__margin">
+            <h4 className="addBus__font">Bus Number: </h4>
             <input
-              type='text'
-              name='bus-number'
+              type="text"
+              name="bus-number"
               onChange={handleChangeNum}
-              id='time'
-              placeholder='Bus Number'
+              id="time"
+              placeholder="Bus Number"
             />
           </div>
 
-          <div className='addBus__box addBus__margin'>
-            <h4 className='addBus__font'>Total Seats: </h4>
+          <div className="addBus__box addBus__margin">
+            <h4 className="addBus__font">Total Seats: </h4>
             <input
-              type='number'
-              name='total-seats'
+              type="number"
+              name="total-seats"
               onChange={handleChangeSeats}
-              id='seats'
-              placeholder='Seats'
+              id="seats"
+              placeholder="Seats"
             />
           </div>
           <input
-            type='button'
+            type="button"
             onClick={handleSubmit}
-            className='addLocation__button addBus__margin'
-            value='Submit'
+            className="addLocation__button addBus__margin"
+            value="Submit"
           />
         </div>
       </form>

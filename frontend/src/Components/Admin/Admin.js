@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import AddLocation from './AddLocation/AddLocation'
 import AddBus from './AddBus/AddBus'
-import axios from 'axios'
+import { getLocationsApi } from '../../http'
 import './Admin.css'
 
 const Admin = () => {
   const [options, setOptions] = useState([])
 
-  // Fetch the data
+  // Fetch the Locations
   const getData = async () => {
-    axios
-      .get('http://localhost:5000/api/getLocations')
-      .then(response => {
-        const see = response.data.locations
-        let temp = []
-        see.forEach(item => {
-          temp.push(item.locations)
-        })
-        setOptions(temp)
-        // console.log(temp)
+    try {
+      const { data } = await getLocationsApi()
+      const see = data.locations
+      let temp = []
+      see.forEach((item) => {
+        temp.push(item.locations)
       })
-      .catch(error => alert('Not Recived'))
+      temp.sort()
+      setOptions(temp)
+    } catch (error) {
+      console.log('Error')
+    }
   }
 
   useEffect(() => {
@@ -28,9 +28,9 @@ const Admin = () => {
   }, [])
 
   return (
-    <div className='admin'>
-      {/* <AddLocation options={options} /> */}
-      <AddBus />
+    <div className="admin">
+      <AddLocation options={options} />
+      <AddBus options={options} />
     </div>
   )
 }

@@ -2,8 +2,8 @@ const Bus = require('../models/BusInfo')
 const Booking = require('../models/bookings')
 
 module.exports.addBooking = async (req, res) => {
-  console.log(req.body)
   const booking = req.body.booking
+  console.log(booking)
   //   try {
   //     if (booking == undefined) {
   //       res.status(400).send({ result: false, msg: 'Required booking body' })

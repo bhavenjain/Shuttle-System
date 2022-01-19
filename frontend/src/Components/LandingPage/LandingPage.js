@@ -4,22 +4,15 @@ import TabsForm from '../TabsForm/TabsForm'
 import Button from '../Button/Button'
 import BusLogs from '../BusLogs/BusLogs'
 import Note from '../Note/Note'
-// import Booking from '../Booking/Booking'
-// import { Data } from '../../util'
-import axios from 'axios'
-// import Background from './bus.jpeg'
 import NoBus from './NoBus/NoBus'
+import { getBusesApi, getLocationsApi } from '../../http'
 import '../../App.css'
-
-// import NotFound from './Components/NotFound'
-
-//const options = ['Botanical Garden', 'Pari Chowk', 'SNU']
 
 const LandingPage = () => {
   // User selected location
   const [location, setLocation] = useState({
     from: '',
-    to: ''
+    to: '',
   })
 
   const [options, setOptions] = useState([]) // Locations
@@ -28,7 +21,7 @@ const LandingPage = () => {
   const [dates, setDates] = useState({
     date: '',
     day: '',
-    month: ''
+    month: '',
   })
 
   const [data, setData] = useState(null) // Bus data
@@ -39,31 +32,28 @@ const LandingPage = () => {
 
   // Fetch the data for locations
   const getLocations = async () => {
-    axios
-      .get('http://localhost:5000/api/getLocations')
-      .then(response => {
-        const see = response.data.locations
-        let temp = []
-        see.forEach(item => {
-          temp.push(item.locations)
-        })
-        temp.sort()
-        setOptions(temp)
-        // console.log(temp)
+    try {
+      const { data } = await getLocationsApi()
+      const see = data.locations
+      let temp = []
+      see.forEach((item) => {
+        temp.push(item.locations)
       })
-      .catch(error => alert('Not Recived'))
+      temp.sort()
+      setOptions(temp)
+    } catch (error) {
+      console.log('Error')
+    }
   }
 
   // Get Buses Data
   const getData = async () => {
-    axios
-      .get('http://localhost:5000/api/getbuses')
-      .then(response => {
-        const see = response.data
-        setData(see.data)
-        // console.log(see.data)
-      })
-      .catch(error => alert('Not Recieved'))
+    try {
+      const { data } = await getBusesApi()
+      setData(data.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -75,8 +65,7 @@ const LandingPage = () => {
   useEffect(() => {
     if (location.from && location.to && dates.day) {
       let tempForBus = []
-      data.forEach(bus => {
-        // console.log(dates.date)
+      data.forEach((bus) => {
         if (
           bus.to.toLowerCase() === location.to.toLowerCase() &&
           bus.from.toLowerCase() === location.from.toLowerCase() &&
@@ -100,16 +89,16 @@ const LandingPage = () => {
   }, [toggleButton])
 
   return (
-    <div className='app'>
+    <div className="app">
       {/* <img src={Background} className='app__back' alt='' srcset='' /> */}
-      <h1 className='app__heading'>Shuttle Status</h1>
+      <h1 className="app__heading">Shuttle Status</h1>
       <form>
         <Field
           options={options}
           location={location}
           setLocation={setLocation}
         />
-        <TabsForm dates={dates} setDates={setDates} />
+        <TabsForm setDates={setDates} />
         <Button
           toggleButton={toggleButton}
           setToggleButton={setToggleButton}
@@ -124,8 +113,6 @@ const LandingPage = () => {
         console.log()
       )}
       <Note />
-      {/* <NotFound /> */}
-      {/* <Booking /> */}
     </div>
   )
 }
