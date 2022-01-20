@@ -14,6 +14,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 body::-webkit-scrollbar {
@@ -26,6 +28,11 @@ h3,
 p,
 img {
   background: none;
+}
+
+.app {
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 .app::-webkit-scrollbar {
