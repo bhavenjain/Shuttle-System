@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AddLocation from './AddLocation/AddLocation'
 import AddBus from './AddBus/AddBus'
 import { getLocationsApi } from '../../http'
+import { objectToListLocations } from '../../util'
 import './Admin.css'
 
 const Admin = () => {
@@ -11,13 +12,8 @@ const Admin = () => {
   const getData = async () => {
     try {
       const { data } = await getLocationsApi()
-      const see = data.locations
-      let temp = []
-      see.forEach((item) => {
-        temp.push(item.locations)
-      })
-      temp.sort()
-      setOptions(temp)
+      const locationsList = data.locations
+      objectToListLocations(locationsList, setOptions)
     } catch (error) {
       console.log('Error')
     }
@@ -28,7 +24,7 @@ const Admin = () => {
   }, [])
 
   return (
-    <div className="admin">
+    <div className='admin'>
       <AddLocation options={options} />
       <AddBus options={options} />
     </div>

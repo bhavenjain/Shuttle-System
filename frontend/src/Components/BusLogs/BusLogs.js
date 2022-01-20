@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal'
-import BusFill from './BusFill/BusFill'
-// import { Link } from 'react-router-dom'
-// import AddIcon from '@mui/icons-material/Add'
-// import RemoveIcon from '@mui/icons-material/Remove'
-// import Payments from './Payments/Payments'
-import axios from 'axios'
-import Booking from '../Booking/Booking'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Name, BusBooked } from '../../actions/actions'
+import { addBookingApi, reserveSeatApi } from '../../http'
+import Booking from '../Booking/Booking'
+import BusFill from './BusFill/BusFill'
+import Modal from '@mui/material/Modal'
+import Box from '@mui/material/Box'
 import { v4 as uuidv4 } from 'uuid'
 import './BusLogs.css'
 
@@ -37,39 +33,35 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   // Function to reserve a seat in the bus
   const reserveSeat = async selectedBus => {
     try {
-      axios
-        .post('http://localhost:5000/api/reserveseat', {
-          selectedBus,
-          userName
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+      const reserve = await reserveSeatApi({
+        selectedBus,
+        userName
+      })
+      console.log(reserve)
     } catch (error) {
       console.log(error)
     }
   }
 
+  // Add a booking
   const addBooking = async booking => {
     try {
-      axios
-        .post('http://localhost:5000/api/addbooking', {
-          booking,
-          userName
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+      const bookingStore = await addBookingApi({
+        booking,
+        userName
+      })
+      console.log(bookingStore)
     } catch (error) {
       console.log(error)
     }
   }
 
-  useEffect(() => {
-    // console.log(click)
-  }, [])
-
+  // Handle name
   const handleChange = event => {
     setName(event.target.value)
   }
+
+  // For the modal
   const handleClose = () => setOpen(false)
 
   return (
@@ -96,12 +88,10 @@ const BusLogs = ({ buses, dates, sendDate }) => {
               </h3>
               <div
                 className='busLogs__button'
-                // onChange={setClick(bus)}
                 onClick={() => {
                   setClick(bus)
                   setOpen(true)
                 }}
-                id='pl_Ifhp37s9Kw6C5d'
               >
                 Book a Seat {'>'}
               </div>
@@ -136,13 +126,8 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                         }}
                         style={{ background: 'none' }}
                       >
-                        {/* <Link to='/success'>
-                          <button>link</button>
-                        </Link> */}
                         <Booking />
                         {/* <Payments /> */}
-                        {/* <AddIcon />
-                      <RemoveIcon /> */}
                       </div>
                     </div>
                   </div>

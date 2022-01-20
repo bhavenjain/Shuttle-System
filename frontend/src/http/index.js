@@ -5,8 +5,8 @@ const api = Axios.create({
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
+    Accept: 'application/json'
+  }
 })
 
 // GET REQUESTS
@@ -14,7 +14,9 @@ export const getLocationsApi = () => api.get('/api/getLocations')
 export const getBusesApi = () => api.get('/api/getbuses')
 
 // POST REQUESTS
-export const addBusesApi = (data) => api.post('/api/addBus', data)
-export const addLocationsApi = (data) => api.post('/api/addLocation', data)
+export const addBusesApi = data => api.post('/api/addBus', data)
+export const addLocationsApi = data => api.post('/api/addLocation', data)
+export const addBookingApi = data => api.post('/api/addbooking', data)
+export const reserveSeatApi = data => api.post('/api/reserveseat', data)
 
 export default api

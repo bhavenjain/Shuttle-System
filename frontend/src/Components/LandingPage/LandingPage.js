@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import Field from '../Field/Field'
-import TabsForm from '../TabsForm/TabsForm'
-import Button from '../Button/Button'
-import BusLogs from '../BusLogs/BusLogs'
-import Note from '../Note/Note'
-import NoBus from './NoBus/NoBus'
+import { objectToListLocations, parseBuses } from '../../util'
 import { getBusesApi, getLocationsApi } from '../../http'
+import TabsForm from '../TabsForm/TabsForm'
+import BusLogs from '../BusLogs/BusLogs'
+import Button from '../Button/Button'
+import Field from '../Field/Field'
+import NoBus from './NoBus/NoBus'
+import Note from '../Note/Note'
 import '../../App.css'
 
 const LandingPage = () => {
   // User selected location
   const [location, setLocation] = useState({
     from: '',
-    to: '',
+    to: ''
   })
 
-  const [options, setOptions] = useState([]) // Locations
+  // Locations
+  const [options, setOptions] = useState([])
 
   // User selected date
   const [dates, setDates] = useState({
     date: '',
     day: '',
-    month: '',
+    month: ''
   })
 
   const [data, setData] = useState(null) // Bus data
@@ -34,13 +36,8 @@ const LandingPage = () => {
   const getLocations = async () => {
     try {
       const { data } = await getLocationsApi()
-      const see = data.locations
-      let temp = []
-      see.forEach((item) => {
-        temp.push(item.locations)
-      })
-      temp.sort()
-      setOptions(temp)
+      const locationsList = data.locations
+      objectToListLocations(locationsList, setOptions)
     } catch (error) {
       console.log('Error')
     }
@@ -56,6 +53,7 @@ const LandingPage = () => {
     }
   }
 
+  // Initial call to api
   useEffect(() => {
     getLocations()
     getData()
@@ -63,35 +61,12 @@ const LandingPage = () => {
 
   // Parse the loaded data
   useEffect(() => {
-    if (location.from && location.to && dates.day) {
-      let tempForBus = []
-      data.forEach((bus) => {
-        if (
-          bus.to.toLowerCase() === location.to.toLowerCase() &&
-          bus.from.toLowerCase() === location.from.toLowerCase() &&
-          JSON.stringify(bus.date.slice(0, 2)) === JSON.stringify(dates.date) &&
-          bus.remaining > 0 &&
-          bus.remaining <= bus.total
-        ) {
-          const temp =
-            dates.day + ', ' + bus.date.slice(0, 2) + ' ' + dates.month
-          tempForBus.push(bus)
-          setSendDate(temp)
-        }
-      })
-      if (tempForBus.length > 0) {
-        setBuses(tempForBus)
-      } else {
-        setBuses(null)
-      }
-      tempForBus = []
-    }
-  }, [toggleButton])
+    parseBuses(location, dates, data, setSendDate, setBuses)
+  }, [toggleButton, location, data])
 
   return (
-    <div className="app">
-      {/* <img src={Background} className='app__back' alt='' srcset='' /> */}
-      <h1 className="app__heading">Shuttle Status</h1>
+    <div className='app'>
+      <h1 className='app__heading'>Shuttle Status</h1>
       <form>
         <Field
           options={options}
