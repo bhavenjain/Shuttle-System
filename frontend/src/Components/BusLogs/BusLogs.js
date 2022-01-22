@@ -6,6 +6,7 @@ import Booking from '../Booking/Booking'
 import BusFill from './BusFill/BusFill'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
+import { currentDate } from '../../util'
 import { v4 as uuidv4 } from 'uuid'
 import './BusLogs.css'
 
@@ -33,11 +34,11 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   // Function to reserve a seat in the bus
   const reserveSeat = async selectedBus => {
     try {
-      const reserve = await reserveSeatApi({
+      return await reserveSeatApi({
         selectedBus,
         userName
       })
-      console.log(reserve)
+      // console.log(reserve)
     } catch (error) {
       console.log(error)
     }
@@ -46,11 +47,33 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   // Add a booking
   const addBooking = async booking => {
     try {
-      const bookingStore = await addBookingApi({
+      const months = [
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12'
+      ]
+
+      const date =
+        JSON.stringify(currentDate.getDate()) +
+        '/' +
+        months[JSON.stringify(currentDate.getMonth())] +
+        '/' +
+        JSON.stringify(currentDate.getFullYear())
+
+      return await addBookingApi({
         booking,
-        userName
+        userName,
+        bookingDate: date
       })
-      console.log(bookingStore)
     } catch (error) {
       console.log(error)
     }

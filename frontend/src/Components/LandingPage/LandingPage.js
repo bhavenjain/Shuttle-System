@@ -85,7 +85,7 @@ const LandingPage = () => {
       ) : no ? (
         <NoBus />
       ) : (
-        console.log()
+        console.log('')
       )}
       <Note />
     </div>

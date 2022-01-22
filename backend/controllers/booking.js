@@ -2,21 +2,28 @@ const Bus = require('../models/BusInfo')
 const Booking = require('../models/bookings')
 
 module.exports.addBooking = async (req, res) => {
-  const booking = req.body.booking
+  const booking = req.body
   console.log(booking)
-  //   try {
-  //     if (booking == undefined) {
-  //       res.status(400).send({ result: false, msg: 'Required booking body' })
-  //     } else {
-  //       const data = Booking.create(booking)
-  //       res.status(201).json({ data: data })
-  //     }
-  //   } catch (e) {
-  //     console.log(e)
-  //     res
-  //       .status(400)
-  //       .send({ result: false, msg: 'Internal error while saving booking' })
+
+  const bookingDto = {
+    busId: booking.booking.busId,
+    name: booking.userName.name,
+    status: 'Pending'
+  }
+
+  // try {
+  //   if (booking == undefined) {
+  //     res.status(400).send({ result: false, msg: 'Required booking body' })
+  //   } else {
+  //     const data = Booking.create(booking)
+  //     res.status(201).json({ data: data })
   //   }
+  // } catch (e) {
+  //   console.log(e)
+  //   res
+  //     .status(400)
+  //     .send({ result: false, msg: 'Internal error while saving booking' })
+  // }
 }
 
 // module.exports.updateBooking = async (req, res) => {
