@@ -9,11 +9,11 @@ const api = Axios.create({
   }
 })
 
-// GET REQUESTS
+// Get REQUESTS
 export const getLocationsApi = () => api.get('/api/getLocations')
 export const getBusesApi = () => api.get('/api/getbuses')
 
-// POST REQUESTS
+// Post REQUESTS
 export const addBusesApi = data => api.post('/api/addBus', data)
 export const addLocationsApi = data => api.post('/api/addLocation', data)
 export const addBookingApi = data => api.post('/api/addbooking', data)

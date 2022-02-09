@@ -29,6 +29,10 @@ const bus = new Schema({
   date: {
     type: String,
     required: false
+  },
+  fare: {
+    type: Number,
+    required: false
   }
 })
 

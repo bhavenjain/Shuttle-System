@@ -8,7 +8,7 @@ module.exports.addBooking = async (req, res) => {
   const bookingDto = {
     busId: booking.booking.busId,
     name: booking.userName.name,
-    status: 'Pending'
+    status: 'Pending' // Confirmed, Rejected
   }
 
   // try {
