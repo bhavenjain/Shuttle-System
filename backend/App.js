@@ -107,5 +107,5 @@ app.post('/razorpay', async (req, res) => {
 })
 
 app.listen(5000, () => {
-  console.log('server started')
+  console.log('server started 5000')
 })

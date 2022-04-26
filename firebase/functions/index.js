@@ -9,3 +9,4 @@ exports.check = functions_reg.https.onRequest((req, res) =>{
     res.status(200).json({"status":"working"});
 })
 
+exports.bus = require('./bus/bus');
