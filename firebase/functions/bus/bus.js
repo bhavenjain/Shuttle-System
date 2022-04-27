@@ -15,7 +15,7 @@ exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
         bus["uid"] = db_ref_b.doc().id;
         bus["time_in_milli"] = time_in_milli.getTime(); 
         await db_ref_b.doc().set(bus);
-        res.status(200).json({"status":1,"msg":"Bus aded successfully"});
+        res.status(200).json({"status":1,"msg":"Bus added successfully"});
 
     }catch(e){
         functions.logger.error(e);
