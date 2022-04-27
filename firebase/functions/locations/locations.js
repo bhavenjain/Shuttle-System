@@ -6,6 +6,22 @@ const functions_reg = functions.region(region)
 const db = admin.firestore()
 db_ref_l = db.collection('locations')
 
+
+exports.getLocations = functions_reg.https.onRequest(async (req,res) =>{
+  try{
+    const query_result = await db_ref_l.get();
+    if(query_result.size == 0){
+      res.status(200).json({"status":1,"msg":"locations no found"});
+      return;
+    }
+    let locations = query_result.docs[0].data().names;
+    res.status(200).json({"status":1,"locations":locations});  
+  }catch(e){
+    functions.logger.error(e);
+    res.status(500).json({"status":0,"msg":"Internal error while fetching locations"});
+  }
+});
+
 exports.updateLocation = functions_reg.https.onRequest(async (req, res) => {
   const add = req.body.add
   const del = req.body.delete
