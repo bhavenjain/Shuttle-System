@@ -11,3 +11,4 @@ exports.check = functions_reg.https.onRequest((req, res) =>{
 
 exports.bus = require('./bus/bus');
 exports.booking = require('./booking/booking');
+exports.location = require('./locations/locations');
