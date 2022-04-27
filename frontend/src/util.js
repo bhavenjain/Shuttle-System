@@ -37,6 +37,7 @@ export const parseBuses = (location, dates, data, setSendDate, setBuses) => {
     let tempForBus = []
     data.forEach(bus => {
       if (
+        bus &&
         bus.to.toLowerCase() === location.to.toLowerCase() &&
         bus.from.toLowerCase() === location.from.toLowerCase() &&
         JSON.stringify(bus.date.slice(0, 2)) === JSON.stringify(dates.date) &&

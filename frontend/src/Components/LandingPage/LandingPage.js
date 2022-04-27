@@ -23,7 +23,8 @@ const LandingPage = () => {
   const [dates, setDates] = useState({
     date: '',
     day: '',
-    month: ''
+    month: '',
+    year: ''
   })
 
   const [data, setData] = useState(null) // Bus data

@@ -71,6 +71,10 @@ const AddBus = ({ options }) => {
   }
 
   const handleChangeTime = event => {
+    console.log(data.date)
+    const date = new Date(`${data.date}T${event.target.value}:00+0530`)
+    console.log(Date.now())
+    console.log(date.getTime())
     setData({
       ...data,
       time: event.target.value

@@ -89,6 +89,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
 
   return (
     <div className='busLogs'>
+    {console.log(buses)}
       {buses.map((bus, key) => {
         return (
           <div key={key} className='busLogs__card'>

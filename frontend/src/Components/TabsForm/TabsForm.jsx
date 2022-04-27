@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { currentDate, tomorrowDate, dayAfterDate } from '../../util'
 import './TabsForm.css'
 
@@ -24,8 +24,9 @@ const TabsForm = ({ setDates }) => {
   const [next, setNext] = useState(false)
 
   const handleChange = (event) => {
-    const value = event.target.parentNode.id
-
+    const values = event.target.parentNode.id
+    console.log(values)
+    const value = values.substring(0, 2)
     if (value === JSON.stringify(currentDate.getDate())) {
       setToday(true)
       setTom(false)
@@ -34,6 +35,7 @@ const TabsForm = ({ setDates }) => {
         date: JSON.stringify(currentDate.getDate()),
         day: weekday[currentDate.getDay()],
         month: month[currentDate.getMonth()],
+        year: currentDate.getFullYear()
       })
     } else if (value === JSON.stringify(tomorrowDate.getDate())) {
       setToday(false)
@@ -43,6 +45,7 @@ const TabsForm = ({ setDates }) => {
         date: JSON.stringify(tomorrowDate.getDate()),
         day: weekday[tomorrowDate.getDay()],
         month: month[tomorrowDate.getMonth()],
+        year: tomorrowDate.getFullYear()
       })
     } else if (value === JSON.stringify(dayAfterDate.getDate())) {
       setToday(false)
@@ -52,6 +55,7 @@ const TabsForm = ({ setDates }) => {
         date: JSON.stringify(dayAfterDate.getDate()),
         day: weekday[dayAfterDate.getDay()],
         month: month[dayAfterDate.getMonth()],
+        year: dayAfterDate.getFullYear()
       })
     } else {
       setToday(false)
@@ -66,7 +70,11 @@ const TabsForm = ({ setDates }) => {
       <div className="tabsForm__tabs">
         <div
           className={'tabsForm__panel' + (today ? ' tabsForm__focused' : '')}
-          id={currentDate.getDate()}
+          id={`${
+            JSON.stringify(currentDate.getDate()).length > 1 ? '' : '0'
+          }${currentDate.getDate()}/${
+            JSON.stringify(currentDate.getMonth()).length > 1 ? '' : '0'
+          }${currentDate.getMonth()}/${currentDate.getFullYear()}`}
           onClick={handleChange}
         >
           <p>{weekday[currentDate.getDay()]}</p>
@@ -75,7 +83,11 @@ const TabsForm = ({ setDates }) => {
         </div>
         <div
           className={'tabsForm__panel' + (tom ? ' tabsForm__focused' : '')}
-          id={tomorrowDate.getDate()}
+          id={`${
+            JSON.stringify(tomorrowDate.getDate()).length > 1 ? '' : '0'
+          }${tomorrowDate.getDate()}/${
+            JSON.stringify(tomorrowDate.getMonth()).length > 1 ? '' : '0'
+          }${tomorrowDate.getMonth()}/${tomorrowDate.getFullYear()}`}
           onClick={handleChange}
         >
           <p>{weekday[tomorrowDate.getDay()]}</p>
@@ -84,7 +96,11 @@ const TabsForm = ({ setDates }) => {
         </div>
         <div
           className={'tabsForm__panel' + (next ? ' tabsForm__focused' : '')}
-          id={dayAfterDate.getDate()}
+          id={`${
+            JSON.stringify(dayAfterDate.getDate()).length > 1 ? '' : '0'
+          }${dayAfterDate.getDate()}/${
+            JSON.stringify(dayAfterDate.getMonth()).length > 1 ? '' : '0'
+          }${dayAfterDate.getMonth()}/${dayAfterDate.getFullYear()}`}
           onClick={handleChange}
         >
           <p>{weekday[dayAfterDate.getDay()]}</p>
