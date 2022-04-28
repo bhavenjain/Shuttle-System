@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { OrderDetails } from '../../actions/actions'
 import './Booking.css'
@@ -22,7 +22,7 @@ const __DEV__ = document.domain === 'localhost'
 
 function Booking() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const history = useHistory()
 
   async function displayRazorpay() {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
@@ -52,7 +52,7 @@ function Booking() {
           orderId: response.razorpay_order_id,
           paymentId: response.razorpay_payment_id,
         }
-        navigate('/success')
+        history.push('/success')
         dispatch(OrderDetails(orderDetails))
       },
       // callback_url: url,

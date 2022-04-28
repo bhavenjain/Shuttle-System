@@ -54,11 +54,11 @@ const LandingPage = () => {
     }
   }
 
-  // Initial call to api
-  useEffect(() => {
-    getLocations()
-    getData()
-  }, [])
+  // // Initial call to api
+  // useEffect(() => {
+  //   getLocations()
+  //   getData()
+  // }, [])
 
   // Parse the loaded data
   useEffect(() => {

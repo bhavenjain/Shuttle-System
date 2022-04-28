@@ -1,7 +1,9 @@
 import React from 'react'
+import { useAuth } from '../../context/AuthContext'
 import './Navbar.css'
 
 const Navbar = () => {
+  const { currentUser, logout } = useAuth()
   return (
     <div className='navbar'>
       <img
@@ -9,6 +11,7 @@ const Navbar = () => {
         alt='SNU Logo'
         className='navbar__logo'
       />
+      {currentUser && <button onClick={logout}>Sign out</button>}
     </div>
   )
 }

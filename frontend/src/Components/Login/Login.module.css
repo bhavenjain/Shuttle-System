@@ -1,0 +1,169 @@
+.container {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    text-decoration: none;
+}
+
+.haeding {
+    /* Title */
+
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 140% */
+
+    display: flex;
+    align-items: center;
+
+    /* Black-900 (#1A1A1A) */
+    color: #1A1A1A;
+}
+
+.m10{
+    margin-top: 10%;
+}
+
+.m5 {
+    margin-top: 5%;
+}
+
+.label {
+    margin-left: 5%;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 12px;
+    /* identical to box height, or 109% */
+
+    letter-spacing: 0.3px;
+
+    /* Black-800 (#333333) */
+
+    color: #333333;
+
+}
+
+.inputs {
+    margin-top: 3%;
+    width: 100%;
+    height: 48px;
+    padding-left: 5%;
+    background: #F2F2F2;
+    /* Black-100 (#E5E5E5) */
+
+    border: 0.5px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 6px;
+
+}
+
+.password {
+    width: 100%;}
+
+i {
+    position: absolute;
+    background: none;
+    margin-top: 5%;
+    margin-left: 75%;
+}
+
+.forgot {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+
+    text-align: center;
+    letter-spacing: 0.3px;
+    margin-top: 5%;
+    /* System-Blue (#007AFF) */
+    align-self: center;
+    color: #007AFF;
+}
+
+.signin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 24px;
+    position: static;
+    width: 321px;
+    height: 40px;
+    left: calc(50% - 321px/2);
+    top: 276px;
+
+    /* System-Blue (#007AFF) */
+
+    background: #007AFF;
+    border-radius: 6px;
+    color: #fff;
+    /* Inside auto layout */
+    margin-top: 7%;
+    border: none;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.line {
+    position: relative;
+    margin-top: 15%;
+    margin-bottom: 10%;
+    background: #E5E5E5;
+    width: 100%;
+    height: 1px;
+}
+
+.google {
+    width: 100%;
+    height: 40px;
+    /* Black-800 (#333333) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333333;
+    border-radius: 6px;
+    border: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.3px;
+
+    /* White (#FFFFFF) */
+
+    color: #FFFFFF;
+}
+
+.googleImg {
+    max-width: 18px;
+    margin-right: 10px;
+}
+
+p {
+    align-self: center;
+    text-decoration: none;
+}
+
+.deco{
+    text-decoration: none;
+}
+
