@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { FormControl, Select, InputLabel } from '@material-ui/core'
 import { addLocationsApi } from '../../../http'
 import Input from '../../Input/Input'
+import { useHistory } from "react-router-dom";
 
 import './AddLocation.css'
 
 const AddLocation = ({ options }) => {
   const [addLocation, setAddLocation] = useState(null)
   const [deleteLocation, setDeleteLocation] = useState(null)
+  let history = useHistory();
 
   const handleChange = (event) => {
     setAddLocation(event.target.value)
@@ -18,12 +20,14 @@ const AddLocation = ({ options }) => {
   }
 
   // handle response
-  const handleSubmit = async () => {
-    const formData = new FormData()
-    formData.append('addLocation', addLocation)
-    formData.append('deleteLocation', deleteLocation)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // const formData = new FormData()
+    // formData.append('addLocation', addLocation)
+    // formData.append('deleteLocation', deleteLocation)
 
     try {
+      console.log("hgfhjsghjfs");
       // make post request to add location
       console.log(addLocation,deleteLocation);
       let d = {
@@ -31,11 +35,12 @@ const AddLocation = ({ options }) => {
         delete: deleteLocation,
       }
       console.log(d);
-      const response = await addLocationsApi({
-        add: addLocation,
-        delete: deleteLocation,
-      })
+      const response = await addLocationsApi(d)
+      // document.getElementById('addlocationform').reset()
+      window.location.reload();
+      // document.getElementById('delete').reset()
       console.log(response)
+      // history.push('/');
     } catch (error) {
       console.log(error)
     }
@@ -43,11 +48,12 @@ const AddLocation = ({ options }) => {
 
   useEffect(() => {
     console.log(deleteLocation)
-  }, [deleteLocation])
+    console.log(addLocation)
+  }, [])
 
   return (
     <div className="addLocation">
-      <form onSubmit={handleSubmit}>
+      <form id="addlocationform">
         <label htmlFor="">Add location, leave empty if only delete:</label>
         <Input field="Add Location" handleChange={handleChange} />
 
@@ -57,13 +63,11 @@ const AddLocation = ({ options }) => {
             
          */}
 
-        <label htmlFor="" style={{ marginTop: '30px' }}>
-          Delete location:
-        </label>
         <FormControl className="addLocation__form">
           <InputLabel id="demo-simple-select-label">Delete Location</InputLabel>
           <Select
             native
+            id='delete'
             className="addLocation__select"
             renderValue={(value) => {
               return { value }
@@ -71,7 +75,6 @@ const AddLocation = ({ options }) => {
             value={deleteLocation}
             label="Delete"
             onChange={handleChangeFrom}
-            defaultValue={null}
           >
             <option value=""></option>
 
@@ -83,7 +86,7 @@ const AddLocation = ({ options }) => {
           </Select>
         </FormControl>
 
-        <input type="submit" className="addLocation__button" value="Submit" />
+        <input type="submit" onClick={handleSubmit} className="addLocation__button" value="Submit" />
       </form>
     </div>
   )

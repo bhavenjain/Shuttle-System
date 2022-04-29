@@ -4,6 +4,7 @@ module.exports.getLocations = async (req, res) => {
   try {
     filter = {}
     const location_response = await Locations.find(filter)
+    console.log(location_response);
     res.status(200).json({ locations: location_response })
   } catch (err) {
     console.log(err)

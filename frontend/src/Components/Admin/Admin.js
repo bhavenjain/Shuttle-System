@@ -13,8 +13,8 @@ const Admin = () => {
     try {
       const { data } = await getLocationsApi()
       const locationsList = data.locations
-      // setOptions(...options,locationsList);
-      objectToListLocations(locationsList, setOptions)
+      setOptions(...options,locationsList);
+      // objectToListLocations(locationsList, setOptions)
     } catch (error) {
       console.log('Error')
     }
@@ -26,7 +26,6 @@ const Admin = () => {
 
   return (
     <div className='admin'>
-      {console.log(options)}
       <AddLocation options={options} />
       <AddBus options={options} />
     </div>

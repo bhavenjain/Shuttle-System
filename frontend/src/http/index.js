@@ -55,8 +55,8 @@ export const handlePostApi = async (url, body) => {
 
 
 const api = Axios.create({
-  baseURL: "http://localhost:5000",
-  withCredentials: true,
+  baseURL: "https://asia-south1-shuttle-booking-28033.cloudfunctions.net",
+  withCredentials: false,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'
@@ -64,12 +64,12 @@ const api = Axios.create({
 })
 
 // Get REQUESTS
-export const getLocationsApi = () => api.get('/api/getLocations')
+export const getLocationsApi = () => api.get('/location-getLocations')
 export const getBusesApi = () => api.get('/bus-getBuses')
 
 // Post REQUESTS
-export const addBusesApi = data => api.post('/bus-addBus', data)
-export const addLocationsApi = data => api.post('/api/addLocation', data)
+export const addBusesApi = data => api.post('/api/addbus', data)
+export const addLocationsApi = data => api.post('/location-updateLocation', data)
 export const addBookingApi = data => api.post('/api/addbooking', data)
 export const reserveSeatApi = data => api.post('/api/reserveseat', data)
 
