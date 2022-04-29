@@ -25,6 +25,12 @@ const AddLocation = ({ options }) => {
 
     try {
       // make post request to add location
+      console.log(addLocation,deleteLocation);
+      let d = {
+        add: addLocation,
+        delete: deleteLocation,
+      }
+      console.log(d);
       const response = await addLocationsApi({
         add: addLocation,
         delete: deleteLocation,

@@ -1,8 +1,10 @@
 const functions = require("firebase-functions");
 const admin = require('firebase-admin');
 const region = 'asia-south1';
+const cors = require('cors')({ origin: true });
 const functions_reg = functions.region(region);
 const db = admin.firestore();
+const db_ref_u = db.collection('users');
 
 function checkEmail(email) {
     let pattern = /^([a-z]{2}[0-9]{3}@snu.edu.in)|([a-z]{1,20}[.][a-z0-9]{1,20}@snu.edu.in)$/;
@@ -10,6 +12,8 @@ function checkEmail(email) {
 }
 
 exports.fetchUser = functions_reg.https.onRequest(async (req, res) =>{
+    cors(req, res, async () => {
+
     const email = req.query.email;
     if(!email){
         res.status(400).json({"status":0,"msg":"required query param: email"});
@@ -33,11 +37,19 @@ exports.fetchUser = functions_reg.https.onRequest(async (req, res) =>{
         res.status(200).json({"status":0,"msg":"Internal error"});
     }
 });
+});
 
 exports.addUser = functions_reg.https.onRequest(async (req,res)=>{
+    cors(req, res, async () => {
+
     const user = req.body.user;
     if((user && (!user.name || !user.email || !user.contact)) || !user){
         res.status(400).json({"status":0,"msg":"all fields are compulsory"});
+        return;
+    }
+    if(!checkEmail(user.email)){
+        res.status(400).json({"status":0,"msg":"Enter valid email Ex-ab123@snu.edu.in or keshav.khj@snu.edu.in"});
+        return;
     }
     try{
         await db_ref_u.doc().set(user);
@@ -46,4 +58,5 @@ exports.addUser = functions_reg.https.onRequest(async (req,res)=>{
         functions.logger.error(e);
         res.status(500).json({"status":0,"msg":"internal error registrting user"});
     }
+});
 })
