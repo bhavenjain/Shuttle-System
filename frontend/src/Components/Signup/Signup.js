@@ -1,23 +1,33 @@
 import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory, useLocation, Link } from 'react-router-dom'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
 import styles from './Login.module.css'
-
+import { 
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup, 
+  updateProfile, 
+  sendEmailVerification } from 'firebase/auth'
+import { useAuth } from '../../context/AuthContext'
+ 
 const Signup = () => {
   // General
   const history = useHistory()
-
+  const {register} = useAuth()
+  const provider = new GoogleAuthProvider()
+  const auth = getAuth()
+  const location = useLocation()
   // States
-  const [show, setShow] = useState(false)
-  const [email, setEmail] = useState(false)
-  const [password, setPassword] = useState(false)
-  const [number, setNumber] = useState(false)
-  const [name, setName] = useState(false)
-  const [rePassword, setRePassword] = useState(false)
+  const [showPass, setShowPass] = useState(false)
+  const [showRePass, setShowRePass] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [number, setNumber] = useState("")
+  const [name, setName] = useState("")
+  const [rePassword, setRePassword] = useState("")
 
   // Email Field
   const changeEmail = e => setEmail(e.target.value)
-
   // Password Field
   const changePassword = e => setPassword(e.target.value)
 
@@ -26,6 +36,43 @@ const Signup = () => {
   const changeNumber = e => setNumber(e.target.value)
 
   const changeRePass = e => setRePassword(e.target.value)
+
+  const signUp = async () => {
+    if (password === rePassword) {
+      register(email, password)
+        .then(resp => {
+          console.log(resp)
+          const user = auth.currentUser
+          updateProfile(user, {
+            displayName: name
+          }).then(() => {
+            sendEmailVerification(user).then(() => {
+              console.log('Verification email sent')
+            })
+          })
+          history.push('/')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    } else {
+      alert('Passwords do not match')
+    }
+  }
+// Login With google functionality
+const loginWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then(user => {
+      const credential = GoogleAuthProvider.credentialFromResult(user)
+      if (user) {
+        history.push(location.state?.from ?? '/')
+        window.localStorage.setItem('auth', 'true')
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
 
   return (
     <div className={styles.container}>
@@ -54,11 +101,11 @@ const Signup = () => {
 
       <label className={`${styles.label} ${styles.m5}`}>Password</label>
       <div className={styles.password}>
-        <i onClick={() => setShow(!show)} className={styles.visible}>
+        <i onClick={() => setShowPass(!showPass)} className={styles.visible}>
           <RemoveRedEyeIcon />
         </i>
         <input
-          type={show ? 'text' : 'password'}
+          type={showPass ? 'text' : 'password'}
           className={styles.inputs}
           placeholder='Enter Password'
           onChange={changePassword}
@@ -68,22 +115,22 @@ const Signup = () => {
         Re-enter Password
       </label>
       <div className={styles.password}>
-        <i onClick={() => setShow(!show)} className={styles.visible}>
+        <i onClick={() => setShowRePass(!showRePass)} className={styles.visible}>
           <RemoveRedEyeIcon />
         </i>
         <input
-          type={show ? 'text' : 'password'}
+          type={showRePass ? 'text' : 'password'}
           className={styles.inputs}
           placeholder='Re-enter Password'
           onChange={changeRePass}
         />
       </div>
       <div>
-        <button className={styles.signin}>Sign-up</button>
+        <button onClick={signUp} className={styles.signin}>Sign-up</button>
       </div>
       <span className={styles.line}></span>
 
-      <button className={styles.google}>
+      <button onClick={loginWithGoogle} className={styles.google}>
         <img className={styles.googleImg} src='/images/google.png' alt='' />
         Sign-in with Google
       </button>

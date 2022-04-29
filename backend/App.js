@@ -67,7 +67,7 @@ app.post('/verification', (req, res) => {
     )
   } else {
     // pass it
-    console.log(req.body.payload.payment.entity.status)
+    console.log("Went in else " + req.body.payload.payment.entity.status)
   }
   res.status(200).json({ status: 'ok' })
 })

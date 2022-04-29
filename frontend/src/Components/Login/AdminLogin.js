@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory, Link, useLocation } from 'react-router-dom'
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithEmailAndPassword
-} from 'firebase/auth'
+import { useHistory, Link} from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
 import styles from './Login.module.css'
@@ -14,13 +7,8 @@ import styles from './Login.module.css'
 const Login = () => {
   // General
   const history = useHistory()
-  const location = useLocation()
-
 
   // Firestore initialilzing
-  const provider = new GoogleAuthProvider()
-  const auth = getAuth()
-
   const { login } = useAuth()
 
   // States
@@ -36,37 +24,23 @@ const Login = () => {
 
   // Login with username and password
   const loginWithUsernameAndPassword = () => {
-    login(email, password)
-      .then(resp => {
-        console.log(resp)
-        history.push(location.state?.from ?? '/')
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-
-  // Login With google functionality
-  const loginWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then(user => {
-        const credential = GoogleAuthProvider.credentialFromResult(user)
-        if (user) {
-          console.log("Checking", user.user.email)
-          history.push(location.state?.from ?? '/')
-          window.localStorage.setItem('auth', 'true')
-        }else{
-          console.log("Invalid user")
-        }
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    if(email === "ca.sc@snu.edu.in" && password === "test123"){
+        login(email, password)
+        .then(resp => {
+            console.log(resp)
+            history.push(location.state?.from ?? '/')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    } else{
+        console.log("Invalid ID or password")
+    }
   }
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Signin to Dashboard</h1>
+      <h1 className={styles.heading}>Signin to Admin Dashboard</h1>
       <label className={`${styles.label} ${styles.m10}`}>Mail ID</label>
       <input type='text' onChange={changeEmail} className={styles.inputs} placeholder='SNU Email ID' />
 
@@ -91,17 +65,6 @@ const Login = () => {
         <button onClick={loginWithUsernameAndPassword} className={styles.signin}>Sign In</button>
       </div>
       <span className={styles.line}></span>
-
-      <button onClick={loginWithGoogle} className={styles.google}>
-        <img className={styles.googleImg} src='/images/google.png' alt='' />
-        Sign-in with Google
-      </button>
-      <p>
-        Don’t have an account?{' '}
-        <Link className={styles.deco} to='/signup'>
-          Sign Up
-        </Link>
-      </p>
     </div>
   )
 }
