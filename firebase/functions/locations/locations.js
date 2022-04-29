@@ -3,11 +3,14 @@ const admin = require('firebase-admin')
 const { firestore } = require('firebase-admin')
 const region = 'asia-south1'
 const functions_reg = functions.region(region)
+const cors = require('cors')({ origin: true });
 const db = admin.firestore()
 db_ref_l = db.collection('locations')
 
 
 exports.getLocations = functions_reg.https.onRequest(async (req,res) =>{
+  cors(req, res, async () => {
+
   try{
     const query_result = await db_ref_l.get();
     if(query_result.size == 0){
@@ -21,8 +24,11 @@ exports.getLocations = functions_reg.https.onRequest(async (req,res) =>{
     res.status(500).json({"status":0,"msg":"Internal error while fetching locations"});
   }
 });
+});
 
 exports.updateLocation = functions_reg.https.onRequest(async (req, res) => {
+  cors(req, res, async () => {
+
   const add = req.body.add
   const del = req.body.delete
   try {
@@ -45,5 +51,5 @@ exports.updateLocation = functions_reg.https.onRequest(async (req, res) => {
   } catch (error) {
       functions.logger.error(error)
       res.status(500).json({status: 0, msg: "Internal Error"})
-  }
+  }});
 })

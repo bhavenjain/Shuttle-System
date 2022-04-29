@@ -2,11 +2,14 @@ const functions = require("firebase-functions");
 const admin = require('firebase-admin');
 const { set } = require("mongoose");
 const region = 'asia-south1';
+const cors = require('cors')({ origin: true });
 const functions_reg = functions.region(region);
 const db = admin.firestore();
 db_ref_b = db.collection('buses');
 
 exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
+  cors(req, res, async () => {
+
     try{
         const bus = req.body.bus;
         let dates = bus.date.split("/");
@@ -21,10 +24,12 @@ exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
         functions.logger.error(e);
         res.status(500).json({"status":0,"msg":"Internal error"});
     }
-
+  });
 });
 
 exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
+  cors(req, res, async () => {
+
   const date = req.query.date;
   let dates = date.split("/");
   let n_date = `${dates[2]}-${dates[1]}-${dates[0]}`;
@@ -48,4 +53,5 @@ exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
       console.log(err)
       res.status(400).json({ msg: 'internal error while fetching busses' })
     }
+  });
   });
