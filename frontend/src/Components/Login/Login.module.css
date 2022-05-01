@@ -10,7 +10,7 @@
     text-decoration: none;
 }
 
-.haeding {
+.heading {
     /* Title */
 
     font-family: 'Poppins', sans-serif;
@@ -159,7 +159,7 @@ i {
     margin-right: 10px;
 }
 
-p {
+.p {
     align-self: center;
     text-decoration: none;
 }

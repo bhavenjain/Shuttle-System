@@ -117,7 +117,7 @@ const Login = () => {
         <img className={styles.googleImg} src='/images/google.png' alt='' />
         Sign-in with Google
       </button>
-      <p>
+      <p className={styles.p}>
         Don’t have an account?{' '}
         <Link className={styles.deco} to='/signup'>
           Sign Up

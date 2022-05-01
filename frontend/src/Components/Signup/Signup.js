@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory, useLocation, Link } from 'react-router-dom'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
-import styles from './Login.module.css'
+import styles from './Signup.module.css'
 import { 
   GoogleAuthProvider,
   getAuth,
@@ -44,7 +44,8 @@ const Signup = () => {
           console.log(resp)
           const user = auth.currentUser
           updateProfile(user, {
-            displayName: name
+            displayName: name,
+            phoneNumber: number,
           }).then(() => {
             sendEmailVerification(user).then(() => {
               console.log('Verification email sent')
@@ -63,7 +64,6 @@ const Signup = () => {
 const loginWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then(user => {
-      const credential = GoogleAuthProvider.credentialFromResult(user)
       if (user) {
         history.push(location.state?.from ?? '/')
         window.localStorage.setItem('auth', 'true')
@@ -134,7 +134,7 @@ const loginWithGoogle = () => {
         <img className={styles.googleImg} src='/images/google.png' alt='' />
         Sign-in with Google
       </button>
-      <p>
+      <p className={styles.p}>
         Already have an account?{' '}
         <Link className={styles.deco} to='/login'>
           Sign In now
