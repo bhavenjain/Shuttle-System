@@ -51,7 +51,7 @@ const LandingPage = () => {
   const getData = async () => {
     try {
       console.log("sendD:",sendD);
-      let query = `?date=${sendD}`
+      let query = `?date=${sendD}&to=${location.to}&from=${location.from}`
       console.log(query);
       const { data } = await getBusesApi(query);
       setData(data.data)

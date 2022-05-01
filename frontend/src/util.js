@@ -33,7 +33,7 @@ export const sortData = data => {
 
 // Parsing for buses
 export const parseBuses = (location, dates, data, setSendDate, setBuses) => {
-  if (location.from && location.to && dates.day) {
+  if (location.from && location.to && dates.day && data) {
     let tempForBus = []
     data.forEach(bus => {
       if (
