@@ -3,9 +3,9 @@ const admin = require('firebase-admin')
 const { firestore } = require('firebase-admin')
 const region = 'asia-south1'
 const functions_reg = functions.region(region)
-const cors = require('cors')({ origin: true });
 const db = admin.firestore()
 db_ref_l = db.collection('locations')
+const cors = require('cors')({ origin: true });
 
 
 exports.getLocations = functions_reg.https.onRequest(async (req,res) =>{
@@ -31,6 +31,7 @@ exports.updateLocation = functions_reg.https.onRequest(async (req, res) => {
 
   const add = req.body.add
   const del = req.body.delete
+  console.log(add, del)
   try {
     if (add) {
       let status = await db_ref_l.where("names","array-contains",add).get();

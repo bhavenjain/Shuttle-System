@@ -2,17 +2,21 @@ const functions = require("firebase-functions");
 const admin = require('firebase-admin');
 // const { set } = require("mongoose");
 const region = 'asia-south1';
-const cors = require('cors')({ origin: true });
 const functions_reg = functions.region(region);
 const db = admin.firestore();
 db_ref_b = db.collection('buses');
+const cors = require('cors')({origin: true});
 
 exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
   cors(req, res, async () => {
 
     try{
         const bus = req.body.bus;
-
+        console.log(bus);
+        if((bus && (!bus.to || !bus.from || !bus.date || !bus.time || !bus.busNo || !bus.total || !bus.price)) || !bus){
+          res.status(400).json({"status":0,"msg":"Bad Request all fields are compulsory"});
+          return;    
+        }
         let dates = bus.date.split("/");
         let n_date = `${dates[2]}-${dates[1]}-${dates[0]}`;
         let time_in_milli = new Date(`${n_date}T${bus.time}:00+0530`)

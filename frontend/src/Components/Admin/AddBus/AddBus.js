@@ -48,6 +48,7 @@ const AddBus = ({ options }) => {
         to: location.to,
         from: location.from,
         date: date,
+        price:data.price,
         time: data.time,
         busNo: data.busNo,
         remaining: data.totalSeats,
