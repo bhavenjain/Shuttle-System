@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Field from '../../Field/Field'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { getBusesApi } from '../../../http/index'
+import BusFill from '../../BusLogs/BusFill/BusFill'
 import styles from './DeleteBus.module.css'
 
-const DeleteBus = ({ setPage, options }) => {
+const DeleteBus = ({ setPage, options, setUpdateBus, updateBus }) => {
   // Users' selected locations
   const [location, setLocation] = useState({
     from: '',
@@ -11,10 +13,32 @@ const DeleteBus = ({ setPage, options }) => {
   })
 
   const [date, setDate] = useState('')
+  const [buses, setBuses] = useState([])
 
-  const handleChangeDate = event => setDate(event.target.value)
+  const handleChangeDate = event => {
+    let format = event.target.value.split('-')
+    setDate(`${format[2]}/${format[1]}/${format[0]}`)
+  }
 
-  const handleSubmit = e => {}
+  // Get Buses Data
+  const getData = async () => {
+    try {
+      let query = `?date=${date}&to=${location.to}&from=${location.from}`
+      console.log(query)
+      const data = await getBusesApi(query)
+      setBuses(data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    console.log(updateBus)
+  }, [updateBus])
+
+  const handleSubmit = e => {
+    getData()
+  }
 
   return (
     <div className={styles.container}>
@@ -47,6 +71,21 @@ const DeleteBus = ({ setPage, options }) => {
           />
         </div>
       </form>
+      <div className={styles.logs}>
+        {buses &&
+          buses.map((bus, key) => {
+            return (
+              <BusFill
+                key={key}
+                bus={bus}
+                sendDate={date}
+                AdminDelete={true}
+                setPage={setPage}
+                setUpdateBus={setUpdateBus}
+              />
+            )
+          })}
+      </div>
     </div>
   )
 }

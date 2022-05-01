@@ -3,6 +3,7 @@ import AddLocation from './AddLocation/AddLocation'
 import AddBus from './AddBus/AddBus'
 import UpdateBus from './UpdateBus/UpdateBus'
 import DeleteBus from './DeleteBus/DeleteBus'
+import Update from './Update/Update'
 import { getLocationsApi, handleGetApi } from '../../http'
 import AdminLogin from '../Login/AdminLogin'
 import { objectToListLocations } from '../../util'
@@ -12,6 +13,7 @@ const Admin = () => {
   const [options, setOptions] = useState([])
   const [page, setPage] = useState(0)
   const [auth, setAuth] = useState(false)
+  const [updateBus, setUpdateBus] = useState(null)
 
   // Fetch the Locations
   const baseURL = process.env.REACT_APP_API_URL
@@ -54,8 +56,9 @@ const Admin = () => {
             <>
               {page === 1 ? <AddLocation options={options} setPage={setPage} /> : console.log('')}
               {page === 2 ? <AddBus options={options} setPage={setPage} /> : console.log('')}
-              {page === 3 ? <UpdateBus options={options} setPage={setPage} /> : console.log('')}
-              {page === 4 ? <DeleteBus options={options} setPage={setPage} /> : console.log('')}
+              {page === 3 ? <UpdateBus options={options} setUpdateBus={setUpdateBus} setPage={setPage} /> : console.log('')}
+              {page === 4 ? <DeleteBus options={options} setPage={setPage} setUpdateBus={setUpdateBus} updateBus={updateBus} /> : console.log('')}
+              {page === 5 ? <Update updateBus={updateBus} options={options} setPage={setPage} /> : console.log('')}
             </>
           )}
         </>
