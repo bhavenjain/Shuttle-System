@@ -27,7 +27,7 @@ const LandingPage = () => {
     year: ''
   })
 
-  const [data, setData] = useState(null) // Bus data
+  // const [data, setData] = useState(null) // Bus data
   const [no, setNo] = useState(false) // To display if bus is not availbale
   const [buses, setBuses] = useState(null) // Set available buses
   const [toggleButton, setToggleButton] = useState(false) // Button Toggle
@@ -38,7 +38,7 @@ const LandingPage = () => {
   const getLocations = async () => {
     try {
       
-      const { data } = await getLocationsApi();
+      const data = await getLocationsApi();
       const locationsList = data.locations
       setOptions(...options,locationsList);
       // objectToListLocations(locationsList, setOptions)
@@ -53,8 +53,9 @@ const LandingPage = () => {
       console.log("sendD:",sendD);
       let query = `?date=${sendD}&to=${location.to}&from=${location.from}`
       console.log(query);
-      const { data } = await getBusesApi(query);
-      setData(data.data)
+      const  data  = await getBusesApi(query);
+      // setData(data.data)
+      setBuses(data.data)
     } catch (error) {
       console.log(error)
     }
@@ -69,10 +70,10 @@ const LandingPage = () => {
     // getData()
   }, [])
 
-  // Parse the loaded data
-  useEffect(() => {
-    parseBuses(location, dates, data, setSendDate, setBuses)
-  }, [toggleButton, location, data])
+  // // Parse the loaded data
+  // useEffect(() => {
+  //   parseBuses(location, dates, data, setSendDate, setBuses)
+  // }, [toggleButton, location, data])
 
   return (
     <div className='app'>

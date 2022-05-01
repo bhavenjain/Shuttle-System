@@ -82,7 +82,7 @@ const TabsForm = ({ setDates,setSendD }) => {
             JSON.stringify(currentDate.getDate()).length > 1 ? '' : '0'
           }${currentDate.getDate()}/${
             JSON.stringify(currentDate.getMonth()).length > 1 ? '' : '0'
-          }${currentDate.getMonth()}/${currentDate.getFullYear()}`}
+          }${currentDate.getMonth()+1}/${currentDate.getFullYear()}`}
           onClick={handleChange}
         >
           <p>{weekday[currentDate.getDay()]}</p>
@@ -95,7 +95,7 @@ const TabsForm = ({ setDates,setSendD }) => {
             JSON.stringify(tomorrowDate.getDate()).length > 1 ? '' : '0'
           }${tomorrowDate.getDate()}/${
             JSON.stringify(tomorrowDate.getMonth()).length > 1 ? '' : '0'
-          }${tomorrowDate.getMonth()}/${tomorrowDate.getFullYear()}`}
+          }${tomorrowDate.getMonth()+1}/${tomorrowDate.getFullYear()}`}
           onClick={handleChange}
         >
           <p>{weekday[tomorrowDate.getDay()]}</p>
@@ -108,7 +108,7 @@ const TabsForm = ({ setDates,setSendD }) => {
             JSON.stringify(dayAfterDate.getDate()).length > 1 ? '' : '0'
           }${dayAfterDate.getDate()}/${
             JSON.stringify(dayAfterDate.getMonth()).length > 1 ? '' : '0'
-          }${dayAfterDate.getMonth()}/${dayAfterDate.getFullYear()}`}
+          }${dayAfterDate.getMonth()+1}/${dayAfterDate.getFullYear()}`}
           onClick={handleChange}
         >
           <p>{weekday[dayAfterDate.getDay()]}</p>

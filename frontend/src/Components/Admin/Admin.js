@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AddLocation from './AddLocation/AddLocation'
 import AddBus from './AddBus/AddBus'
-import { getLocationsApi } from '../../http'
+import { getLocationsApi, handleGetApi } from '../../http'
 import AdminLogin from "../Login/AdminLogin"
 import { objectToListLocations } from '../../util'
 import './Admin.css'
@@ -11,14 +11,16 @@ const Admin = () => {
   const [auth, setAuth] = useState(false)
 
   // Fetch the Locations
+  const baseURL = process.env.REACT_APP_API_URL;
   const getData = async () => {
     try {
-      const { data } = await getLocationsApi()
-      const locationsList = data.locations
+      const data  = await handleGetApi(`${baseURL}/location-getLocations`);
+      console.log(data);
+      const locationsList = data.locations;
       setOptions(...options,locationsList);
       // objectToListLocations(locationsList, setOptions)
     } catch (error) {
-      console.log('Error')
+      console.log(error)
     }
   }
   

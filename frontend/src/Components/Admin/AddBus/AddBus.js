@@ -44,7 +44,8 @@ const AddBus = ({ options }) => {
 
     try {
       // make axios post request
-      const sendData = {
+      const sendData = { bus :{
+
         to: location.to,
         from: location.from,
         date: date,
@@ -52,6 +53,7 @@ const AddBus = ({ options }) => {
         busNo: data.busNo,
         remaining: data.totalSeats,
         total: data.totalSeats
+      }
       };
       const res = await addBusesApi(sendData)
       document.getElementById('addBusForm').reset()

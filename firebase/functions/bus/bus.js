@@ -1,6 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require('firebase-admin');
-const { set } = require("mongoose");
+// const { set } = require("mongoose");
 const region = 'asia-south1';
 const cors = require('cors')({ origin: true });
 const functions_reg = functions.region(region);
@@ -12,6 +12,7 @@ exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
 
     try{
         const bus = req.body.bus;
+
         let dates = bus.date.split("/");
         let n_date = `${dates[2]}-${dates[1]}-${dates[0]}`;
         let time_in_milli = new Date(`${n_date}T${bus.time}:00+0530`)
@@ -32,6 +33,7 @@ exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
   const date = req.query.date;
   const to = req.query.to;
   const from = req.query.from;
+  console.log(to,from,date);
   if(!date||!to||!from){
     res.status(400).json({"status":0,"msg":"Bad request require query param: date, to, from"});
     return;
@@ -46,13 +48,13 @@ exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
   console.log(n_date)
   try {
       const query_result = await db_ref_b
-      .where("from","==", from)
-      .where("to","==",to)
+      .where("from","==",from).where("to","==",to)
       .where("time_in_milli",">=",start_time)
-      .where("time_in_milli","<=",end_time.getTime()).orderBy("time_in_milli","asc").get();
+      .where("time_in_milli","<=",end_time.getTime())
+      .orderBy("time_in_milli","asc").get();
       let buses =[];
       if(query_result.size == 0){
-        res.status(200).json({"status":1,"msg":"no buses found"});
+        res.status(200).json({"status":0,"msg":"no buses found"});
         return;
       }
       query_result.forEach(doc => {

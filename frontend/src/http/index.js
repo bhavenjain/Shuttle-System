@@ -15,6 +15,7 @@ export const handleGetApi = async (url) => {
     },
   };
   console.log("Get call started...");
+  console.log(url);
   try {
     return await fetch(url, requestOptions).then((response) =>
       response
@@ -54,24 +55,24 @@ export const handlePostApi = async (url, body) => {
 };
 
 
-const api = Axios.create({
-  baseURL: "https://asia-south1-shuttle-booking-28033.cloudfunctions.net",
-  // baseUrl: "http://localhost:5001/shuttle-booking-28033/asia-south1",
-  withCredentials: false,
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json'
-  }
-})
+// const api = Axios.create({
+//   // baseURL: "https://asia-south1-shuttle-booking-28033.cloudfunctions.net",
+//   baseUrl: "http://localhost:5001/shuttle-booking-28033/asia-south1",
+//   withCredentials: false,
+//   headers: {
+//     'Content-Type': 'application/json',
+//     Accept: 'application/json'
+//   }
+// })
 
 // Get REQUESTS
-export const getLocationsApi = () => api.get('/location-getLocations')
-export const getBusesApi = (query) => api.get(`/bus-getBuses${query}`)
-
+const baseURL = process.env.REACT_APP_API_URL;
+export const getLocationsApi = () => handleGetApi(`${baseURL}/location-getLocations`);
+export const getBusesApi = (query) => handleGetApi(`${baseURL}/bus-getBuses${query}`);
 // Post REQUESTS
-export const addBusesApi = data => api.post('/api/addbus', data)
-export const addLocationsApi = data => api.post('/location-updateLocation', data)
-export const addBookingApi = data => api.post('/api/addbooking', data)
-export const reserveSeatApi = data => api.post('/api/reserveseat', data)
+export const addBusesApi = data => handlePostApi(`${baseURL}/bus-addBus?`, data);
+export const addLocationsApi = data => handlePostApi(`${baseURL}/location-updateLocation`, data)
+export const addBookingApi = data => handlePostApi(`${baseURL}/api/addbooking`, data)
+export const reserveSeatApi = data => handlePostApi(`${baseURL}/api/reserveseat`, data)
 
-export default api
+// export default api
