@@ -56,6 +56,7 @@ export const handlePostApi = async (url, body) => {
 
 const api = Axios.create({
   baseURL: "https://asia-south1-shuttle-booking-28033.cloudfunctions.net",
+  // baseUrl: "http://localhost:5001/shuttle-booking-28033/asia-south1",
   withCredentials: false,
   headers: {
     'Content-Type': 'application/json',

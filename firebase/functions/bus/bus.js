@@ -30,8 +30,10 @@ exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
 exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
   cors(req, res, async () => {
   const date = req.query.date;
-  if(!date){
-    res.status(400).json({"status":0,"msg":"required date"});
+  const to = req.query.to;
+  const from = req.query.from;
+  if(!date||!to||!from){
+    res.status(400).json({"status":0,"msg":"Bad request require query param: date, to, from"});
     return;
   }
   console.log(date);
@@ -43,7 +45,11 @@ exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
   let start_time = selected_date>curr_time?selected_date.getTime():curr_time;
   console.log(n_date)
   try {
-      const query_result = await db_ref_b.where("time_in_milli",">=",start_time).where("time_in_milli","<=",end_time.getTime()).orderBy("time_in_milli","asc").get();
+      const query_result = await db_ref_b
+      .where("from","==", from)
+      .where("to","==",to)
+      .where("time_in_milli",">=",start_time)
+      .where("time_in_milli","<=",end_time.getTime()).orderBy("time_in_milli","asc").get();
       let buses =[];
       if(query_result.size == 0){
         res.status(200).json({"status":1,"msg":"no buses found"});
@@ -53,7 +59,7 @@ exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
         buses.push(doc.data());    
       });
       res.status(200).json({"status":1 ,"data": buses });
-    } catch (err) {
+    } catch (err) { 
       console.log(err)
       res.status(400).json({ msg: 'internal error while fetching busses' })
     }

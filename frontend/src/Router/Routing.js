@@ -20,12 +20,12 @@ const Routing = () => {
     <>
       <Router>
         <Switch>
-          <ProtectedRoute path='/admin/access/bus' component={Admin} />
+          <Route path='/admin/access/bus' component={Admin} />
+          <Route path='/success' component={Success} />
 
           <ProtectedRoute exact path='/login' component={Login} />
           <ProtectedRoute exact path='/signup' component={Signup} />
           <ProtectedRoute path='/' component={LandingPage} />
-          <ProtectedRoute path='/success' component={Success} />
           <Route path='/notfound' component={NotFound} />
           {/* <ProtectedRoute
             exact
