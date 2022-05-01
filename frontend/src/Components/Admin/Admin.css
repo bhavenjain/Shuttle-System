@@ -1,0 +1,15 @@
+.admin {
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin__options {
+    height: 40px;
+    width: 200px;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}

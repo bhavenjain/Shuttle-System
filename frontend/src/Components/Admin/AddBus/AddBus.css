@@ -1,6 +1,7 @@
 .addBus {
     width: 100vw;
     padding: 20px;
+    margin-top: 40%;
     display: flex;
     align-items: center;
     justify-content: left;
