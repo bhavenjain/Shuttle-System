@@ -9,6 +9,8 @@ import {
 } from 'firebase/auth'
 import { useAuth } from '../../context/AuthContext'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Login.module.css'
 
 const Login = () => {
@@ -16,6 +18,15 @@ const Login = () => {
   const history = useHistory()
   const location = useLocation()
 
+  const notify = (err) => toast.error(`${err}`, {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
 
   // Firestore initialilzing
   const provider = new GoogleAuthProvider()
@@ -42,7 +53,16 @@ const Login = () => {
         history.push(location.state?.from ?? '/')
       })
       .catch(error => {
-        console.log(error)
+        console.log("Found Error", error.code)
+        if(error.code === "auth/user-not-found"){
+          notify("No user exists with the entered mail ID")
+        }
+        else if(error.code === "auth/wrong-password"){
+            notify("Incorrect Password")
+        }
+        else{
+          notify("Invalid Credentials, try reconnecting to the internet")
+        }
       })
   }
 
@@ -56,11 +76,12 @@ const Login = () => {
           history.push(location.state?.from ?? '/')
           window.localStorage.setItem('auth', 'true')
         }else{
-          console.log("Invalid user")
+          notify("No user Selected")
         }
       })
       .catch(error => {
         console.log(error)
+        notify("Invalid user")
       })
   }
 
@@ -102,6 +123,18 @@ const Login = () => {
           Sign Up
         </Link>
       </p>
+      <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
+
     </div>
   )
 }
