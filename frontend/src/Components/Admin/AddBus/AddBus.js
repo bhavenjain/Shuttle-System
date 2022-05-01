@@ -45,17 +45,18 @@ const AddBus = ({ options, setPage }) => {
 
     try {
       // make axios post request
-      const sendData = { bus :{
-
-        to: location.to,
-        from: location.from,
-        date: date,
-        time: data.time,
-        busNo: data.busNo,
-        remaining: data.totalSeats,
-        total: data.totalSeats
-      }
-      };
+      const sendData = JSON.stringify({
+        bus: {
+          to: location.to,
+          from: location.from,
+          date: date,
+          time: data.time,
+          price:data.price,
+          busNo: data.busNo,
+          remaining: data.totalSeats,
+          total: data.totalSeats
+        }
+      });
       const res = await addBusesApi(sendData)
       document.getElementById('addBusForm').reset()
       if (res.status === 201) {
@@ -107,7 +108,7 @@ const AddBus = ({ options, setPage }) => {
 
   return (
     <div className='addBus'>
-          <ArrowBackIosIcon style={{alignSelf: "flex-start", marginBottom: "7%"}} onClick={() => setPage(0)} />
+      <ArrowBackIosIcon style={{ alignSelf: "flex-start", marginBottom: "7%" }} onClick={() => setPage(0)} />
 
       <form id='addBusForm'>
         <Field

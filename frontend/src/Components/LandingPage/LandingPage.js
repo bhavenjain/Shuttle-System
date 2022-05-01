@@ -71,7 +71,7 @@ const LandingPage = () => {
 
   const setUser = async () => {
     console.log(currentUser)
-      let userObj = {
+      let userObj = JSON.stringify({ user:{
         name:currentUser.displayName,
         email:currentUser.email,
         contact:currentUser.phoneNumber?currentUser.phoneNumber:currentUser.photoURL,
@@ -79,6 +79,7 @@ const LandingPage = () => {
         signupTimestamp:currentUser.metadata.createdAt,
         last_login:currentUser.metadata.lastLoginAt
       }
+      });
       console.log(userObj);
       await loginUserApi(userObj);
   }

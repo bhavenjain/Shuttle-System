@@ -31,10 +31,10 @@ const AddLocation = ({ options, setPage }) => {
       console.log('hgfhjsghjfs')
       // make post request to add location
       console.log(addLocation, deleteLocation)
-      let d = {
+      let d = JSON.stringify({
         add: addLocation,
         delete: deleteLocation
-      }
+      });
       console.log(d)
       const response = await addLocationsApi(d)
       // document.getElementById('addlocationform').reset()

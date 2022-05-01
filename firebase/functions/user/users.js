@@ -52,15 +52,17 @@ exports.login = functions_reg.https.onRequest(async (req,res)=>{
     }
     try{
         const q = await db_ref_u.doc(user.uid).get();
+        let userObj;
+        console.log(user);
         if(q.data()){
-            let userObj = {
+            userObj = {
                 last_login:user.last_login,
             };
         }else{
             if(!checkContact(user.contact)){
                 delete user.contact;
             }
-            let userObj = user;
+            userObj = user;
         }
         await db_ref_u.doc(user.uid).set(userObj);
         res.status(200).json({"status":1,"msg":"user registered successfully"});
