@@ -9,7 +9,7 @@ const cors = require('cors')({origin: true});
 
 exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
   cors(req, res, async () => {
-
+    console.log(req.body);
     try{
         const bus = req.body.bus;
         console.log(bus);
