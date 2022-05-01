@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {
   BrowserRouter as Router,
   Redirect,
@@ -14,10 +14,19 @@ import Success from '../Components/Success/Success'
 import Login from '../Components/Login/Login'
 import AdminLogin from '../Components/Login/AdminLogin'
 import Signup from '../Components/Signup/Signup'
+import Loader from '../Components/Loader/Loader'
 
 const Routing = () => {
-  return (
-    <>
+  const {currentUser} = useAuth()
+  const [load, setLoad] = useState(true)
+  
+  useEffect(() => {
+    setTimeout(() => {
+      setLoad(false)
+    }, 2000)
+  }, [])
+
+  return (load && !currentUser) ? (<Loader />) : (
       <Router>
         <Switch>
           <Route path='/admin/access/bus' component={Admin} />
@@ -39,7 +48,6 @@ const Routing = () => {
           /> */}
         </Switch>
       </Router>
-    </>
   )
 }
 
