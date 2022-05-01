@@ -10,6 +10,10 @@ function checkEmail(email) {
     let pattern = /^([a-z]{2}[0-9]{3}@snu.edu.in)|([a-z]{1,20}[.][a-z0-9]{1,20}@snu.edu.in)$/;
     return email.match(pattern);
 }
+function checkContact(contact) {
+    let pattern = /^([1-9]{1}[0-9]{9})$/;
+    return contact.match(pattern);
+}
 
 exports.fetchUser = functions_reg.https.onRequest(async (req, res) =>{
     cors(req, res, async () => {
@@ -34,7 +38,7 @@ exports.fetchUser = functions_reg.https.onRequest(async (req, res) =>{
 });
 });
 
-exports.create = functions_reg.https.onRequest(async (req,res)=>{
+exports.login = functions_reg.https.onRequest(async (req,res)=>{
     cors(req, res, async () => {
 
     const user = req.body.user;
@@ -47,21 +51,18 @@ exports.create = functions_reg.https.onRequest(async (req,res)=>{
         return;
     }
     try{
-        await db_ref_u.doc(user.uid).set(user);
-        res.status(200).json({"status":1,"msg":"user registered successfully"});
-    }catch(e){
-        functions.logger.error(e);
-        res.status(500).json({"status":0,"msg":"internal error registrting user"});
-    }
-});
-})
-
-exports.login = functions_reg.https.onRequest(async (req,res)=>{
-    cors(req, res, async () => {
-
-    const user = req.body.user;
-    try{
-        await db_ref_u.doc(user.uid).update({"last_login":user.last_login});
+        const q = await db_ref_u.doc(user.uid).get();
+        if(q.data()){
+            let userObj = {
+                last_login:user.last_login,
+            };
+        }else{
+            if(!checkContact(user.contact)){
+                delete user.contact;
+            }
+            let userObj = user;
+        }
+        await db_ref_u.doc(user.uid).set(userObj);
         res.status(200).json({"status":1,"msg":"user registered successfully"});
     }catch(e){
         functions.logger.error(e);
