@@ -1,7 +1,7 @@
 import React from 'react'
 import '../BusLogs.css'
 
-const BusFill = ({ bus, sendDate }) => {
+const BusFill = ({ bus, sendDate, AdminDelete }) => {
   return (
     <div className='busLogs__modal'>
       <div className='busLogs__s1'>
@@ -21,6 +21,7 @@ const BusFill = ({ bus, sendDate }) => {
         <h3>
           <strong>{bus.total}</strong> total seats.
         </h3>
+        {AdminDelete && <p>Hello</p>}
       </div>
     </div>
   )

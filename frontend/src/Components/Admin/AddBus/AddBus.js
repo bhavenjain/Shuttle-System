@@ -3,9 +3,10 @@ import Field from '../../Field/Field'
 import { addBusesApi } from '../../../http'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import './AddBus.css'
 
-const AddBus = ({ options }) => {
+const AddBus = ({ options, setPage }) => {
   // Toast
   const notify = text =>
     toast.success(text, {
@@ -106,6 +107,8 @@ const AddBus = ({ options }) => {
 
   return (
     <div className='addBus'>
+          <ArrowBackIosIcon style={{alignSelf: "flex-start", marginBottom: "7%"}} onClick={() => setPage(0)} />
+
       <form id='addBusForm'>
         <Field
           options={options}
