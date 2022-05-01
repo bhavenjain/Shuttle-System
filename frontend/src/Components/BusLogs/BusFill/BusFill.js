@@ -1,7 +1,7 @@
 import React from 'react'
 import '../BusLogs.css'
 
-const BusFill = ({ bus, sendDate }) => {
+const BusFill = ({ bus, sendDate, AdminDelete, AdminUpdate=false, setAdminBus=false }) => {
   return (
     <div className='busLogs__modal'>
       <div className='busLogs__s1'>
@@ -21,6 +21,10 @@ const BusFill = ({ bus, sendDate }) => {
         <h3>
           <strong>{bus.total}</strong> total seats.
         </h3>
+        {AdminDelete && <button onClick={() => setAdminBus(bus)} >Delete Bus</button>}
+        {AdminUpdate && <button onClick={() => setAdminBus(bus)}>UpdateBus Bus</button>
+}
+
       </div>
     </div>
   )
