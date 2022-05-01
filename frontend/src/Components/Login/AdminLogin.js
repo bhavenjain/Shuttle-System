@@ -3,6 +3,8 @@ import { useHistory, useLocation, Link} from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
 import styles from './Login.module.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminLogin = ({setAuth}) => {
   // General
@@ -12,6 +14,16 @@ const AdminLogin = ({setAuth}) => {
   // Firestore initialilzing
   const {login} = useAuth()
   
+  const notify = (err) => toast.error(`${err}`, {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    });
+
   // States
   const [show, setShow] = useState(false)
   const [email, setEmail] = useState("")
@@ -26,19 +38,21 @@ const AdminLogin = ({setAuth}) => {
 
   // Login with username and password
   const loginWithUsernameAndPassword = () => {
-    if(email === "ca.sc@snu.edu.in" && password === "test123"){
+    if(email === process.env.REACT_APP_ADMIN_ID && password === process.env.REACT_APP_ADMIN_KEY){
       setAuth(true)
-        login(email, password)
-        .then(resp => {
-            console.log(resp)
-            window.location.href = "/admin/acess/bus"
-            history.push(location.state?.from ?? '/')
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        // login(email, password)
+        // .then(resp => {
+        //     console.log(resp)
+        //     window.location.href = "/admin/acess/bus"
+        //     history.push(location.state?.from ?? '/')
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        // })
+    } else if(email != process.env.REACT_APP_ADMIN_ID){
+        notify("Admin dashboard access is limited to Administrators only")
     } else{
-        console.log("Invalid ID or password")
+      notify("Invalid Password")
     }
   }
 
@@ -68,6 +82,17 @@ const AdminLogin = ({setAuth}) => {
         <button onClick={loginWithUsernameAndPassword} className={styles.signin}>Sign In</button>
       </div>
       <span className={styles.line}></span>
+      <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      />
     </div>
   )
 }
