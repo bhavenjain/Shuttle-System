@@ -13,7 +13,7 @@ import { useAuth } from '../../context/AuthContext'
 const Signup = () => {
   // General
   const history = useHistory()
-  const {register} = useAuth()
+  const {register, logout} = useAuth()
   const provider = new GoogleAuthProvider()
   const auth = getAuth()
   const location = useLocation()
@@ -45,10 +45,11 @@ const Signup = () => {
           const user = auth.currentUser
           updateProfile(user, {
             displayName: name,
-            phoneNumber: number,
+            photoURL: number,
           }).then(() => {
             sendEmailVerification(user).then(() => {
               console.log('Verification email sent')
+              // logout()
             })
           })
           history.push('/')

@@ -3,6 +3,9 @@ import { objectToListLocations, parseBuses } from '../../util'
 import { getBusesApi, getLocationsApi } from '../../http'
 import TabsForm from '../TabsForm/TabsForm'
 import BusLogs from '../BusLogs/BusLogs'
+
+import {useAuth} from "../../context/AuthContext"
+
 import Button from '../Button/Button'
 import Field from '../Field/Field'
 import NoBus from './NoBus/NoBus'
@@ -15,6 +18,8 @@ const LandingPage = () => {
     from: '',
     to: ''
   })
+
+  const {currentUser} = useAuth()
 
   // Locations
   const [options, setOptions] = useState([])
@@ -69,6 +74,16 @@ const LandingPage = () => {
     getLocations()
     // getData()
   }, [])
+
+//   useEffect(() => {
+//   if (currentUser) {
+//     console.log(currentUser?.emailVerified)
+//   }
+//   // if(currentUser.emailVerified === true) {
+//   //   notifyEmail()
+//   // }
+// }, [currentUser])
+
 
   // // Parse the loaded data
   // useEffect(() => {
