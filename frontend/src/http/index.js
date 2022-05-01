@@ -72,7 +72,7 @@ export const getBusesApi = (query) => handleGetApi(`${baseURL}/bus-getBuses${que
 // Post REQUESTS
 // export const createUserApi = data => handlePostApi(`${baseURL}/user-create`, data);
 export const loginUserApi = data => handlePostApi(`${baseURL}/user-login`, data);
-export const addBusesApi = data => handlePostApi(`${baseURL}/bus-addBus?`, data);
+export const addBusesApi = data => handlePostApi(`${baseURL}/bus-addBus`, data);
 export const addLocationsApi = data => handlePostApi(`${baseURL}/location-updateLocation`, data)
 export const addBookingApi = data => handlePostApi(`${baseURL}/api/addbooking`, data)
 export const reserveSeatApi = data => handlePostApi(`${baseURL}/api/reserveseat`, data)
