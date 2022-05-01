@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory, useLocation, Link } from 'react-router-dom'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
-import styles from './Login.module.css'
+import styles from './Signup.module.css'
 import { 
   GoogleAuthProvider,
   getAuth,
@@ -13,7 +13,7 @@ import { useAuth } from '../../context/AuthContext'
 const Signup = () => {
   // General
   const history = useHistory()
-  const {register} = useAuth()
+  const {register, logout} = useAuth()
   const provider = new GoogleAuthProvider()
   const auth = getAuth()
   const location = useLocation()
@@ -44,10 +44,12 @@ const Signup = () => {
           console.log(resp)
           const user = auth.currentUser
           updateProfile(user, {
-            displayName: name
+            displayName: name,
+            photoURL: number,
           }).then(() => {
             sendEmailVerification(user).then(() => {
               console.log('Verification email sent')
+              // logout()
             })
           })
           history.push('/')
@@ -63,7 +65,6 @@ const Signup = () => {
 const loginWithGoogle = () => {
   signInWithPopup(auth, provider)
     .then(user => {
-      const credential = GoogleAuthProvider.credentialFromResult(user)
       if (user) {
         history.push(location.state?.from ?? '/')
         window.localStorage.setItem('auth', 'true')
@@ -134,7 +135,7 @@ const loginWithGoogle = () => {
         <img className={styles.googleImg} src='/images/google.png' alt='' />
         Sign-in with Google
       </button>
-      <p>
+      <p className={styles.p}>
         Already have an account?{' '}
         <Link className={styles.deco} to='/login'>
           Sign In now

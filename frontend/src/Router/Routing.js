@@ -23,7 +23,7 @@ const Routing = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoad(false)
-    }, 2000)
+    }, 3000)
   }, [])
 
   return (load && !currentUser) ? (<Loader />) : (
@@ -68,7 +68,7 @@ function ProtectedRoute (props) {
       <Route {...props} />
     )
   }
-  return currentUser ? (
+  return currentUser  ? (
     <Route {...props} />
   ) : (
     <Redirect
