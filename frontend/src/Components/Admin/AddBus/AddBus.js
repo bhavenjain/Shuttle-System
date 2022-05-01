@@ -3,9 +3,10 @@ import Field from '../../Field/Field'
 import { addBusesApi } from '../../../http'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import './AddBus.css'
 
-const AddBus = ({ options }) => {
+const AddBus = ({ options, setPage }) => {
   // Toast
   const notify = text =>
     toast.success(text, {
@@ -45,10 +46,10 @@ const AddBus = ({ options }) => {
     try {
       // make axios post request
       const sendData = { bus :{
+
         to: location.to,
         from: location.from,
         date: date,
-        price:data.price,
         time: data.time,
         busNo: data.busNo,
         remaining: data.totalSeats,
@@ -106,6 +107,8 @@ const AddBus = ({ options }) => {
 
   return (
     <div className='addBus'>
+          <ArrowBackIosIcon style={{alignSelf: "flex-start", marginBottom: "7%"}} onClick={() => setPage(0)} />
+
       <form id='addBusForm'>
         <Field
           options={options}

@@ -1,12 +1,14 @@
 .addBus {
     width: 100vw;
     padding: 20px;
-    margin-top: 40%;
+    margin-top: 10%;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: left;
     flex-direction: column;
     outline: none;
+    overflow: visible;
 }
 
 .addBus__data {
