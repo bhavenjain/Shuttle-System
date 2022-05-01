@@ -12,6 +12,7 @@ import LandingPage from '../Components/LandingPage/LandingPage'
 import NotFound from '../Components/NotFound 404/NotFound'
 import Success from '../Components/Success/Success'
 import Login from '../Components/Login/Login'
+import AdminLogin from '../Components/Login/AdminLogin'
 import Signup from '../Components/Signup/Signup'
 
 const Routing = () => {
@@ -19,7 +20,8 @@ const Routing = () => {
     <>
       <Router>
         <Switch>
-          <Route path='/admin/access/bus' component={Admin} />
+          <ProtectedRoute path='/admin/access/bus' component={Admin} />
+
           <ProtectedRoute exact path='/login' component={Login} />
           <ProtectedRoute exact path='/signup' component={Signup} />
           <ProtectedRoute path='/' component={LandingPage} />
