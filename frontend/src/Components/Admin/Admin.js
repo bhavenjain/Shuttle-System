@@ -11,10 +11,10 @@ const Admin = () => {
   const [auth, setAuth] = useState(false)
 
   // Fetch the Locations
-  const baseURL = process.env.REACT_APP_API_URL;
+  // const baseURL = process.env.REACT_APP_API_URL;
   const getData = async () => {
     try {
-      const data  = await handleGetApi(`${baseURL}/location-getLocations`);
+      const data  = await getLocationsApi();
       console.log(data);
       const locationsList = data.locations;
       setOptions(...options,locationsList);

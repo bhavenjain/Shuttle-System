@@ -45,7 +45,6 @@ const AddBus = ({ options }) => {
     try {
       // make axios post request
       const sendData = { bus :{
-
         to: location.to,
         from: location.from,
         date: date,
