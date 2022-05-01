@@ -29,8 +29,12 @@ exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
 
 exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
   cors(req, res, async () => {
-
   const date = req.query.date;
+  if(!date){
+    res.status(400).json({"status":0,"msg":"required date"});
+    return;
+  }
+  console.log(date);
   let dates = date.split("/");
   let n_date = `${dates[2]}-${dates[1]}-${dates[0]}`;
   let curr_time = Date.now();

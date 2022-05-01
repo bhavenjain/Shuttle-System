@@ -1,7 +1,7 @@
 import React from 'react'
 import './Button.css'
 
-const Button = ({ toggleButton, setToggleButton, setNo }) => {
+const Button = ({ toggleButton, setToggleButton, setNo, getData }) => {
   return (
     <div className="button">
       <div
@@ -9,6 +9,7 @@ const Button = ({ toggleButton, setToggleButton, setNo }) => {
         onClick={() => {
           setNo(true)
           setToggleButton(!toggleButton)
+          getData()
         }}
       >
         Search

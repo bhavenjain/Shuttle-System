@@ -32,13 +32,16 @@ const LandingPage = () => {
   const [buses, setBuses] = useState(null) // Set available buses
   const [toggleButton, setToggleButton] = useState(false) // Button Toggle
   const [sendDate, setSendDate] = useState('') // Date state
+  const [sendD, setSendD] = useState('') // Date state
 
   // Fetch the data for locations
   const getLocations = async () => {
     try {
-      const { data } = await getLocationsApi()
+      
+      const { data } = await getLocationsApi();
       const locationsList = data.locations
-      objectToListLocations(locationsList, setOptions)
+      setOptions(...options,locationsList);
+      // objectToListLocations(locationsList, setOptions)
     } catch (error) {
       console.log('Error')
     }
@@ -47,18 +50,24 @@ const LandingPage = () => {
   // Get Buses Data
   const getData = async () => {
     try {
-      const { data } = await getBusesApi()
+      console.log("sendD:",sendD);
+      let query = `?date=${sendD}`
+      console.log(query);
+      const { data } = await getBusesApi(query);
       setData(data.data)
     } catch (error) {
       console.log(error)
     }
   }
 
-  // // Initial call to api
-  // useEffect(() => {
-  //   getLocations()
-  //   getData()
-  // }, [])
+  // Initial call to api
+  useEffect(() => { 
+    console.log("sendD",sendD)
+  }, [sendD])
+  useEffect(() => {
+    getLocations()
+    // getData()
+  }, [])
 
   // Parse the loaded data
   useEffect(() => {
@@ -74,11 +83,12 @@ const LandingPage = () => {
           location={location}
           setLocation={setLocation}
         />
-        <TabsForm setDates={setDates} />
+        <TabsForm setDates={setDates} setSendD={setSendD}/>
         <Button
           toggleButton={toggleButton}
           setToggleButton={setToggleButton}
           setNo={setNo}
+          getData={getData}
         />
       </form>
       {buses ? (

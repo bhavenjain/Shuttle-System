@@ -65,7 +65,7 @@ const api = Axios.create({
 
 // Get REQUESTS
 export const getLocationsApi = () => api.get('/location-getLocations')
-export const getBusesApi = () => api.get('/bus-getBuses')
+export const getBusesApi = (query) => api.get(`/bus-getBuses${query}`)
 
 // Post REQUESTS
 export const addBusesApi = data => api.post('/api/addbus', data)

@@ -18,7 +18,7 @@ const month = [
   'Dec',
 ]
 
-const TabsForm = ({ setDates }) => {
+const TabsForm = ({ setDates,setSendD }) => {
   const [today, setToday] = useState(false)
   const [tom, setTom] = useState(false)
   const [next, setNext] = useState(false)
@@ -26,8 +26,16 @@ const TabsForm = ({ setDates }) => {
   const handleChange = (event) => {
     const values = event.target.parentNode.id
     console.log(values)
+    const aaj = JSON.stringify(currentDate.getDate()).length > 1 ? JSON.stringify(currentDate.getDate()) : `0${JSON.stringify(currentDate.getDate())}`
+    const kal = JSON.stringify(tomorrowDate.getDate()).length > 1 ? JSON.stringify(tomorrowDate.getDate()) : `0${JSON.stringify(tomorrowDate.getDate())}`
+    const parso = JSON.stringify(dayAfterDate.getDate()).length > 1 ? JSON.stringify(dayAfterDate.getDate()) : `0${JSON.stringify(dayAfterDate.getDate())}`
+
+    
+    setSendD(values);
     const value = values.substring(0, 2)
-    if (value === JSON.stringify(currentDate.getDate())) {
+    console.log(value, parso)
+    console.log(parso === value)
+    if (value === aaj) {
       setToday(true)
       setTom(false)
       setNext(false)
@@ -37,7 +45,7 @@ const TabsForm = ({ setDates }) => {
         month: month[currentDate.getMonth()],
         year: currentDate.getFullYear()
       })
-    } else if (value === JSON.stringify(tomorrowDate.getDate())) {
+    } else if (value === kal) {
       setToday(false)
       setTom(true)
       setNext(false)
@@ -47,7 +55,7 @@ const TabsForm = ({ setDates }) => {
         month: month[tomorrowDate.getMonth()],
         year: tomorrowDate.getFullYear()
       })
-    } else if (value === JSON.stringify(dayAfterDate.getDate())) {
+    } else if (value === parso) {
       setToday(false)
       setTom(false)
       setNext(true)
