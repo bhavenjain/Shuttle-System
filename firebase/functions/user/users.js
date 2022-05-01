@@ -18,11 +18,6 @@ exports.fetchUser = functions_reg.https.onRequest(async (req, res) =>{
     if(!email){
         res.status(400).json({"status":0,"msg":"required query param: email"});
         return;
-    }else{
-        if(!checkEmail(email)){
-            res.status(400).json({"status":0,"msg":"Enter valid email Ex-ab123@snu.edu.in or keshav.khj@snu.edu.in"});
-            return;
-        }   
     }
     try{
         const queryResult = await db_ref_u.where("email","==",email).get();
@@ -39,12 +34,12 @@ exports.fetchUser = functions_reg.https.onRequest(async (req, res) =>{
 });
 });
 
-exports.addUser = functions_reg.https.onRequest(async (req,res)=>{
+exports.create = functions_reg.https.onRequest(async (req,res)=>{
     cors(req, res, async () => {
 
     const user = req.body.user;
-    if((user && (!user.name || !user.email || !user.contact)) || !user){
-        res.status(400).json({"status":0,"msg":"all fields are compulsory"});
+    if((user && (!user.name || !user.email || !user.uid)) || !user){
+        res.status(400).json({"status":0,"msg":"Bad request. Required body: name, email, uid"});
         return;
     }
     if(!checkEmail(user.email)){
@@ -52,7 +47,21 @@ exports.addUser = functions_reg.https.onRequest(async (req,res)=>{
         return;
     }
     try{
-        await db_ref_u.doc().set(user);
+        await db_ref_u.doc(user.uid).set(user);
+        res.status(200).json({"status":1,"msg":"user registered successfully"});
+    }catch(e){
+        functions.logger.error(e);
+        res.status(500).json({"status":0,"msg":"internal error registrting user"});
+    }
+});
+})
+
+exports.login = functions_reg.https.onRequest(async (req,res)=>{
+    cors(req, res, async () => {
+
+    const user = req.body.user;
+    try{
+        await db_ref_u.doc(user.uid).update({"last_login":user.last_login});
         res.status(200).json({"status":1,"msg":"user registered successfully"});
     }catch(e){
         functions.logger.error(e);

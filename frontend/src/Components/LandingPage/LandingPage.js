@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { objectToListLocations, parseBuses } from '../../util'
-import { getBusesApi, getLocationsApi } from '../../http'
+import { getBusesApi, getLocationsApi, createUserApi } from '../../http'
+// import { useAuth } from '../../context/AuthContext'; 
+import { useAuth } from '../../context/AuthContext'
 import TabsForm from '../TabsForm/TabsForm'
 import BusLogs from '../BusLogs/BusLogs'
 import Button from '../Button/Button'
@@ -10,6 +12,7 @@ import Note from '../Note/Note'
 import '../../App.css'
 
 const LandingPage = () => {
+  const { currentUser } = useAuth();
   // User selected location
   const [location, setLocation] = useState({
     from: '',
@@ -61,12 +64,32 @@ const LandingPage = () => {
     }
   }
 
+  const setUser = async () => {
+    console.log(currentUser)
+    if(currentUser.metadata.lastLoginAt == currentUser.metadata.createdAt){
+      let userObj = {
+        name:currentUser.displayName,
+        email:currentUser.email,
+        contact:currentUser.phoneNumber,
+        uid:currentUser.uid,
+        signupTimestamp:currentUser.metadata.createdAt,
+        last_login:currentUser.metadata.lastLoginAt
+      }
+      await createUserApi(userObj);
+    }else{
+      let userObj = {last_login:currentUser.metadata.lastLoginAt,
+      uid:uid};
+      await loginUserApi(userObj);
+    }
+  }
+
   // Initial call to api
   useEffect(() => { 
     console.log("sendD",sendD)
   }, [sendD])
   useEffect(() => {
     getLocations()
+    setUser()
     // getData()
   }, [])
 
