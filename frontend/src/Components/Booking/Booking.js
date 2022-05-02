@@ -72,7 +72,9 @@ function Booking() {
   return (
     <div style={{ background: 'none' }}>
       <form style={{ background: 'none' }}>
-        <input type="button" onClick={displayRazorpay} value="Proceed to Pay" />
+        <input type="button" 
+        // onClick={displayRazorpay} 
+        value="Proceed to Pay" />
       </form>
     </div>
   )
