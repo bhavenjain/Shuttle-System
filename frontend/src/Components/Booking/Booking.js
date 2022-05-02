@@ -21,6 +21,7 @@ function loadScript(src) {
 const __DEV__ = document.domain === 'localhost'
 
 function Booking() {
+  const baseUrl = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -32,8 +33,9 @@ function Booking() {
       return
     }
 
-    const data = await fetch('http://localhost:5000/razorpay', {
+    const data = await fetch(`${baseUrl}/razorpay`, {
       method: 'POST',
+
     }).then((res) => res.json())
 
     const options = {
@@ -42,7 +44,7 @@ function Booking() {
       amount: data.amount.toString(),
       order_id: data.id,
       name: 'Book a Seat',
-      description: 'Shiv Nadar University',
+      description: 'SBS-SNU',
       image: '',
       timeout: 60,
       retry: { enabled: true, max_count: 5 },

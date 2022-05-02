@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require('firebase-admin');
+const { bus } = require("..");
 // const { set } = require("mongoose");
 const region = 'asia-south1';
 const functions_reg = functions.region(region);
@@ -22,6 +23,9 @@ exports.addBus = functions_reg.https.onRequest(async (req,res) =>{
         let time_in_milli = new Date(`${n_date}T${bus.time}:00+0530`)
         bus["uid"] = db_ref_b.doc().id;
         bus["time_in_milli"] = time_in_milli.getTime(); 
+        bus["price"] = parseInt(bus["price"]);
+        bus["total"] = parseInt(bus["total"]);
+        bus["remaining"] = parseInt(bus["remaining"]);
         await db_ref_b.doc().set(bus);
         res.status(200).json({"status":1,"msg":"Bus added successfully"});
 
@@ -62,7 +66,10 @@ exports.getBuses = functions_reg.https.onRequest( async (req, res) => {
         return;
       }
       query_result.forEach(doc => {
-        buses.push(doc.data());    
+        if(doc.data().remaining>0){
+
+          buses.push(doc.data());    
+        }
       });
       res.status(200).json({"status":1 ,"data": buses });
     } catch (err) { 

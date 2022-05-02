@@ -5,7 +5,7 @@ import { getBusesApi, getLocationsApi, createUserApi, loginUserApi } from '../..
 import { useAuth } from '../../context/AuthContext'
 import TabsForm from '../TabsForm/TabsForm'
 import BusLogs from '../BusLogs/BusLogs'
-
+import { getAuth } from "firebase/auth"
 // import {useAuth} from "../../context/AuthContext"
 
 import Button from '../Button/Button'
@@ -22,7 +22,7 @@ const LandingPage = () => {
     to: ''
   })
 
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
 
   // Locations
   const [options, setOptions] = useState([])
@@ -45,10 +45,10 @@ const LandingPage = () => {
   // Fetch the data for locations
   const getLocations = async () => {
     try {
-      
+
       const data = await getLocationsApi();
       const locationsList = data.locations
-      setOptions(...options,locationsList);
+      setOptions(...options, locationsList);
       // objectToListLocations(locationsList, setOptions)
     } catch (error) {
       console.log('Error')
@@ -58,10 +58,10 @@ const LandingPage = () => {
   // Get Buses Data
   const getData = async () => {
     try {
-      console.log("sendD:",sendD);
+      console.log("sendD:", sendD);
       let query = `?date=${sendD}&to=${location.to}&from=${location.from}`
       console.log(query);
-      const  data  = await getBusesApi(query);
+      const data = await getBusesApi(query);
       // setData(data.data)
       setBuses(data.data)
     } catch (error) {
@@ -71,37 +71,49 @@ const LandingPage = () => {
 
   const setUser = async () => {
     console.log(currentUser)
-      let userObj = JSON.stringify({ user:{
-        name:currentUser.displayName,
-        email:currentUser.email,
-        contact:currentUser.phoneNumber?currentUser.phoneNumber:currentUser.photoURL,
-        uid:currentUser.uid,
-        signupTimestamp:currentUser.metadata.createdAt,
-        last_login:currentUser.metadata.lastLoginAt
+    await currentUser.reload()
+    const user = getAuth().currentUser;
+    let phone;
+    if (user.phoneNumber) {
+      phone = user.phoneNumber
+    } else if (user.photoURL) {
+      phone = user.photoURL
+    }
+
+    console.log(user.displayName)
+
+    let userObj = JSON.stringify({
+      user: {
+        name: user.displayName,
+        email: user.email,
+        contact: phone,
+        uid: user.uid,
+        signupTimestamp: user.metadata.createdAt,
+        last_login: user.metadata.lastLoginAt
       }
-      });
-      console.log(userObj);
-      await loginUserApi(userObj);
+    });
+    console.log(userObj);
+    await loginUserApi(userObj);
   }
 
   // Initial call to api
-  useEffect(() => { 
-    console.log("sendD",sendD)
+  useEffect(() => {
+    console.log("sendD", sendD)
   }, [sendD])
   useEffect(() => {
-    getLocations()
     setUser()
+    getLocations()
     // getData()
   }, [])
 
-//   useEffect(() => {
-//   if (currentUser) {
-//     console.log(currentUser?.emailVerified)
-//   }
-//   // if(currentUser.emailVerified === true) {
-//   //   notifyEmail()
-//   // }
-// }, [currentUser])
+  //   useEffect(() => {
+  //   if (currentUser) {
+  //     console.log(currentUser?.emailVerified)
+  //   }
+  //   // if(currentUser.emailVerified === true) {
+  //   //   notifyEmail()
+  //   // }
+  // }, [currentUser])
 
 
   // // Parse the loaded data
@@ -118,7 +130,7 @@ const LandingPage = () => {
           location={location}
           setLocation={setLocation}
         />
-        <TabsForm setDates={setDates} setSendD={setSendD}/>
+        <TabsForm setDates={setDates} setSendD={setSendD} />
         <Button
           toggleButton={toggleButton}
           setToggleButton={setToggleButton}
