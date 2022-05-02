@@ -79,9 +79,11 @@ const LandingPage = () => {
     } else if (user.photoURL) {
       phone = user.photoURL
     }
-
-    console.log(user.displayName)
-
+    
+    // console.log("Original",currentUser)
+    // console.log("Originality",currentUser.displayName)
+    // console.log("Original Naming",user.displayName)
+    // // console.log("Original Name",user.user.displayName)
     let userObj = JSON.stringify({
       user: {
         name: user.displayName,
@@ -92,7 +94,7 @@ const LandingPage = () => {
         last_login: user.metadata.lastLoginAt
       }
     });
-    console.log(userObj);
+    console.log("Original Checking", userObj);
     await loginUserApi(userObj);
   }
 

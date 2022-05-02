@@ -36,7 +36,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
   const [click, setClick] = useState(null) // selected bus
   const userName = useSelector(state => state.NameState)
   const dispatch = useDispatch()
-
+  console.log("Chekking",userName)
   // Function to reserve a seat in the bus
   const reserveSeat = async selectedBus => {
     try {

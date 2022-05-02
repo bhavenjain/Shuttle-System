@@ -1,5 +1,6 @@
 import React from 'react'
 import '../BusLogs.css'
+import {deleteBusApi, updateBusApi} from '../../../http/index'
 
 const BusFill = ({
   bus,
@@ -31,8 +32,10 @@ const BusFill = ({
         </h3>
         {AdminDelete && (
           <button
-            onClick={() => {
+            onClick={async () => {
               setUpdateBus(bus)
+              let query = `?uid=${bus.uid}`
+              await deleteBusApi(query)
             }}
           >
             Delete Bus
@@ -40,10 +43,11 @@ const BusFill = ({
         )}
         {AdminUpdate && (
           <button
-            onClick={() => {
+            onClick={async() => {
               setPage(5)
               setAdminBus(bus)
               setUpdateBus(bus)
+              await updateBusApi(bus)
             }}
           >
             Update Bus
