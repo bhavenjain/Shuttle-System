@@ -38,7 +38,7 @@ function Booking() {
     }).then((res) => res.json()).catch((e) => console.log(e))
 
     const options = {
-      key: __DEV__ ? 'rzp_test_ZsfvZ7WD4P79zf' : 'PRODUCTION_KEY',
+      key: __DEV__ ? 'rzp_test_iERGi2QxdZoml1' : 'PRODUCTION_KEY',
       currency: data.currency,
       amount: data.amount.toString(),
       order_id: data.id,
