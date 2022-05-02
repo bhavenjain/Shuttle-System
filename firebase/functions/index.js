@@ -7,6 +7,7 @@ const functions_reg = functions.region(region);
 const db = admin.firestore();
 const cors = require('cors')({ origin: true });
 
+const shortid = require('shortid');
 
 exports.check = functions_reg.https.onRequest((req, res) =>{
     res.status(200).json({"status":"working"});
@@ -61,7 +62,7 @@ exports.verification = functions_reg.https.onRequest(async (req,res) =>{
 
 exports.razorpay = functions_reg.https.onRequest(async( req,res) => {
     cors(req, res, async () => {
-        const payment_capture = 1
+    const payment_capture = 1
     const amount = 100
     const currency = 'INR'
   

@@ -35,8 +35,7 @@ function Booking() {
 
     const data = await fetch(`${baseUrl}/razorpay`, {
       method: 'POST',
-
-    }).then((res) => res.json())
+    }).then((res) => res.json()).catch((e) => console.log(e))
 
     const options = {
       key: __DEV__ ? 'rzp_test_ZsfvZ7WD4P79zf' : 'PRODUCTION_KEY',
@@ -73,7 +72,7 @@ function Booking() {
     <div style={{ background: 'none' }}>
       <form style={{ background: 'none' }}>
         <input type="button" 
-        // onClick={displayRazorpay} 
+        onClick={displayRazorpay} 
         value="Proceed to Pay" />
       </form>
     </div>
