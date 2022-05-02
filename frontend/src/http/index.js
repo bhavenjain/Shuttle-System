@@ -69,12 +69,14 @@ export const handlePostApi = async (url, body) => {
 const baseURL = process.env.REACT_APP_API_URL;
 export const getLocationsApi = () => handleGetApi(`${baseURL}/location-getLocations`);
 export const getBusesApi = (query) => handleGetApi(`${baseURL}/bus-getBuses${query}`);
+export const deleteBusApi = (query) => handleGetApi(`${baseURL}/bus-deleteBus`);
 // Post REQUESTS
 // export const createUserApi = data => handlePostApi(`${baseURL}/user-create`, data);
 export const loginUserApi = data => handlePostApi(`${baseURL}/user-login`, data);
 export const addBusesApi = data => handlePostApi(`${baseURL}/bus-addBus`, data);
+export const updateBusApi = data => handlePostApi(`${baseURL}/bus-updateBus`, data);
 export const addLocationsApi = data => handlePostApi(`${baseURL}/location-updateLocation`, data)
-export const addBookingApi = data => handlePostApi(`${baseURL}/api/addbooking`, data)
+export const addBookingApi = data => handlePostApi(`${baseURL}/booking-create`, data)
 export const reserveSeatApi = data => handlePostApi(`${baseURL}/api/reserveseat`, data)
 
 // export default api

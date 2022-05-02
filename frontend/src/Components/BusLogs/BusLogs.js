@@ -75,11 +75,13 @@ const BusLogs = ({ buses, dates, sendDate }) => {
         '/' +
         JSON.stringify(currentDate.getFullYear())
 
-      return await addBookingApi({
-        booking,
-        userName,
-        bookingDate: date
-      })
+        let data = JSON.stringify({bookObj:{
+          bus:booking,
+          user:currentUser,
+        }
+        });
+        
+      return await addBookingApi(data);
     } catch (error) {
       console.log(error)
     }
@@ -151,7 +153,6 @@ const BusLogs = ({ buses, dates, sendDate }) => {
                         onClick={() => {
                           dispatch(BusBooked(click))
                           dispatch(Name({ name: name, id: uuidv4() }))
-                          reserveSeat(click)
                           addBooking(click)
                         }}
                         style={{ background: 'none' }}
