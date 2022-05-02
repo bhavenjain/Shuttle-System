@@ -69,39 +69,39 @@ const LandingPage = () => {
     }
   }
 
-  const setUser = async () => {
-    console.log(currentUser)
-    await currentUser.reload()
-    const user = getAuth().currentUser;
-    let phone;
-    if (user.phoneNumber) {
-      phone = user.phoneNumber
-    } else if (user.photoURL) {
-      phone = user.photoURL
-    }
+  // const setUser = async () => {
+  //   console.log(currentUser)
+  //   await currentUser.reload()
+  //   const user = getAuth().currentUser;
+  //   let phone;
+  //   if (user.phoneNumber) {
+  //     phone = user.phoneNumber
+  //   } else if (user.photoURL) {
+  //     phone = user.photoURL
+  //   }
 
-    console.log(user.displayName)
+  //   console.log(user.displayName)
 
-    let userObj = JSON.stringify({
-      user: {
-        name: user.displayName,
-        email: user.email,
-        contact: phone,
-        uid: user.uid,
-        signupTimestamp: user.metadata.createdAt,
-        last_login: user.metadata.lastLoginAt
-      }
-    });
-    console.log(userObj);
-    await loginUserApi(userObj);
-  }
+  //   let userObj = JSON.stringify({
+  //     user: {
+  //       name: user.displayName,
+  //       email: user.email,
+  //       contact: phone,
+  //       uid: user.uid,
+  //       signupTimestamp: user.metadata.createdAt,
+  //       last_login: user.metadata.lastLoginAt
+  //     }
+  //   });
+  //   console.log(userObj);
+  //   await loginUserApi(userObj);
+  // }
 
   // Initial call to api
   useEffect(() => {
     console.log("sendD", sendD)
   }, [sendD])
   useEffect(() => {
-    setUser()
+    // setUser()
     getLocations()
     // getData()
   }, [])
