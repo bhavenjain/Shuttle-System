@@ -5,6 +5,8 @@ admin.initializeApp();
 const region = 'asia-south1';
 const functions_reg = functions.region(region);
 const db = admin.firestore();
+const cors = require('cors')({ origin: true });
+
 
 exports.check = functions_reg.https.onRequest((req, res) =>{
     res.status(200).json({"status":"working"});
