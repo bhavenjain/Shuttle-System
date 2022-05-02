@@ -69,12 +69,8 @@ export const handlePostApi = async (url, body) => {
 const baseURL = process.env.REACT_APP_API_URL;
 export const getLocationsApi = () => handleGetApi(`${baseURL}/location-getLocations`);
 export const getBusesApi = (query) => handleGetApi(`${baseURL}/bus-getBuses${query}`);
-<<<<<<< HEAD
 export const deleteBusApi = (query) => handleGetApi(`${baseURL}/bus-deleteBus${query}`);
 
-=======
-export const deleteBusApi = (query) => handleGetApi(`${baseURL}/bus-deleteBus`);
->>>>>>> c8a15db29068bb26636db3fd2b412b4b909c6f09
 // Post REQUESTS
 // export const createUserApi = data => handlePostApi(`${baseURL}/user-create`, data);
 export const loginUserApi = data => handlePostApi(`${baseURL}/user-login`, data);
