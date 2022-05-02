@@ -118,8 +118,9 @@ const LandingPage = () => {
 
   // // Parse the loaded data
   // useEffect(() => {
-  //   parseBuses(location, dates, data, setSendDate, setBuses)
-  // }, [toggleButton, location, data])
+  //   parseBuses(buses, setBuses)
+  //   console.log(buses)
+  // }, [toggleButton, location])
 
   return (
     <div className='app'>

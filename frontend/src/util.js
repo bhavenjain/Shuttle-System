@@ -32,23 +32,19 @@ export const sortData = data => {
 }
 
 // Parsing for buses
-export const parseBuses = (location, dates, data, setSendDate, setBuses) => {
-  if (location.from && location.to && dates.day && data) {
+export const parseBuses = (buses, setBuses) => {
+  if (buses) {
     let tempForBus = []
-    data.forEach(bus => {
+    buses.forEach(bus => {
       if (
         bus &&
-        bus.to.toLowerCase() === location.to.toLowerCase() &&
-        bus.from.toLowerCase() === location.from.toLowerCase() &&
-        JSON.stringify(bus.date.slice(0, 2)) === JSON.stringify(dates.date) &&
         bus.remaining > 0 &&
         bus.remaining <= bus.total
       ) {
-        const temp = dates.day + ', ' + bus.date.slice(0, 2) + ' ' + dates.month
         tempForBus.push(bus)
-        setSendDate(temp)
       }
     })
+    console.log("TESTTTTT",tempForBus)
     if (tempForBus.length > 0) {
       setBuses(tempForBus)
     } else {

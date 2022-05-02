@@ -24,10 +24,10 @@ const BusFill = ({
       </div>
       <div className='busLogs__s3'>
         <h3>
-          <strong>{bus.remaining}</strong> seats available
+          <strong>{bus.remaining}</strong> seats left
         </h3>
         <h3>
-          <strong>{bus.total}</strong> total seats.
+          Rs. <strong>{bus.price}</strong> only
         </h3>
         {AdminDelete && (
           <button

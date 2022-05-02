@@ -9,6 +9,9 @@ import Box from '@mui/material/Box'
 import { currentDate } from '../../util'
 import { v4 as uuidv4 } from 'uuid'
 import './BusLogs.css'
+import {useAuth} from '../../context/AuthContext'
+
+
 
 const style = {
   position: 'absolute',
@@ -24,8 +27,11 @@ const style = {
   p: 2
 }
 
+
 const BusLogs = ({ buses, dates, sendDate }) => {
-  const [name, setName] = useState('') // Name the user enters
+  const { currentUser } = useAuth()
+  // console.log("checkking",currentUser)
+  const [name, setName] = useState(currentUser.displayName) // Name the user enters
   const [open, setOpen] = useState(false) // modal status
   const [click, setClick] = useState(null) // selected bus
   const userName = useSelector(state => state.NameState)
@@ -127,7 +133,7 @@ const BusLogs = ({ buses, dates, sendDate }) => {
               >
                 <Box sx={style}>
                   <div className='busLogs__adjust'>
-                    <h3>Bus Details</h3>
+                    <h3>Ticket Summary</h3>
                     <BusFill bus={bus} sendDate={sendDate} />
 
                     <br />
