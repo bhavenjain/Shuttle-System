@@ -47,6 +47,7 @@ const BusFill = ({
               setPage(5)
               setAdminBus(bus)
               setUpdateBus(bus)
+              console.log(bus);
               await updateBusApi(bus)
             }}
           >
