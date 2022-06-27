@@ -47,6 +47,7 @@ function Booking() {
       image: '',
       timeout: 60,
       retry: { enabled: true, max_count: 5 },
+      external:{"wallets":['paytm']},
 
       handler: function (response) {
         const orderDetails = {
@@ -64,8 +65,13 @@ function Booking() {
         phone_number: '',
       },
     }
-    const paymentObject = new window.Razorpay(options)
-    paymentObject.open()
+    try{
+      const paymentObject = new window.Razorpay(options)
+      paymentObject.open()
+    }catch(e){
+      // dbugPrint('error:e')
+      console.log(e);
+    }
   }
 
   return (
