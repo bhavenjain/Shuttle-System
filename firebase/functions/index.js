@@ -20,13 +20,13 @@ exports.user = require('./user/users');
 
 
 const razorpay = new Razorpay({
-    key_id: 'rzp_test_ZsfvZ7WD4P79zf',
-    key_secret: 'uO8vw4druul1HosjKFcY26Ir'
+    key_id: 'rzp_test_iERGi2QxdZoml1',
+    key_secret: 'FdSie3kygm5uE39fwsZWqBNW'
   })
 
 exports.verification = functions_reg.https.onRequest(async (req,res) =>{
     cors(req, res, async() =>{
-        const secret = '12345678'
+        const secret = '123456789'
   
     const shasum = crypto.createHmac('sha256', secret)
     shasum.update(JSON.stringify(req.body))
