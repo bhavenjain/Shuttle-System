@@ -1,6 +1,14 @@
 .container {
     width: 100vw;
-    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerWeb {
+    width: 100vw;
+    /* max-width: 400px; */
+    min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,6 +16,7 @@
     padding: 30px;
     text-decoration: none;
 }
+.container
 
 .haeding {
     /* Title */
@@ -167,3 +176,37 @@ i {
     text-decoration: none;
 }
 
+/* Media Queries */
+
+@media only screen and (min-width : 600px) {
+    .containerWeb {
+        max-width: 450px;
+        width: 100%;
+        border: 0.5px solid gray;
+        padding: 30px;
+        height: auto;
+        margin-top: 5%;
+        margin-bottom: 10%;
+        -webkit-box-shadow: 0px 6px 42px -22px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 6px 42px -22px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 6px 42px -22px rgba(0, 0, 0, 0.75);
+    }
+
+    .heading {
+        font-size: 30px;
+    }
+
+    .signin {
+        width: 390px;
+        margin-bottom: 5%;
+    }
+
+    .visible {
+        position: relative;
+        float: right;
+        display: flex;
+        top: 6.5vh;
+        right: 1vw;
+        margin-top: -5%;
+    }
+}

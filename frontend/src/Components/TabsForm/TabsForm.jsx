@@ -77,13 +77,13 @@ const TabsForm = ({ setDates,setSendD }) => {
       <label>Choose a Date</label>
       <div className="tabsForm__tabs">
         <div
+          onClick={handleChange}
           className={'tabsForm__panel' + (today ? ' tabsForm__focused' : '')}
           id={`${
             JSON.stringify(currentDate.getDate()).length > 1 ? '' : '0'
           }${currentDate.getDate()}/${
             JSON.stringify(currentDate.getMonth()).length > 1 ? '' : '0'
           }${currentDate.getMonth()+1}/${currentDate.getFullYear()}`}
-          onClick={handleChange}
         >
           <p>{weekday[currentDate.getDay()]}</p>
           <h3>{currentDate.getDate()}</h3>

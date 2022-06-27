@@ -11,7 +11,7 @@ const Navbar = () => {
         alt='SNU Logo'
         className='navbar__logo'
       />
-      {currentUser && <button onClick={logout}>Sign out</button>}
+      {currentUser && <button className="navbar__signout" onClick={logout}>Sign Out</button>}
     </div>
   )
 }

@@ -7,10 +7,18 @@
     align-items: center;
     padding: 2vh 7vw;
 }
-.navbar::-webkit-scrollbar{
+
+.navbar::-webkit-scrollbar {
     display: none;
 }
+
 .navbar__logo {
     object-fit: cover;
     max-width: 35vw;
+}
+
+.navbar__signout {
+    background: none;
+    border: 1px solid white;
+    color: white;
 }

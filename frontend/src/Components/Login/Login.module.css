@@ -1,5 +1,12 @@
 .container {
     width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerWeb {
+    width: 100vw;
     /* max-width: 400px; */
     min-height: 90vh;
     display: flex;
@@ -27,7 +34,7 @@
     color: #1A1A1A;
 }
 
-.m10{
+.m10 {
     margin-top: 10%;
 }
 
@@ -67,9 +74,10 @@
 }
 
 .password {
-    width: 100%;}
+    width: 100%;
+}
 
-i {
+.visible {
     position: absolute;
     background: none;
     margin-top: 5%;
@@ -103,13 +111,9 @@ i {
     height: 40px;
     left: calc(50% - 321px/2);
     top: 276px;
-
-    /* System-Blue (#007AFF) */
-
     background: #007AFF;
     border-radius: 6px;
     color: #fff;
-    /* Inside auto layout */
     margin-top: 7%;
     border: none;
     flex: none;
@@ -164,9 +168,39 @@ i {
     text-decoration: none;
 }
 
-.deco{
+.deco {
     text-decoration: none;
 }
 
 
 /* Media Queries */
+
+@media only screen and (min-width : 600px) {
+    .containerWeb {
+        max-width: 450px;
+        width: 100%;
+        border: 0.5px solid gray;
+        margin-bottom: 5%;
+        margin-top: 5%;
+        -webkit-box-shadow: 0px 6px 42px -22px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 6px 42px -22px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 6px 42px -22px rgba(0, 0, 0, 0.75);
+    }
+
+    .heading {
+        font-size: 30px;
+    }
+
+    .signin {
+        width: 390px;
+    }
+
+    .visible {
+        position: relative;
+        float: right;
+        display: flex;
+        top: 6.5vh;
+        right: 1vw;
+        margin-top: -5%;
+    }
+}

@@ -64,7 +64,7 @@ const Login = () => {
         console.log(resp)
         const user = auth.currentUser
         user.reload().then(() => {
-            history.push(location.state?.from ?? '/')
+          history.push(location.state?.from ?? '/')
         })
       })
       .catch(error => {
@@ -99,63 +99,65 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>Signin to Dashboard</h1>
-      <label className={`${styles.label} ${styles.m10}`}>Mail ID</label>
-      <input
-        type='text'
-        onChange={changeEmail}
-        className={styles.inputs}
-        placeholder='SNU Email ID'
-      />
-
-      <label className={`${styles.label} ${styles.m10}`}>Password</label>
-      <div className={styles.password}>
-        <i onClick={() => setShow(!show)} className={styles.visible}>
-          <RemoveRedEyeIcon />
-        </i>
+      <div className={styles.containerWeb}>
+        <h1 className={styles.heading}>Signin to Dashboard</h1>
+        <label className={`${styles.label} ${styles.m10}`}>Mail ID</label>
         <input
-          type={show ? 'text' : 'password'}
-          onChange={changePassword}
+          type='text'
+          onChange={changeEmail}
           className={styles.inputs}
-          placeholder='Enter Password'
+          placeholder='SNU Email ID'
+        />
+
+        <label className={`${styles.label} ${styles.m10}`}>Password</label>
+        <div className={styles.password}>
+          <i onClick={() => setShow(!show)} className={styles.visible}>
+            <RemoveRedEyeIcon />
+          </i>
+          <input
+            type={show ? 'text' : 'password'}
+            onChange={changePassword}
+            className={styles.inputs}
+            placeholder='Enter Password'
+          />
+        </div>
+        <label className={styles.forgot}>
+          <Link className={styles.deco} to='/forgotpassword'>
+            Forgot password?
+          </Link>
+        </label>
+        <div>
+          <button
+            onClick={loginWithUsernameAndPassword}
+            className={styles.signin}
+          >
+            Sign In
+          </button>
+        </div>
+        <span className={styles.line}></span>
+
+        <button onClick={loginWithGoogle} className={styles.google}>
+          <img className={styles.googleImg} src='/images/google.png' alt='' />
+          Sign-in with Google
+        </button>
+        <p className={styles.p}>
+          Don’t have an account?{' '}
+          <Link className={styles.deco} to='/signup'>
+            Sign Up
+          </Link>
+        </p>
+        <ToastContainer
+          position='top-center'
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
       </div>
-      <label className={styles.forgot}>
-        <Link className={styles.deco} to='/forgotpassword'>
-          Forgot password?
-        </Link>
-      </label>
-      <div>
-        <button
-          onClick={loginWithUsernameAndPassword}
-          className={styles.signin}
-        >
-          Sign In
-        </button>
-      </div>
-      <span className={styles.line}></span>
-
-      <button onClick={loginWithGoogle} className={styles.google}>
-        <img className={styles.googleImg} src='/images/google.png' alt='' />
-        Sign-in with Google
-      </button>
-      <p className={styles.p}>
-        Don’t have an account?{' '}
-        <Link className={styles.deco} to='/signup'>
-          Sign Up
-        </Link>
-      </p>
-      <ToastContainer
-        position='top-center'
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   )
 }
