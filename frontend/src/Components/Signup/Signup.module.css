@@ -77,7 +77,7 @@
 .password {
     width: 100%;}
 
-i {
+.visible {
     position: absolute;
     background: none;
     margin-top: 5%;
@@ -205,7 +205,7 @@ i {
         position: relative;
         float: right;
         display: flex;
-        top: 6.5vh;
+        top: 6.1vh;
         right: 1vw;
         margin-top: -5%;
     }
