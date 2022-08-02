@@ -2,8 +2,9 @@
     display: flex;
     background-color: #005197;
     color: #ffffff;
-    width: 100.15vw;
-    height: 10vh;
+    max-width: 100.15vw;
+    width: 100%;
+    height: auto;
     align-items: center;
     padding: 2vh 7vw;
 }
@@ -14,7 +15,8 @@
 
 .navbar__logo {
     object-fit: cover;
-    max-width: 35vw;
+    max-width: 150px;
+    width: auto;
 }
 
 .navbar__signout {
