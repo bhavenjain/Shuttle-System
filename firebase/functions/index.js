@@ -9,8 +9,8 @@ const cors = require('cors')({ origin: true });
 
 const shortid = require('shortid');
 
-exports.check = functions_reg.https.onRequest((req, res) =>{
-    res.status(200).json({"status":"working"});
+exports.check = functions_reg.https.onRequest((req, res) => {
+  res.status(200).json({ "status": "working" });
 })
 
 exports.bus = require('./bus/bus');
@@ -20,20 +20,20 @@ exports.user = require('./user/users');
 
 
 const razorpay = new Razorpay({
-    key_id: 'rzp_test_iERGi2QxdZoml1',
-    key_secret: 'FdSie3kygm5uE39fwsZWqBNW'
-  })
+  key_id: 'rzp_test_iERGi2QxdZoml1',
+  key_secret: 'FdSie3kygm5uE39fwsZWqBNW'
+})
 
-exports.verification = functions_reg.https.onRequest(async (req,res) =>{
-    cors(req, res, async() =>{
-        const secret = '123456789'
-  
+exports.verification = functions_reg.https.onRequest(async (req, res) => {
+  cors(req, res, async () => {
+    const secret = '123456789'
+
     const shasum = crypto.createHmac('sha256', secret)
     shasum.update(JSON.stringify(req.body))
     const digest = shasum.digest('hex')
-  
+
     //   console.log(digest, req.headers['x-razorpay-signature'])
-  
+
     if (digest === req.headers['x-razorpay-signature']) {
       console.log('Mail: ' + req.body.payload.payment.entity.email)
       console.log('Mobile: ' + req.body.payload.payment.entity.contact)
@@ -44,9 +44,9 @@ exports.verification = functions_reg.https.onRequest(async (req,res) =>{
       console.log('request is legit')
       // process it
       // if(typeofreq.body.payload.payment.entity.captured){
-  
+
       // }
-  
+
       require('fs').writeFileSync(
         'payment1.json',
         JSON.stringify(req.body, null, 4)
@@ -56,23 +56,28 @@ exports.verification = functions_reg.https.onRequest(async (req,res) =>{
       console.log(req.body.payload.payment.entity.status)
     }
     res.status(200).json({ status: 'ok' })
-    });
+  });
 });
-  
 
-exports.razorpay = functions_reg.https.onRequest(async( req,res) => {
-    cors(req, res, async () => {
+
+exports.razorpay = functions_reg.https.onRequest(async (req, res) => {
+  cors(req, res, async () => {
+    const ticketAmount = req.body.amount;
+    if(!ticketAmount) {
+      res.status(400).json({message: "No amount added"})
+      return;
+    }
     const payment_capture = 1
-    const amount = 100
+    const amount = parseInt(ticketAmount)
     const currency = 'INR'
-  
+
     const options = {
       amount: amount * 100,
       currency,
       receipt: shortid.generate(),
       payment_capture
     }
-  
+
     try {
       const response = await razorpay.orders.create(options)
       // console.log(response)
@@ -85,5 +90,5 @@ exports.razorpay = functions_reg.https.onRequest(async( req,res) => {
       console.log(error)
     }
 
-    })
-} );
+  })
+});
