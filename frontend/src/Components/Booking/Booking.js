@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { OrderDetails } from '../../actions/actions'
+
 import './Booking.css'
 
 function loadScript(src) {
@@ -24,6 +25,7 @@ function Booking() {
   const baseUrl = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch()
   const history = useHistory()
+  const Bus = useSelector(state => state.BusBooked)
 
   async function displayRazorpay() {
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
@@ -35,6 +37,10 @@ function Booking() {
 
     const data = await fetch(`${baseUrl}/razorpay`, {
       method: 'POST',
+      headers: {'Content-Type':'application/json'},
+       body: JSON.stringify({
+            "amount": Bus.price
+       })
     }).then((res) => res.json()).catch((e) => console.log(e))
 
     const options = {
